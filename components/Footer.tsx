@@ -1,91 +1,210 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from "next/link";
+
+const footerCols = [
+  {
+    title: "Architecture",
+    links: ["Estate Models", "Configurator", "Global Locations", "Services"],
+  },
+  {
+    title: "Company",
+    links: ["Sustainability", "Careers", "Investor Relations", "Newsroom"],
+  },
+  { title: "Social", links: ["Instagram", "LinkedIn", "Youtube"] },
+];
+
+const label: React.CSSProperties = {
+  fontFamily: "var(--font-inter), sans-serif",
+  fontSize: ".6rem",
+  fontWeight: 700,
+  letterSpacing: ".2em",
+  textTransform: "uppercase",
+  color: "#fff",
+  display: "block",
+  marginBottom: "2rem",
+};
+
+const footLink: React.CSSProperties = {
+  display: "block",
+  fontFamily: "var(--font-body)",
+  fontSize: ".82rem",
+  color: "rgba(255,255,255,.35)",
+  textDecoration: "none",
+  marginBottom: "1rem",
+  transition: "color .25s",
+};
 
 export default function Footer() {
   return (
-    <footer className="bg-black pt-32 pb-12 relative overflow-hidden">
+    <footer
+      style={{
+        background: "#000",
+        paddingTop: "8rem",
+        paddingBottom: "3rem",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       {/* Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none select-none overflow-hidden">
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          userSelect: "none",
+          overflow: "hidden",
+        }}
+      >
         <span className="watermark">GUGRI INDUSTRIES</span>
       </div>
 
-      <div className="relative z-10 max-w-screen-2xl mx-auto px-8 md:px-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-16 mb-32">
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: 1440,
+          margin: "0 auto",
+          padding: "0 5rem",
+        }}
+      >
+        {/* Top grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.2fr 1fr 1fr 1fr 1.2fr",
+            gap: "3rem",
+            marginBottom: "6rem",
+          }}
+        >
           {/* Region */}
-          <div className="col-span-2 md:col-span-1">
-            <h5 className="text-white text-[11px] font-bold uppercase tracking-widest mb-8 font-label">Region</h5>
-            <div className="flex items-center gap-2 text-white/40 text-sm hover:text-primary cursor-pointer transition-colors">
-              <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>public</span>
-              <span className="font-medium font-body">International / English</span>
+          <div>
+            <span style={label}>Region</span>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: ".5rem",
+                color: "rgba(255,255,255,.35)",
+                fontSize: ".82rem",
+                cursor: "pointer",
+              }}
+            >
+              <span className="material-symbols-outlined" style={{ fontSize: 18 }}>public</span>
+              International / English
             </div>
           </div>
 
-          {/* Architecture */}
-          <div>
-            <h5 className="text-white text-[11px] font-bold uppercase tracking-widest mb-8 font-label">Architecture</h5>
-            <ul className="flex flex-col gap-4 text-white/40 text-sm font-body">
-              {['Estate Models', 'Configurator', 'Global Locations', 'Services'].map(item => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-primary transition-colors">{item}</Link>
-                </li>
+          {footerCols.map((col) => (
+            <div key={col.title}>
+              <span style={label}>{col.title}</span>
+              {col.links.map((l) => (
+                <Link
+                  key={l}
+                  href="#"
+                  style={footLink}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLAnchorElement).style.color =
+                      "rgba(255,255,255,.35)")
+                  }
+                >
+                  {l}
+                </Link>
               ))}
-            </ul>
-          </div>
+            </div>
+          ))}
 
-          {/* Company */}
-          <div>
-            <h5 className="text-white text-[11px] font-bold uppercase tracking-widest mb-8 font-label">Company</h5>
-            <ul className="flex flex-col gap-4 text-white/40 text-sm font-body">
-              {['Sustainability', 'Careers', 'Investor Relations', 'Newsroom'].map(item => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-primary transition-colors">{item}</Link>
-                </li>
+          {/* Digital experience */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+            <span style={{ ...label, textAlign: "right" }}>Digital Experience</span>
+            <div style={{ display: "flex", gap: ".75rem" }}>
+              {["App Store", "Google Play"].map((s) => (
+                <div
+                  key={s}
+                  style={{
+                    padding: ".5rem 1rem",
+                    border: "1px solid rgba(255,255,255,.1)",
+                    background: "#18181b",
+                    borderRadius: ".25rem",
+                    fontSize: ".6rem",
+                    color: "rgba(255,255,255,.5)",
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    fontFamily: "var(--font-inter), sans-serif",
+                    transition: "border-color .25s",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,.3)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,.1)")
+                  }
+                >
+                  {s}
+                </div>
               ))}
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h5 className="text-white text-[11px] font-bold uppercase tracking-widest mb-8 font-label">Social</h5>
-            <ul className="flex flex-col gap-4 text-white/40 text-sm font-body">
-              {['Instagram', 'LinkedIn', 'Youtube'].map(item => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-primary transition-colors">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Digital Experience */}
-          <div className="col-span-2 md:col-span-1 flex flex-col items-end">
-            <h5 className="text-white text-[11px] font-bold uppercase tracking-widest mb-8 w-full text-left md:text-right font-label">
-              Digital Experience
-            </h5>
-            <div className="flex gap-4">
-              <div className="w-32 h-10 bg-zinc-900 rounded border border-white/10 flex items-center justify-center hover:border-white/30 transition-colors cursor-pointer px-3">
-                <span className="text-white text-xs font-label">App Store</span>
-              </div>
-              <div className="w-32 h-10 bg-zinc-900 rounded border border-white/10 flex items-center justify-center hover:border-white/30 transition-colors cursor-pointer px-3">
-                <span className="text-white text-xs font-label">Google Play</span>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/5 pt-12 flex flex-col items-center">
-          <div className="flex flex-wrap justify-center gap-8 mb-8 text-[10px] uppercase tracking-widest text-white/30 font-label">
-            {['Legal Notice', 'Privacy Policy', 'Cookie Policy', 'Accessibility'].map(item => (
-              <Link key={item} href="#" className="hover:text-primary transition-colors">{item}</Link>
+        {/* Bottom bar */}
+        <div
+          style={{
+            borderTop: "1px solid rgba(255,255,255,.06)",
+            paddingTop: "2.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "1.25rem",
+          }}
+        >
+          <div style={{ display: "flex", gap: "2.5rem" }}>
+            {["Legal Notice", "Privacy Policy", "Cookie Policy", "Accessibility"].map((t) => (
+              <Link
+                key={t}
+                href="#"
+                style={{
+                  fontFamily: "var(--font-inter), sans-serif",
+                  fontSize: ".55rem",
+                  letterSpacing: ".18em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,.22)",
+                  textDecoration: "none",
+                  transition: "color .25s",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLAnchorElement).style.color =
+                    "rgba(255,255,255,.22)")
+                }
+              >
+                {t}
+              </Link>
             ))}
           </div>
-          <p className="text-center text-[10px] text-white/20 tracking-[0.2em] font-label uppercase">
-            © 2024 GUGRI INDUSTRIES. Engineering the Natural World. All Rights Reserved.
+          <p
+            style={{
+              fontFamily: "var(--font-inter), sans-serif",
+              fontSize: ".55rem",
+              letterSpacing: ".2em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,.15)",
+            }}
+          >
+            © 2024 GUGRI INDUSTRIES. Engineering the Natural World. All Rights
+            Reserved.
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,57 +1,169 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface NavbarProps {
-  onMenuClick: () => void
+  onMenuClick: () => void;
+  menuOpen?: boolean;
 }
 
-export default function Navbar({ onMenuClick }: NavbarProps) {
-  const [scrolled, setScrolled] = useState(false)
+export default function Navbar({
+  onMenuClick,
+  menuOpen = false,
+}: NavbarProps) {
+  const [solid, setSolid] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const fn = () => setSolid(window.scrollY > 60);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 px-8 py-8 transition-all duration-500 ${
-        scrolled
-          ? 'bg-black/90 backdrop-blur-md'
-          : 'bg-gradient-to-b from-black via-black/80 to-transparent'
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        padding: "1.75rem 2rem",
+        transition: "background .4s",
+        background: solid || menuOpen ? "rgba(0,0,0,.95)" : undefined,
+      }}
+      className={!solid && !menuOpen ? "nav-gradient" : ""}
     >
-      <div className="flex justify-between items-center max-w-full mx-auto relative">
-        {/* Menu Button */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          maxWidth: "1600px",
+          margin: "0 auto",
+          position: "relative",
+        }}
+      >
+        {/* Hamburger */}
         <button
-          className="flex items-center space-x-3 text-white hover:text-primary transition-colors duration-300 group"
           onClick={onMenuClick}
+          aria-label="Toggle menu"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: ".75rem",
+            background: "none",
+            border: "none",
+            color: "#fff",
+            cursor: "pointer",
+            transition: "color .3s",
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLButtonElement).style.color = "#C5A059")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLButtonElement).style.color = "#fff")
+          }
         >
-          <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>menu</span>
-          <span className="font-bold text-[10px] uppercase tracking-widest hidden sm:inline-block font-label">
-            Menu
+          
+          <div
+            style={{
+              width: 26,
+              height: 18,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  height: "1.5px",
+                  background: "currentColor",
+                  transformOrigin: "center",
+                  transition: "transform .45s ease, opacity .3s",
+                  transform:
+                    menuOpen && i === 0
+                      ? "translateY(8.25px) rotate(45deg)"
+                      : menuOpen && i === 2
+                        ? "translateY(-8.25px) rotate(-45deg)"
+                        : "none",
+                  opacity: menuOpen && i === 1 ? 0 : 1,
+                }}
+              />
+            ))}
+          </div>
+          <span
+            style={{
+              fontFamily: "var(--font-inter), sans-serif",
+              fontSize: ".625rem",
+              fontWeight: 700,
+              letterSpacing: ".18em",
+              textTransform: "uppercase",
+            }}
+          >
+            {menuOpen ? "Close" : "Menu"}
           </span>
         </button>
 
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl md:text-2xl font-black text-white uppercase tracking-[0.3em] absolute left-1/2 -translate-x-1/2 text-center whitespace-nowrap font-headline hover:text-primary transition-colors duration-300"
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            fontFamily: "var(--font-epilogue), sans-serif",
+            fontSize: "1.1rem",
+            fontWeight: 900,
+            letterSpacing: ".28em",
+            textTransform: "uppercase",
+            color: "#fff",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+            transition: "color .3s",
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLAnchorElement).style.color = "#fff")
+          }
         >
           GUGRI INDUSTRIES
         </Link>
 
-        {/* Connect CTA */}
+        {/* Connect */}
         <Link
           href="/connect"
-          className="px-5 py-2 border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 font-label"
+          style={{
+            padding: ".5rem 1.5rem",
+            border: "1px solid rgba(255,255,255,.22)",
+            color: "#fff",
+            fontFamily: "var(--font-inter), sans-serif",
+            fontSize: ".6rem",
+            fontWeight: 700,
+            letterSpacing: ".18em",
+            textTransform: "uppercase",
+            textDecoration: "none",
+            transition: "background .3s, color .3s",
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement;
+            el.style.background = "#fff";
+            el.style.color = "#000";
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement;
+            el.style.background = "transparent";
+            el.style.color = "#fff";
+          }}
         >
           Connect
         </Link>
       </div>
     </nav>
-  )
+  );
 }
