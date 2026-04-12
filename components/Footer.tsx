@@ -94,7 +94,12 @@ export default function Footer() {
                 cursor: "pointer",
               }}
             >
-              <span className="material-symbols-outlined" style={{ fontSize: 18 }}>public</span>
+              <span
+                className="material-symbols-outlined"
+                style={{ fontSize: 18 }}
+              >
+                public
+              </span>
               International / English
             </div>
           </div>
@@ -108,7 +113,8 @@ export default function Footer() {
                   href="#"
                   style={footLink}
                   onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")
+                    ((e.currentTarget as HTMLAnchorElement).style.color =
+                      "#C5A059")
                   }
                   onMouseLeave={(e) =>
                     ((e.currentTarget as HTMLAnchorElement).style.color =
@@ -122,32 +128,85 @@ export default function Footer() {
           ))}
 
           {/* Digital experience */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-            <span style={{ ...label, textAlign: "right" }}>Digital Experience</span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+            }}
+          >
+            <span style={{ ...label, textAlign: "right" }}>
+              Digital Experience
+            </span>
+
             <div style={{ display: "flex", gap: ".75rem" }}>
-              {["App Store", "Google Play"].map((s) => (
+              {[
+                {
+                  name: "App Store",
+                  sub: "Download on the",
+                  icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
+                  color: "#007AFF",
+                },
+                {
+                  name: "Google Play",
+                  sub: "Get it on",
+                  icon: "https://cdn-icons-png.flaticon.com/512/300/300218.png",
+                  color: "#34A853",
+                },
+              ].map((s, index) => (
                 <div
-                  key={s}
+                  key={index}
                   style={{
-                    padding: ".5rem 1rem",
-                    border: "1px solid rgba(255,255,255,.1)",
-                    background: "#18181b",
-                    borderRadius: ".25rem",
-                    fontSize: ".6rem",
-                    color: "rgba(255,255,255,.5)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: ".6rem",
+                    padding: ".6rem 1.2rem",
+                    border: "1px solid rgba(255,255,255,.12)",
+                    background: "#0f0f10",
+                    borderRadius: ".35rem",
                     cursor: "pointer",
-                    whiteSpace: "nowrap",
-                    fontFamily: "var(--font-inter), sans-serif",
-                    transition: "border-color .25s",
+                    transition: "all .3s ease",
                   }}
-                  onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,.3)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,.1)")
-                  }
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = s.color;
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,.12)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
                 >
-                  {s}
+                  {/* ICON */}
+                  <img
+                    src={s.icon}
+                    alt={s.name}
+                    style={{
+                      width: "18px",
+                      height: "18px",
+                      objectFit: "contain",
+                      filter: "invert(1)", // makes apple icon white
+                    }}
+                  />
+
+                  {/* TEXT */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      lineHeight: 1,
+                    }}
+                  >
+                    
+                    <span
+                      style={{
+                        fontSize: ".75rem",
+                        fontWeight: 600,
+                        color: "#fff",
+                      }}
+                    >
+                      {s.name}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -166,7 +225,12 @@ export default function Footer() {
           }}
         >
           <div style={{ display: "flex", gap: "2.5rem" }}>
-            {["Legal Notice", "Privacy Policy", "Cookie Policy", "Accessibility"].map((t) => (
+            {[
+              "Legal Notice",
+              "Privacy Policy",
+              "Cookie Policy",
+              "Accessibility",
+            ].map((t) => (
               <Link
                 key={t}
                 href="#"
@@ -180,7 +244,8 @@ export default function Footer() {
                   transition: "color .25s",
                 }}
                 onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")
+                  ((e.currentTarget as HTMLAnchorElement).style.color =
+                    "#C5A059")
                 }
                 onMouseLeave={(e) =>
                   ((e.currentTarget as HTMLAnchorElement).style.color =
