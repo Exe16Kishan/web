@@ -4,11 +4,10 @@ import Footer from "@/components/Footer";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── data ── */
 const stats = [
   { value: "3x", label: "Revenue Per Acre" },
   { value: "40%", label: "Water Savings" },
@@ -43,12 +42,14 @@ const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSPr
 );
 
 export default function HomePage() {
-  const heroRef  = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLElement>(null);
   const pillarsSecRef = useRef<HTMLElement>(null);
   const pillarsGridRef = useRef<HTMLDivElement>(null);
   const journeyRef = useRef<HTMLElement>(null);
   const discoverRef = useRef<HTMLElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useGSAP(() => {
     /* hero entrance */
@@ -60,22 +61,90 @@ export default function HomePage() {
       );
     }
 
-    /*  scroll-triggered BG swaps  (dark ↔ light ↔ dark …) ── */
+    /* Smooth background transitions */
+    if (parentRef.current) {
+      gsap.set(parentRef.current, {
+        backgroundColor: "#fff",
+        color: "#000"
+      });
+    }
+
+    // Update dark mode state for card styling
+    const updateDarkMode = (bgColor: string) => {
+      setIsDarkMode(bgColor === "#000");
+    };
+
+    /* Individual ScrollTriggers */
     const sections = [
-      { el: statsRef.current,     from: "#000", to: "#fff", color: "#000" },
-      { el: pillarsSecRef.current, from: "#fff", to: "#000", color: "#fff" },
-      { el: journeyRef.current,   from: "#000", to: "#fff", color: "#000" },
-      { el: discoverRef.current,  from: "#fff", to: "#000", color: "#fff" },
+      { trigger: statsRef.current, bg: "#fff", textColor: "#000", start: "top 60%", end: "bottom 40%" },
+      { trigger: pillarsSecRef.current, bg: "#000", textColor: "#fff", start: "top 60%", end: "bottom 40%" },
+      { trigger: journeyRef.current, bg: "#fff", textColor: "#000", start: "top 60%", end: "bottom 40%" },
+      { trigger: discoverRef.current, bg: "#000", textColor: "#fff", start: "top 60%", end: "bottom 40%" },
     ];
 
-    sections.forEach(({ el, from, to, color }) => {
-      if (!el) return;
+    // storing current state 
+    let currentBg = "#fff";
+    let currentColor = "#000";
+
+    sections.forEach(({ trigger, bg, textColor, start, end }) => {
+      if (!trigger || !parentRef.current) return;
+      
       ScrollTrigger.create({
-        trigger: el,
-        start: "top 55%",
-        end: "bottom 45%",
-        onEnter: () => gsap.to(el, { backgroundColor: to, color, duration: 0.7, ease: "power2.inOut" }),
-        onLeaveBack: () => gsap.to(el, { backgroundColor: from, color: from === "#000" ? "#fff" : "#000", duration: 0.7, ease: "power2.inOut" }),
+        trigger: trigger,
+        start: start,
+        end: end,
+        scrub: 1.5,
+        onUpdate: (self) => {
+          if (parentRef.current && self.progress > 0.1) {
+            const progress = Math.min(Math.max(self.progress, 0), 1);
+            if (currentBg !== bg || currentColor !== textColor) {
+              gsap.to(parentRef.current, {
+                backgroundColor: bg,
+                color: textColor,
+                duration: 0.5,
+                ease: "power2.inOut",
+                overwrite: true,
+                onUpdate: () => {
+                  updateDarkMode(bg);
+                }
+              });
+              currentBg = bg;
+              currentColor = textColor;
+            }
+          }
+        },
+        onEnter: () => {
+          if (parentRef.current && (currentBg !== bg || currentColor !== textColor)) {
+            gsap.to(parentRef.current, {
+              backgroundColor: bg,
+              color: textColor,
+              duration: 0.8,
+              ease: "power2.inOut",
+              overwrite: true,
+              onUpdate: () => {
+                updateDarkMode(bg);
+              }
+            });
+            currentBg = bg;
+            currentColor = textColor;
+          }
+        },
+        onEnterBack: () => {
+          if (parentRef.current && (currentBg !== bg || currentColor !== textColor)) {
+            gsap.to(parentRef.current, {
+              backgroundColor: bg,
+              color: textColor,
+              duration: 0.8,
+              ease: "power2.inOut",
+              overwrite: true,
+              onUpdate: () => {
+                updateDarkMode(bg);
+              }
+            });
+            currentBg = bg;
+            currentColor = textColor;
+          }
+        }
       });
     });
 
@@ -95,7 +164,7 @@ export default function HomePage() {
       });
     }
 
-    /*  pillars stagger */
+    /* pillars stagger with better card styling */
     if (pillarsGridRef.current) {
       ScrollTrigger.create({
         trigger: pillarsGridRef.current,
@@ -142,13 +211,24 @@ export default function HomePage() {
         },
       });
     }
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
-
   return (
-    <div style={{ background: "#000", color: "#fff" }}>
+    <div 
+      ref={parentRef}
+      style={{ 
+        background: "#fff", 
+        color: "#000",
+        transition: "background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+      }}
+    >
 
-      {/* hero section  */}
+      {/* hero section with blurred background */}
       <section
         style={{
           position: "relative",
@@ -157,17 +237,28 @@ export default function HomePage() {
           flexDirection: "column",
           justifyContent: "flex-end",
           overflow: "hidden",
-          background: "#000",
         }}
       >
-        {/* Background image */}
+        {/* Background image with blur effect */}
         <div style={{ position: "absolute", inset: 0 }}>
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuApkHP08yex_lTnONCFOtPTjwwaFSKh60EOMWoSPk29izgQCg28fnxdkIYj6mkjtzcwhJAAgeXJvhJASPSLH8W3Ahxx_dtvhLprwiCQL1UUqrh17vQIPg8k_1aeQvMjd5LlrG82tWAeV5hAce41WfXYhZlCZu1W00W7OJWamgrdR2qLcqEYIJtmpk0bc7NcHbmJcxoxDjQ_NT39Rzk-g9r0rLllL_U-QeT7AwsaUeaCmszi9ThVTj4QGp5NFs69OG0ReYKPwYGFyJM"
             alt="Luxury villa in forest"
-            style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.6 }}
+            style={{ 
+              width: "100%", 
+              height: "100%", 
+              objectFit: "cover", 
+              filter: "blur(8px) brightness(0.7)",
+              transform: "scale(1.1)",
+              transition: "filter 0.5s ease"
+            }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,.5) 40%, transparent 100%)" }} />
+          {/* Dark overlay for better text readability */}
+          <div style={{ 
+            position: "absolute", 
+            inset: 0, 
+            background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 100%)" 
+          }} />
         </div>
 
         {/* content */}
@@ -186,6 +277,7 @@ export default function HomePage() {
                   letterSpacing: "-.03em",
                   color: "#fff",
                   marginBottom: "2rem",
+                  textShadow: "0 2px 20px rgba(0,0,0,0.3)"
                 }}
               >
                 Architecting<br />
@@ -206,10 +298,11 @@ export default function HomePage() {
                     letterSpacing: ".2em",
                     textTransform: "uppercase",
                     cursor: "pointer",
-                    transition: "background .3s, color .3s",
+                    transition: "all .3s ease",
+                    backdropFilter: "blur(10px)",
                   }}
-                  onMouseEnter={(e) => { const b = e.currentTarget; b.style.background = "#fff"; b.style.color = "#000"; }}
-                  onMouseLeave={(e) => { const b = e.currentTarget; b.style.background = "transparent"; b.style.color = "#fff"; }}
+                  onMouseEnter={(e) => { const b = e.currentTarget; b.style.background = "#fff"; b.style.color = "#000"; b.style.backdropFilter = "blur(0px)"; }}
+                  onMouseLeave={(e) => { const b = e.currentTarget; b.style.background = "transparent"; b.style.color = "#fff"; b.style.backdropFilter = "blur(10px)"; }}
                 >
                   Discover more
                 </button>
@@ -218,8 +311,8 @@ export default function HomePage() {
                 <div style={{ display: "flex", gap: "1.75rem" }}>
                   {[["12", "Days"], ["08", "Hrs"], ["45", "Min"]].map(([n, l]) => (
                     <div key={l} style={{ display: "flex", alignItems: "baseline", gap: ".35rem" }}>
-                      <span style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: "1.6rem", fontWeight: 400, color: "#fff" }}>{n}</span>
-                      <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: ".55rem", letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.5)" }}>{l}</span>
+                      <span style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: "1.6rem", fontWeight: 400, color: "#fff", textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}>{n}</span>
+                      <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: ".55rem", letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.7)" }}>{l}</span>
                     </div>
                   ))}
                 </div>
@@ -229,15 +322,24 @@ export default function HomePage() {
                   <button
                     style={{
                       width: 44, height: 44,
-                      border: "1px solid rgba(255,255,255,.2)",
-                      background: "transparent",
+                      border: "1px solid rgba(255,255,255,.3)",
+                      background: "rgba(0,0,0,0.3)",
+                      backdropFilter: "blur(10px)",
                       color: "#fff",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       cursor: "pointer",
-                      transition: "background .3s",
+                      transition: "all .3s ease",
                     }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,.1)")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "transparent")}
+                    onMouseEnter={(e) => { 
+                      const btn = e.currentTarget as HTMLButtonElement;
+                      btn.style.background = "rgba(255,255,255,0.2)";
+                      btn.style.backdropFilter = "blur(15px)";
+                    }}
+                    onMouseLeave={(e) => { 
+                      const btn = e.currentTarget as HTMLButtonElement;
+                      btn.style.background = "rgba(0,0,0,0.3)";
+                      btn.style.backdropFilter = "blur(10px)";
+                    }}
                   >
                     <span className="material-symbols-outlined" style={{ fontSize: 18 }}>pause</span>
                   </button>
@@ -251,7 +353,7 @@ export default function HomePage() {
       {/* STATS*/}
       <section
         ref={statsRef}
-        style={{ background: "#fff", color: "#000", transition: "background .7s, color .7s" }}
+        style={{ background: "transparent" }}
       >
         <W>
           <div
@@ -297,10 +399,10 @@ export default function HomePage() {
         </W>
       </section>
 
-      {/* pillar section */}
+      {/* pillar section with adaptive cards */}
       <section
         ref={pillarsSecRef}
-        style={{ background: "#000", color: "#fff", transition: "background .7s, color .7s", padding: "7rem 0 8rem" }}
+        style={{ background: "transparent", padding: "7rem 0 8rem" }}
       >
         <W>
           {/* Headline */}
@@ -313,7 +415,6 @@ export default function HomePage() {
                 textTransform: "uppercase",
                 letterSpacing: "-.03em",
                 lineHeight: 1.1,
-                color: "#fff",
               }}
             >
               The Four Pillars of{" "}
@@ -323,7 +424,7 @@ export default function HomePage() {
             <div style={{ marginTop: "1.5rem", width: "6rem", height: "3px", background: "rgba(197,160,89,.3)" }} />
           </div>
 
-          {/* Grid */}
+          {/* Grid with adaptive cards */}
           <div
             ref={pillarsGridRef}
             style={{
@@ -337,7 +438,10 @@ export default function HomePage() {
                 key={p.num}
                 className="pillar-card"
                 style={{
-                  background: "rgba(19,19,19,.55)",
+                  background: isDarkMode 
+                    ? "rgba(255, 255, 255, 0.08)" 
+                    : "rgba(0, 0, 0, 0.04)",
+                  backdropFilter: "blur(10px)",
                   borderRadius: ".25rem",
                   padding: "3rem 2.5rem",
                   display: "flex",
@@ -345,6 +449,10 @@ export default function HomePage() {
                   gap: "2rem",
                   cursor: "default",
                   opacity: 0,
+                  transition: "background 0.6s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.6s ease",
+                  border: isDarkMode 
+                    ? "1px solid rgba(255, 255, 255, 0.1)" 
+                    : "1px solid rgba(0, 0, 0, 0.06)",
                 }}
               >
                 <span
@@ -354,7 +462,10 @@ export default function HomePage() {
                     fontWeight: 700,
                     letterSpacing: ".3em",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,.28)",
+                    color: isDarkMode 
+                      ? "rgba(255, 255, 255, 0.4)" 
+                      : "rgba(0, 0, 0, 0.4)",
+                    transition: "color 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 >
                   {p.num} / Pillars
@@ -375,7 +486,16 @@ export default function HomePage() {
                     {p.title}
                   </h3>
                 </div>
-                <p style={{ color: "rgba(255,255,255,.38)", fontSize: ".82rem", lineHeight: 1.7 }}>{p.desc}</p>
+                <p style={{ 
+                  color: isDarkMode 
+                    ? "rgba(255, 255, 255, 0.6)" 
+                    : "rgba(0, 0, 0, 0.6)",
+                  fontSize: ".82rem", 
+                  lineHeight: 1.7,
+                  transition: "color 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}>
+                  {p.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -385,7 +505,7 @@ export default function HomePage() {
       {/* journey */}
       <section
         ref={journeyRef}
-        style={{ background: "#fff", color: "#000", transition: "background .7s, color .7s", padding: "7rem 0 8rem" }}
+        style={{ background: "transparent", padding: "7rem 0 8rem" }}
       >
         <W>
           {/* Header row */}
@@ -416,11 +536,18 @@ export default function HomePage() {
                     borderRadius: "50%",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     cursor: "pointer",
-                    transition: "background .2s",
-                    color: "#000",
+                    transition: "all .3s ease",
                   }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,.05)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.background = "transparent")}
+                  onMouseEnter={(e) => { 
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    btn.style.background = "rgba(0,0,0,0.05)";
+                    btn.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => { 
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    btn.style.background = "transparent";
+                    btn.style.transform = "scale(1)";
+                  }}
                 >
                   <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{d}</span>
                 </button>
@@ -474,7 +601,7 @@ export default function HomePage() {
       {/* discover*/}
       <section
         ref={discoverRef}
-        style={{ background: "#000", color: "#fff", transition: "background .7s, color .7s", padding: "7rem 0 8rem" }}
+        style={{ background: "transparent", padding: "7rem 0 8rem" }}
       >
         <W>
           <h2
