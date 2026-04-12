@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -228,7 +228,7 @@ export default function HomePage() {
       }}
     >
 
-      {/* hero section with blurred background */}
+      {/* hero section with reduced blur and smooth gradients */}
       <section
         style={{
           position: "relative",
@@ -239,111 +239,128 @@ export default function HomePage() {
           overflow: "hidden",
         }}
       >
-        {/* Background image with blur effect */}
+        {/* Background image container */}
         <div style={{ position: "absolute", inset: 0 }}>
+          {/* Main clear image */}
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuApkHP08yex_lTnONCFOtPTjwwaFSKh60EOMWoSPk29izgQCg28fnxdkIYj6mkjtzcwhJAAgeXJvhJASPSLH8W3Ahxx_dtvhLprwiCQL1UUqrh17vQIPg8k_1aeQvMjd5LlrG82tWAeV5hAce41WfXYhZlCZu1W00W7OJWamgrdR2qLcqEYIJtmpk0bc7NcHbmJcxoxDjQ_NT39Rzk-g9r0rLllL_U-QeT7AwsaUeaCmszi9ThVTj4QGp5NFs69OG0ReYKPwYGFyJM"
             alt="Luxury villa in forest"
             style={{ 
               width: "100%", 
               height: "100%", 
-              objectFit: "cover", 
-              filter: "blur(8px) brightness(0.7)",
-              transform: "scale(1.1)",
-              transition: "filter 0.5s ease"
+              objectFit: "cover",
             }}
           />
-          {/* Dark overlay for better text readability */}
+          
+          {/* Smooth gradient overlay from left and bottom */}
           <div style={{ 
             position: "absolute", 
             inset: 0, 
-            background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 100%)" 
+            background: "linear-gradient(100deg, #000 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.2) 60%, transparent 100%)" 
+          }} />
+          
+          {/* Bottom gradient for smooth transition to content */}
+          <div style={{ 
+            position: "absolute", 
+            inset: 0, 
+            background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 30%, transparent 100%)" 
           }} />
         </div>
 
         {/* content */}
         <div style={{ position: "relative", zIndex: 10, padding: "0 5rem 5rem" }}>
           <W style={{ padding: 0 }}>
-            <div ref={heroRef} style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-              {/* headline */}
-              <h1
-                className="hero-child"
-                style={{
-                  fontFamily: "var(--font-epilogue), sans-serif",
-                  fontWeight: 900,
-                  fontSize: "clamp(3.2rem, 7vw, 7rem)",
-                  lineHeight: 1.05,
-                  textTransform: "uppercase",
-                  letterSpacing: "-.03em",
-                  color: "#fff",
-                  marginBottom: "2rem",
-                  textShadow: "0 2px 20px rgba(0,0,0,0.3)"
-                }}
-              >
-                Architecting<br />
-                <span style={{ color: "#C5A059" }}>Sustainable<br />Coexistence</span>
-              </h1>
-
-              {/* CTA row */}
-              <div className="hero-child" style={{ display: "flex", alignItems: "center", gap: "3rem" }}>
-                <button
+            <div ref={heroRef} style={{ 
+              display: "flex", 
+              justifyContent: "space-between", 
+              alignItems: "flex-end",
+              minHeight: "calc(100vh - 10rem)"
+            }}>
+              
+              {/* Left side - Text content */}
+              <div style={{ maxWidth: 700 }}>
+                <h1
+                  className="hero-child"
                   style={{
-                    padding: ".9rem 2.2rem",
-                    border: "1px solid rgba(255,255,255,.4)",
-                    background: "transparent",
-                    color: "#fff",
-                    fontFamily: "var(--font-inter), sans-serif",
-                    fontSize: ".65rem",
-                    fontWeight: 700,
-                    letterSpacing: ".2em",
+                    fontFamily: "var(--font-epilogue), sans-serif",
+                    fontWeight: 900,
+                    fontSize: "clamp(3.2rem, 7vw, 7rem)",
+                    lineHeight: 1.05,
                     textTransform: "uppercase",
-                    cursor: "pointer",
-                    transition: "all .3s ease",
-                    backdropFilter: "blur(10px)",
+                    letterSpacing: "-.03em",
+                    color: "#fff",
+                    marginBottom: "2rem",
+                    textShadow: "0 2px 20px rgba(0,0,0,0.4)"
                   }}
-                  onMouseEnter={(e) => { const b = e.currentTarget; b.style.background = "#fff"; b.style.color = "#000"; b.style.backdropFilter = "blur(0px)"; }}
-                  onMouseLeave={(e) => { const b = e.currentTarget; b.style.background = "transparent"; b.style.color = "#fff"; b.style.backdropFilter = "blur(10px)"; }}
                 >
-                  Discover more
-                </button>
+                  Architecting<br />
+                  <span style={{ color: "#C5A059" }}>Sustainable<br />Coexistence</span>
+                </h1>
 
-                {/* countdown */}
-                <div style={{ display: "flex", gap: "1.75rem" }}>
-                  {[["12", "Days"], ["08", "Hrs"], ["45", "Min"]].map(([n, l]) => (
-                    <div key={l} style={{ display: "flex", alignItems: "baseline", gap: ".35rem" }}>
-                      <span style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: "1.6rem", fontWeight: 400, color: "#fff", textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}>{n}</span>
-                      <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: ".55rem", letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.7)" }}>{l}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Pause btn */}
-                <div style={{ marginLeft: "auto" }}>
+                {/* CTA row - Discover button and countdown */}
+                <div className="hero-child" style={{ display: "flex", alignItems: "center", gap: "3rem", flexWrap: "wrap" }}>
                   <button
                     style={{
-                      width: 44, height: 44,
-                      border: "1px solid rgba(255,255,255,.3)",
-                      background: "rgba(0,0,0,0.3)",
-                      backdropFilter: "blur(10px)",
+                      padding: ".9rem 2.2rem",
+                      border: "1px solid rgba(255,255,255,.4)",
+                      background: "transparent",
                       color: "#fff",
-                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontFamily: "var(--font-inter), sans-serif",
+                      fontSize: ".65rem",
+                      fontWeight: 700,
+                      letterSpacing: ".2em",
+                      textTransform: "uppercase",
                       cursor: "pointer",
                       transition: "all .3s ease",
+                      backdropFilter: "blur(8px)",
                     }}
-                    onMouseEnter={(e) => { 
-                      const btn = e.currentTarget as HTMLButtonElement;
-                      btn.style.background = "rgba(255,255,255,0.2)";
-                      btn.style.backdropFilter = "blur(15px)";
-                    }}
-                    onMouseLeave={(e) => { 
-                      const btn = e.currentTarget as HTMLButtonElement;
-                      btn.style.background = "rgba(0,0,0,0.3)";
-                      btn.style.backdropFilter = "blur(10px)";
-                    }}
+                    onMouseEnter={(e) => { const b = e.currentTarget; b.style.background = "#fff"; b.style.color = "#000"; b.style.backdropFilter = "blur(0px)"; }}
+                    onMouseLeave={(e) => { const b = e.currentTarget; b.style.background = "transparent"; b.style.color = "#fff"; b.style.backdropFilter = "blur(8px)"; }}
                   >
-                    <span className="material-symbols-outlined" style={{ fontSize: 18 }}>pause</span>
+                    Discover more
                   </button>
+
+                  {/* countdown */}
+                  <div style={{ display: "flex", gap: "1.75rem" }}>
+                    {[["12", "Days"], ["08", "Hrs"], ["45", "Min"]].map(([n, l]) => (
+                      <div key={l} style={{ display: "flex", alignItems: "baseline", gap: ".35rem" }}>
+                        <span style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: "1.6rem", fontWeight: 400, color: "#fff", textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}>{n}</span>
+                        <span style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: ".55rem", letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.7)" }}>{l}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
+              </div>
+
+              {/* Right side - Pause button at bottom right */}
+              <div className="hero-child" style={{ marginBottom: "1rem" }}>
+                <button
+                  style={{
+                    width: 52, height: 52,
+                    border: "1px solid rgba(255,255,255,.3)",
+                    background: "rgba(0,0,0,0.3)",
+                    backdropFilter: "blur(8px)",
+                    color: "#fff",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    cursor: "pointer",
+                    transition: "all .3s ease",
+                    borderRadius: "50%",
+                  }}
+                  onMouseEnter={(e) => { 
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    btn.style.background = "rgba(255,255,255,0.15)";
+                    btn.style.backdropFilter = "blur(12px)";
+                    btn.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => { 
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    btn.style.background = "rgba(0,0,0,0.3)";
+                    btn.style.backdropFilter = "blur(8px)";
+                    btn.style.transform = "scale(1)";
+                  }}
+                >
+                  <span className="material-symbols-outlined" style={{ fontSize: 20 }}>pause</span>
+                </button>
               </div>
             </div>
           </W>
@@ -439,9 +456,9 @@ export default function HomePage() {
                 className="pillar-card"
                 style={{
                   background: isDarkMode 
-                    ? "rgba(255, 255, 255, 0.08)" 
-                    : "rgba(0, 0, 0, 0.04)",
-                  backdropFilter: "blur(10px)",
+                    ? "rgba(255, 255, 255, 0.06)" 
+                    : "rgba(0, 0, 0, 0.03)",
+                  backdropFilter: "blur(8px)",
                   borderRadius: ".25rem",
                   padding: "3rem 2.5rem",
                   display: "flex",
@@ -451,8 +468,8 @@ export default function HomePage() {
                   opacity: 0,
                   transition: "background 0.6s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.6s ease",
                   border: isDarkMode 
-                    ? "1px solid rgba(255, 255, 255, 0.1)" 
-                    : "1px solid rgba(0, 0, 0, 0.06)",
+                    ? "1px solid rgba(255, 255, 255, 0.08)" 
+                    : "1px solid rgba(0, 0, 0, 0.04)",
                 }}
               >
                 <span

@@ -168,7 +168,7 @@ body {
 .watermark {
   font-size: clamp(5rem, 18vw, 22rem);
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.04);
   text-transform: uppercase;
   letter-spacing: -0.05em;
   line-height: 1;
