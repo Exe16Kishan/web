@@ -91,7 +91,7 @@ export default function InnovationPage() {
         {/* BG image — right-side focus */}
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8HMypfF_QhksC0tK3FBPdwVexMbt5pz_gpsJIIqqZi4LkMhjypjIovrF16A5cAh5ngcY1NALQOuJTm9446eipo7hRB-Ov1lS-K_ddQ02p4fGbh5L9LKoACLhr7fUObGfOXao7KNOPfYvlHHVIsDrFhUsvNZSTd3SCvW89SxxXgomaju-eyDfSQBOs5ukqVM-XKpEnM-vkIY1g87QQvmGM6D-VKtpRyE4_pH9L4X9CCcVG469Lp4nNnimeg9N8RdB1vlM1KyDqVvY"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8HMypfF_QhksC0tK3FBPdwVexMbt5pz_gpsJIIqqZi4LkMhjypjIovrF16A5cAh5ngcY1NALQOuJTm9446eipo7hRB-Ov1lS-K_ddQ02p4fGbh5L9LKoACLhr7fUObGfOXao7KNOPfYvlHHVIsDrFhUsvNZSTd3SCvW89SxxXgomaju-eyDfSQBOs5ukqVM-XKpEnM-vkIY1g87QQvmGM6D-VKtpRyE4_pH9L4X9CCcVG469Lp4NnNimeg9N8RdB1vlM1KyDqVvY"
             alt="Circuit board"
             style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.6 }}
           />
