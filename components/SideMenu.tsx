@@ -1,94 +1,278 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 interface SideMenuProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const navLinks = [
-  { href: '/philosophy', label: 'Philosophy' },
-  { href: '/innovation', label: 'Innovation' },
-  { href: '/services', label: 'Services' },
-  { href: '/technology', label: 'Technology' },
-  { href: '/experience', label: 'Experience' },
-  { href: '/connect', label: 'Connect' },
-]
+  { href: "/",           label: "Home" },
+  { href: "/philosophy", label: "Philosophy" },
+  { href: "/innovation", label: "Innovation" },
+  { href: "/services",   label: "Services" },
+  { href: "/technology", label: "Technology" },
+  { href: "/experience", label: "Experience" },
+  { href: "/connect",    label: "Connect" },
+];
+
+const EASE = [0.76, 0, 0.24, 1] as const;
 
 export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
+  /* Lock body scroll  */
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  /* Close on Escape */
+  useEffect(() => {
+    const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", fn);
+    return () => window.removeEventListener("keydown", fn);
+  }, [onClose]);
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-60 flex">
+        <>
           <motion.div
-            className="absolute inset-0 bg-black/40"
+            key="backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.38, ease: "easeOut" }}
             onClick={onClose}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 59,
+              background: "rgba(0,0,0,.55)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+            }}
           />
-
-          <motion.div
-            initial={{ x: '-100%' }}
+          <motion.aside
+            key="panel"
+            initial={{ x: "-100%" }}
             animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="relative z-10 w-full max-w-md h-full bg-white flex flex-col justify-between py-16 px-12"
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.58, ease: EASE }}
+            style={{
+              position: "fixed",
+              top: 0, left: 0, bottom: 0,
+              width: "min(460px, 92vw)",
+              zIndex: 60,
+              background: "#fff",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              padding: "0",
+              overflowY: "auto",
+            }}
           >
-            <button
-              className="absolute top-8 z-10 right-8 text-black/60 hover:text-black transition-colors"
-              onClick={onClose}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                padding: "2.5rem 3rem 2rem",
+                borderBottom: "1px solid rgba(0,0,0,.07)",
+              }}
             >
-              <span className="material-symbols-outlined text-3xl">close</span>
-            </button>
-
-            {/* TOP HEADING */}
-            <div className="relative top-3 left-4 mt-6 px-2 space-y-2">
-              <div className="text-lg font-black text-black uppercase tracking-[0.35em] font-headline leading-tight">
-                GUGRI INDUSTRIES
-              </div>
-              <p className="text-black/40 text-xs tracking-[0.25em] uppercase font-label leading-relaxed">
-                The Regenerative Architect
-              </p>
-            </div>
-
-            {/* NAV */}
-            <nav className="relative left-3 flex flex-col space-y-4 -mx-2">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={onClose}
-                  initial={{ x: -40, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -20, opacity: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.4 }}
-                  className="group flex items-center justify-between px-2 py-4 text-4xl md:text-5xl font-light tracking-tight text-black/50 hover:text-black transition-all duration-300 font-headline border-b border-black/10"
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-epilogue), sans-serif",
+                    fontWeight: 900,
+                    fontSize: ".92rem",
+                    letterSpacing: ".32em",
+                    textTransform: "uppercase",
+                    color: "#000",
+                    marginBottom: ".3rem",
+                  }}
                 >
-                  <span>{link.label}</span>
-                  <span className="absolute right-5 material-symbols-outlined text-black/30 group-hover:translate-x-1 transition-all duration-300">
-                    arrow_forward
-                  </span>
-                </motion.a>
+                  GUGRI INDUSTRIES
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-label)",
+                    fontSize: ".55rem",
+                    fontWeight: 600,
+                    letterSpacing: ".24em",
+                    textTransform: "uppercase",
+                    color: "rgba(0,0,0,.35)",
+                  }}
+                >
+                  The Regenerative Architect
+                </p>
+              </div>
+
+              <button
+                onClick={onClose}
+                aria-label="Close menu"
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  color: "rgba(0,0,0,.45)",
+                  transition: "color .25s",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: ".25rem",
+                  marginTop: ".15rem",
+                }}
+                onMouseEnter={e =>
+                  ((e.currentTarget as HTMLButtonElement).style.color = "#000")
+                }
+                onMouseLeave={e =>
+                  ((e.currentTarget as HTMLButtonElement).style.color = "rgba(0,0,0,.45)")
+                }
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: 28 }}>
+                  close
+                </span>
+              </button>
+            </div>
+            <nav
+              style={{
+                flex: 1,
+                padding: "1rem 0",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ x: -32, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -16, opacity: 0 }}
+                  transition={{ delay: 0.1 + i * 0.065, duration: 0.42, ease: "easeOut" }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={onClose}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "1.05rem 3rem",
+                      fontFamily: "var(--font-epilogue), sans-serif",
+                      fontSize: "clamp(1.7rem, 4.5vw, 2.6rem)",
+                      fontWeight: 300,
+                      letterSpacing: "-.02em",
+                      color: "rgba(0,0,0,.42)",
+                      textDecoration: "none",
+                      borderBottom: "1px solid rgba(0,0,0,.07)",
+                      transition: "color .3s, background .3s, padding-left .35s",
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.color = "#000";
+                      el.style.paddingLeft = "3.5rem";
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.color = "rgba(0,0,0,.42)";
+                      el.style.paddingLeft = "3rem";
+                    }}
+                  >
+                    <span>{link.label}</span>
+                    <span
+                      className="material-symbols-outlined"
+                      style={{
+                        fontSize: 20,
+                        color: "rgba(0,0,0,.2)",
+                        transition: "color .3s, transform .3s",
+                        marginRight: "3rem",
+                      }}
+                    >
+                      arrow_forward
+                    </span>
+                  </Link>
+                </motion.div>
               ))}
             </nav>
+            <div>
+              <div style={{ height: 3, background: "#C5A059", opacity: .65 }} />
 
-            {/* FOOTER */}
-            <div className="relative left-3 bottom-3 px-2 pt-6 space-y-2 ">
-              <p className="text-black/30 text-[10px] uppercase tracking-[0.25em] font-label">
-                © 2024 Gugri Industries
-              </p>
-              <p className="text-black/30 text-[10px] font-label tracking-wide">
-                Engineering the Natural World
-              </p>
+              <div
+                style={{
+                  padding: "2rem 3rem 2.5rem",
+                  borderTop: "1px solid rgba(0,0,0,.06)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-label)",
+                      fontSize: ".55rem",
+                      fontWeight: 700,
+                      letterSpacing: ".2em",
+                      textTransform: "uppercase",
+                      color: "rgba(0,0,0,.28)",
+                      marginBottom: ".3rem",
+                    }}
+                  >
+                    © 2024 Gugri Industries
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-label)",
+                      fontSize: ".55rem",
+                      letterSpacing: ".15em",
+                      color: "rgba(0,0,0,.22)",
+                    }}
+                  >
+                    Engineering the Natural World
+                  </p>
+                </div>
+                <div style={{ display: "flex", gap: ".6rem" }}>
+                  {["ig", "in", "yt"].map(s => (
+                    <div
+                      key={s}
+                      style={{
+                        width: 32, height: 32,
+                        borderRadius: ".25rem",
+                        background: "rgba(0,0,0,.06)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontFamily: "var(--font-label)",
+                        fontSize: ".5rem",
+                        fontWeight: 700,
+                        letterSpacing: ".05em",
+                        textTransform: "uppercase",
+                        color: "rgba(0,0,0,.38)",
+                        cursor: "pointer",
+                        transition: "background .25s, color .25s",
+                      }}
+                      onMouseEnter={e => {
+                        const el = e.currentTarget as HTMLDivElement;
+                        el.style.background = "#C5A059";
+                        el.style.color = "#000";
+                      }}
+                      onMouseLeave={e => {
+                        const el = e.currentTarget as HTMLDivElement;
+                        el.style.background = "rgba(0,0,0,.06)";
+                        el.style.color = "rgba(0,0,0,.38)";
+                      }}
+                    >
+                      {s}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-
-          </motion.div>
-        </div>
+          </motion.aside>
+        </>
       )}
     </AnimatePresence>
-  )
+  );
 }
