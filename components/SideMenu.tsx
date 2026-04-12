@@ -39,14 +39,14 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             className="relative z-10 w-full max-w-md h-full bg-white flex flex-col justify-between py-16 px-12"
           >
             <button
-              className="absolute top-8 right-8 text-black/60 hover:text-black transition-colors"
+              className="absolute top-8 z-10 right-8 text-black/60 hover:text-black transition-colors"
               onClick={onClose}
             >
               <span className="material-symbols-outlined text-3xl">close</span>
             </button>
 
             {/* TOP HEADING */}
-            <div className="mt-6 px-2 space-y-2">
+            <div className="relative top-3 left-4 mt-6 px-2 space-y-2">
               <div className="text-lg font-black text-black uppercase tracking-[0.35em] font-headline leading-tight">
                 GUGRI INDUSTRIES
               </div>
@@ -56,7 +56,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             </div>
 
             {/* NAV */}
-            <nav className="flex flex-col space-y-2 -mx-2">
+            <nav className="relative left-3 flex flex-col space-y-4 -mx-2">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.href}
@@ -69,7 +69,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                   className="group flex items-center justify-between px-2 py-4 text-4xl md:text-5xl font-light tracking-tight text-black/50 hover:text-black transition-all duration-300 font-headline border-b border-black/10"
                 >
                   <span>{link.label}</span>
-                  <span className="material-symbols-outlined text-black/30 group-hover:translate-x-1 transition-all duration-300">
+                  <span className="absolute right-5 material-symbols-outlined text-black/30 group-hover:translate-x-1 transition-all duration-300">
                     arrow_forward
                   </span>
                 </motion.a>
@@ -77,7 +77,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             </nav>
 
             {/* FOOTER */}
-            <div className="px-2 pt-6 space-y-2 border-t border-black/10">
+            <div className="relative left-3 bottom-3 px-2 pt-6 space-y-2 ">
               <p className="text-black/30 text-[10px] uppercase tracking-[0.25em] font-label">
                 © 2024 Gugri Industries
               </p>
