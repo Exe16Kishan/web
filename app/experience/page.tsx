@@ -76,57 +76,174 @@ export default function ExperiencePage() {
   return (
     <div style={{ background: "#000", color: "#fff" }}>
 
-      {/* HERO */}
+      {/* HERO - Redesigned with left alignment */}
       <section
         ref={heroRef}
-        style={{ position: "relative", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}
+        style={{ 
+          position: "relative", 
+          minHeight: "100vh", 
+          display: "flex", 
+          alignItems: "center", 
+          overflow: "hidden" 
+        }}
       >
+        {/* Background Image */}
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuApkHP08yex_lTnONCFOtPTjwwaFSKh60EOMWoSPk29izgQCg28fnxdkIYj6mkjtzcwhJAAgeXJvhJASPSLH8W3Ahxx_dtvhLprwiCQL1UUqrh17vQIPg8k_1aeQvMjd5LlrG82tWAeV5hAce41WfXYhZlCZu1W00W7OJWamgrdR2qLcqEYIJtmpk0bc7NcHbmJcxoxDjQ_NT39Rzk-g9r0rLllL_U-QeT7AwsaUeaCmszi9ThVTj4QGp5NFs69OG0ReYKPwYGFyJM"
             alt="Luxury biophilic resort"
             style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.58 }}
           />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.18) 40%, #000 100%)" }} />
+          {/* Gradient overlay - stronger on left for text readability */}
+          <div style={{ 
+            position: "absolute", 
+            inset: 0, 
+            background: "linear-gradient(to right, #000 0%, rgba(0,0,0,.7) 50%, rgba(0,0,0,.2) 100%)" 
+          }} />
+          <div style={{ 
+            position: "absolute", 
+            inset: 0, 
+            background: "linear-gradient(to top, #000 0%, transparent 40%)" 
+          }} />
         </div>
 
-        <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "0 1.5rem", maxWidth: 800 }}>
-          <span className="h-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".38em", textTransform: "uppercase", color: "#C5A059", display: "block", marginBottom: "1.5rem", opacity: 0 }}>
-            Project Vision
-          </span>
-          <h1
-            className="h-anim"
-            style={{
-              fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900,
-              fontSize: "clamp(3rem, 8vw, 8rem)", textTransform: "uppercase",
-              letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.5rem", opacity: 0,
-            }}
-          >
-            Where Nature<br />
-            <em style={{ fontStyle: "italic", fontWeight: 300, color: "#C5A059" }}>Meets</em>{" "}Luxury
-          </h1>
-          <p className="h-anim" style={{ color: "rgba(255,255,255,.55)", fontSize: "clamp(.9rem,1.4vw,1.15rem)", lineHeight: 1.75, maxWidth: 520, margin: "0 auto 2.5rem", opacity: 0 }}>
-            Our flagship project vision — a farm resort, energy park, and regenerative ecosystem woven into a single, breathtaking experience.
-          </p>
-          <div className="h-anim" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.25rem", flexWrap: "wrap", opacity: 0 }}>
-            <button style={{ padding: ".9rem 2.2rem", border: "1px solid rgba(255,255,255,.4)", background: "transparent", color: "#fff", fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", cursor: "pointer", transition: "background .3s,color .3s" }}
-              onMouseEnter={e=>{const b=e.currentTarget as HTMLButtonElement;b.style.background="#fff";b.style.color="#000";}}
-              onMouseLeave={e=>{const b=e.currentTarget as HTMLButtonElement;b.style.background="transparent";b.style.color="#fff";}}
-            >
-              Explore Retreats
-            </button>
-            <button style={{ background: "transparent", border: "none", borderBottom: "1px solid rgba(197,160,89,.35)", color: "#C5A059", fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", cursor: "pointer", padding: ".4rem 0", transition: "border-color .3s" }}
-              onMouseEnter={e=>((e.currentTarget as HTMLButtonElement).style.borderBottomColor="#C5A059")}
-              onMouseLeave={e=>((e.currentTarget as HTMLButtonElement).style.borderBottomColor="rgba(197,160,89,.35)")}
-            >
-              View Private Gallery
-            </button>
+        {/* Content Container */}
+        <W style={{ position: "relative", zIndex: 1, width: "100%", paddingTop: "10rem", paddingBottom: "7rem" }}>
+          <div style={{ 
+            display: "flex", 
+            justifyContent: "space-between", 
+            alignItems: "flex-end",
+            minHeight: "calc(100vh - 17rem)"
+          }}>
+            
+            {/* Left Side - Heading and Content */}
+            <div style={{ maxWidth: 700 }}>
+              <span 
+                className="h-anim" 
+                style={{ 
+                  fontFamily: "var(--font-label)", 
+                  fontSize: ".6rem", 
+                  fontWeight: 700, 
+                  letterSpacing: ".38em", 
+                  textTransform: "uppercase", 
+                  color: "#C5A059", 
+                  display: "block", 
+                  marginBottom: "1.5rem", 
+                  opacity: 0 
+                }}
+              >
+                Project Vision
+              </span>
+              
+              <h1
+                className="h-anim"
+                style={{
+                  fontFamily: "var(--font-epilogue), sans-serif",
+                  fontWeight: 900,
+                  fontSize: "clamp(3rem, 7vw, 7rem)",
+                  textTransform: "uppercase",
+                  letterSpacing: "-.04em",
+                  lineHeight: 1.0,
+                  marginBottom: "1.5rem",
+                  opacity: 0,
+                }}
+              >
+                Where Nature<br />
+                <em style={{ fontStyle: "italic", fontWeight: 300, color: "#C5A059" }}>Meets</em>{" "}Luxury
+              </h1>
+              
+              <p 
+                className="h-anim" 
+                style={{ 
+                  color: "rgba(255,255,255,.55)", 
+                  fontSize: "clamp(.9rem,1.4vw,1.15rem)", 
+                  lineHeight: 1.75, 
+                  maxWidth: 520, 
+                  marginBottom: "2.5rem", 
+                  opacity: 0 
+                }}
+              >
+                Our flagship project vision — a farm resort, energy park, and regenerative ecosystem woven into a single, breathtaking experience.
+              </p>
+            </div>
+
+            {/* Right Side - Buttons side by side at bottom */}
+            <div className="h-anim" style={{ opacity: 0, marginBottom: "2rem" }}>
+              <div style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}>
+                {/* Main Explore Button */}
+                <button 
+                  style={{ 
+                    padding: ".9rem 2.2rem", 
+                    border: "1px solid rgba(255,255,255,.4)", 
+                    background: "transparent", 
+                    color: "#fff", 
+                    fontFamily: "var(--font-label)", 
+                    fontSize: ".6rem", 
+                    fontWeight: 700, 
+                    letterSpacing: ".2em", 
+                    textTransform: "uppercase", 
+                    cursor: "pointer", 
+                    transition: "all .3s ease",
+                    whiteSpace: "nowrap"
+                  }}
+                  onMouseEnter={e=>{const b=e.currentTarget as HTMLButtonElement;b.style.background="#fff";b.style.color="#000";b.style.borderColor="#fff";}}
+                  onMouseLeave={e=>{const b=e.currentTarget as HTMLButtonElement;b.style.background="transparent";b.style.color="#fff";b.style.borderColor="rgba(255,255,255,.4)";}}
+                >
+                  Explore Retreats
+                </button>
+                
+                {/* Secondary Link Button */}
+                <button 
+                  style={{ 
+                    background: "transparent", 
+                    border: "none", 
+                    borderBottom: "1px solid rgba(197,160,89,.35)", 
+                    color: "#C5A059", 
+                    fontFamily: "var(--font-label)", 
+                    fontSize: ".6rem", 
+                    fontWeight: 700, 
+                    letterSpacing: ".2em", 
+                    textTransform: "uppercase", 
+                    cursor: "pointer", 
+                    padding: ".9rem 0", 
+                    transition: "all .3s ease",
+                    whiteSpace: "nowrap"
+                  }}
+                  onMouseEnter={e=>{
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    btn.style.borderBottomColor = "#C5A059";
+                    btn.style.color = "#C5A059";
+                    btn.style.transform = "translateX(-4px)";
+                  }}
+                  onMouseLeave={e=>{
+                    const btn = e.currentTarget as HTMLButtonElement;
+                    btn.style.borderBottomColor = "rgba(197,160,89,.35)";
+                    btn.style.color = "#C5A059";
+                    btn.style.transform = "translateX(0)";
+                  }}
+                >
+                  View Private Gallery
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        </W>
 
-        {/* Scroll indicator */}
-        <div style={{ position: "absolute", bottom: "2.5rem", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: ".5rem", zIndex: 1 }}>
-          <span style={{ fontFamily: "var(--font-label)", fontSize: ".52rem", letterSpacing: ".3em", textTransform: "uppercase", color: "rgba(255,255,255,.35)" }}>Discover</span>
+        {/* Scroll indicator - centered at bottom */}
+        <div style={{ 
+          position: "absolute", 
+          bottom: "2.5rem", 
+          left: "50%", 
+          transform: "translateX(-50%)", 
+          display: "flex", 
+          flexDirection: "column", 
+          alignItems: "center", 
+          gap: ".5rem", 
+          zIndex: 1 
+        }}>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: ".52rem", letterSpacing: ".3em", textTransform: "uppercase", color: "rgba(255,255,255,.35)" }}>
+            Discover
+          </span>
           <div style={{ width: 1, height: 48, background: "linear-gradient(to bottom, #C5A059, transparent)" }} />
         </div>
       </section>
