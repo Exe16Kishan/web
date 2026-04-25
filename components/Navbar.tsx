@@ -20,7 +20,7 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
   return (
     <nav
       style={{
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: 0,
         right: 0,
