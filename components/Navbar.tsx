@@ -8,10 +8,7 @@ interface NavbarProps {
   menuOpen?: boolean;
 }
 
-export default function Navbar({
-  onMenuClick,
-  menuOpen = false,
-}: NavbarProps) {
+export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
   const [solid, setSolid] = useState(false);
 
   useEffect(() => {
@@ -65,7 +62,6 @@ export default function Navbar({
             ((e.currentTarget as HTMLButtonElement).style.color = "#fff")
           }
         >
-          
           <div
             style={{
               width: 26,
@@ -108,31 +104,38 @@ export default function Navbar({
           </span>
         </button>
 
-        {/* Logo */}
+        {/* Logo image – centred */}
         <Link
           href="/"
           style={{
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
-            fontFamily: "var(--font-epilogue), sans-serif",
-            fontSize: "1.1rem",
-            fontWeight: 900,
-            letterSpacing: ".28em",
-            textTransform: "uppercase",
-            color: "#fff",
+            display: "flex",
+            alignItems: "center",
             textDecoration: "none",
-            whiteSpace: "nowrap",
-            transition: "color .3s",
           }}
-          onMouseEnter={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")
-          }
-          onMouseLeave={(e) =>
-            ((e.currentTarget as HTMLAnchorElement).style.color = "#fff")
-          }
         >
-          GUGRI INDUSTRIES
+          <img
+            src="/logos/Logo2.png"
+            alt="Gugri Industries"
+            className="size-58"
+            style={{
+              objectFit: "contain",
+              transition: "opacity .3s, filter .3s",
+              filter: "blur(0.3px)",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLImageElement;
+              el.style.opacity = ".7";
+              el.style.filter = "blur(0px) brightness(1.1)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLImageElement;
+              el.style.opacity = "1";
+              el.style.filter = "blur(0.6px) brightness(1.05)";
+            }}
+          />
         </Link>
 
         {/* Connect */}
