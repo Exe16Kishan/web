@@ -1,7 +1,7 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 
 interface SideMenuProps {
@@ -10,27 +10,29 @@ interface SideMenuProps {
 }
 
 const navLinks = [
-  { href: "/",           label: "Home" },
-  { href: "/philosophy", label: "Philosophy" },
-  { href: "/innovation", label: "Innovation" },
-  { href: "/services",   label: "Services" },
+  { href: "/", label: "Home" },
+  // { href: "/philosophy", label: "Philosophy" },
+  // { href: "/innovation", label: "Innovation" },
+  { href: "/services", label: "Services" },
   { href: "/technology", label: "Technology" },
   { href: "/experience", label: "Experience" },
-  { href: "/connect",    label: "Connect" },
+  { href: "/connect", label: "Connect" },
 ];
 
 const EASE = [0.76, 0, 0.24, 1] as const;
 
 export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
-  /* Lock body scroll  */
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
-  /* Close on Escape */
   useEffect(() => {
-    const fn = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const fn = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", fn);
     return () => window.removeEventListener("keydown", fn);
   }, [onClose]);
@@ -50,9 +52,9 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
               position: "fixed",
               inset: 0,
               zIndex: 59,
-              background: "rgba(0,0,0,.55)",
-              backdropFilter: "blur(4px)",
-              WebkitBackdropFilter: "blur(4px)",
+              background: "rgba(8, 8, 10, 0.45)",
+              backdropFilter: "blur(16px) saturate(140%)",
+              WebkitBackdropFilter: "blur(16px) saturate(140%)",
             }}
           />
           <motion.aside
@@ -63,7 +65,9 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             transition={{ duration: 0.58, ease: EASE }}
             style={{
               position: "fixed",
-              top: 0, left: 0, bottom: 0,
+              top: 0,
+              left: 0,
+              bottom: 0,
               width: "min(460px, 92vw)",
               zIndex: 60,
               background: "rgba(8, 8, 10, 0.72)",
@@ -81,40 +85,22 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             <div
               style={{
                 display: "flex",
-                alignItems: "flex-start",
+                alignItems: "center",
                 justifyContent: "space-between",
-                padding: "2.5rem 3rem 2rem",
+                padding: "1.75rem 2.5rem",
                 borderBottom: "1px solid rgba(255,255,255,.07)",
               }}
             >
-              <div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-epilogue), sans-serif",
-                    fontWeight: 900,
-                    fontSize: ".92rem",
-                    letterSpacing: ".32em",
-                    textTransform: "uppercase",
-                    color: "#fff",
-                    marginBottom: ".3rem",
-                  }}
-                >
-                  GUGRI INDUSTRIES
-                </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-label)",
-                    fontSize: ".55rem",
-                    fontWeight: 600,
-                    letterSpacing: ".24em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,.35)",
-                  }}
-                >
-                  The Regenerative Architect
-                </p>
-              </div>
-
+              <img
+                src="/logos/Logo2.png"
+                alt="Gugri Industries"
+                style={{
+                  height: 52,
+                  width: "auto",
+                  objectFit: "contain",
+                  opacity: 0.92,
+                }}
+              />
               <button
                 onClick={onClose}
                 aria-label="Close menu"
@@ -128,20 +114,24 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                   alignItems: "center",
                   justifyContent: "center",
                   padding: ".25rem",
-                  marginTop: ".15rem",
                 }}
-                onMouseEnter={e =>
+                onMouseEnter={(e) =>
                   ((e.currentTarget as HTMLButtonElement).style.color = "#fff")
                 }
-                onMouseLeave={e =>
-                  ((e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,.45)")
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.color =
+                    "rgba(255,255,255,.45)")
                 }
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 28 }}>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 24 }}
+                >
                   close
                 </span>
               </button>
             </div>
+
             <nav
               style={{
                 flex: 1,
@@ -156,7 +146,11 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                   initial={{ x: -32, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -16, opacity: 0 }}
-                  transition={{ delay: 0.1 + i * 0.065, duration: 0.42, ease: "easeOut" }}
+                  transition={{
+                    delay: 0.1 + i * 0.065,
+                    duration: 0.42,
+                    ease: "easeOut",
+                  }}
                 >
                   <Link
                     href={link.href}
@@ -173,15 +167,16 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                       color: "rgba(255,255,255,.38)",
                       textDecoration: "none",
                       borderBottom: "1px solid rgba(255,255,255,.06)",
-                      transition: "color .3s, background .3s, padding-left .35s",
+                      transition:
+                        "color .3s, background .3s, padding-left .35s",
                     }}
-                    onMouseEnter={e => {
+                    onMouseEnter={(e) => {
                       const el = e.currentTarget as HTMLAnchorElement;
                       el.style.color = "#fff";
                       el.style.paddingLeft = "3.5rem";
                       el.style.background = "rgba(255,255,255,.04)";
                     }}
-                    onMouseLeave={e => {
+                    onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLAnchorElement;
                       el.style.color = "rgba(255,255,255,.38)";
                       el.style.paddingLeft = "3rem";
@@ -204,9 +199,11 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 </motion.div>
               ))}
             </nav>
-            <div>
-              <div style={{ height: 3, background: "#C5A059", opacity: .65 }} />
 
+            <div>
+              <div
+                style={{ height: 3, background: "#C5A059", opacity: 0.65 }}
+              />
               <div
                 style={{
                   padding: "2rem 3rem 2.5rem",
@@ -242,15 +239,18 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                   </p>
                 </div>
                 <div style={{ display: "flex", gap: ".6rem" }}>
-                  {["ig", "in", "yt"].map(s => (
+                  {["ig", "in", "yt"].map((s) => (
                     <div
                       key={s}
                       style={{
-                        width: 32, height: 32,
+                        width: 32,
+                        height: 32,
                         borderRadius: ".25rem",
                         background: "rgba(255,255,255,.07)",
                         border: "1px solid rgba(255,255,255,.08)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                         fontFamily: "var(--font-label)",
                         fontSize: ".5rem",
                         fontWeight: 700,
@@ -258,15 +258,16 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                         textTransform: "uppercase",
                         color: "rgba(255,255,255,.38)",
                         cursor: "pointer",
-                        transition: "background .25s, color .25s, border-color .25s",
+                        transition:
+                          "background .25s, color .25s, border-color .25s",
                       }}
-                      onMouseEnter={e => {
+                      onMouseEnter={(e) => {
                         const el = e.currentTarget as HTMLDivElement;
                         el.style.background = "#C5A059";
                         el.style.color = "#000";
                         el.style.borderColor = "#C5A059";
                       }}
-                      onMouseLeave={e => {
+                      onMouseLeave={(e) => {
                         const el = e.currentTarget as HTMLDivElement;
                         el.style.background = "rgba(255,255,255,.07)";
                         el.style.color = "rgba(255,255,255,.38)";
