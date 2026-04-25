@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,14 +39,23 @@ const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSPr
 );
 
 export default function HomePage() {
-  const heroRef       = useRef<HTMLDivElement>(null);
-  const statsRef      = useRef<HTMLElement>(null);
-  const pillarsSecRef = useRef<HTMLElement>(null);
-  const pillarsGridRef= useRef<HTMLDivElement>(null);
-  const journeyRef    = useRef<HTMLElement>(null);
-  const discoverRef   = useRef<HTMLElement>(null);
-  const parentRef     = useRef<HTMLDivElement>(null);
+  const heroRef        = useRef<HTMLDivElement>(null);
+  const statsRef       = useRef<HTMLElement>(null);
+  const pillarsSecRef  = useRef<HTMLElement>(null);
+  const pillarsGridRef = useRef<HTMLDivElement>(null);
+  const journeyRef     = useRef<HTMLElement>(null);
+  const discoverRef    = useRef<HTMLElement>(null);
+  const parentRef      = useRef<HTMLDivElement>(null);
+  const videoRef       = useRef<HTMLVideoElement>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isPlaying, setIsPlaying]   = useState(true);
+
+  const togglePlay = useCallback(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setIsPlaying(true); }
+    else          { v.pause(); setIsPlaying(false); }
+  }, []);
 
   useGSAP(() => {
     if (heroRef.current) {
@@ -129,6 +138,7 @@ export default function HomePage() {
 
     return () => ScrollTrigger.getAll().forEach(t => t.kill());
   }, []);
+
   const pillarCard: React.CSSProperties = {
     background: isDarkMode ? "rgba(255,255,255,.055)" : "rgba(0,0,0,.04)",
     border: isDarkMode ? "1px solid rgba(255,255,255,.08)" : "1px solid rgba(0,0,0,.06)",
@@ -158,10 +168,15 @@ export default function HomePage() {
           overflow: "hidden",
         }}
       >
+        {/* Video background */}
         <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuApkHP08yex_lTnONCFOtPTjwwaFSKh60EOMWoSPk29izgQCg28fnxdkIYj6mkjtzcwhJAAgeXJvhJASPSLH8W3Ahxx_dtvhLprwiCQL1UUqrh17vQIPg8k_1aeQvMjd5LlrG82tWAeV5hAce41WfXYhZlCZu1W00W7OJWamgrdR2qLcqEYIJtmpk0bc7NcHbmJcxoxDjQ_NT39Rzk-g9r0rLllL_U-QeT7AwsaUeaCmszi9ThVTj4QGp5NFs69OG0ReYKPwYGFyJM"
-            alt="Luxury villa at golden hour inside forest"
+          <video
+            ref={videoRef}
+            src="/videos/LandingIntro.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             style={{
               width: "100%",
               height: "100%",
@@ -170,42 +185,22 @@ export default function HomePage() {
               filter: "contrast(1.08) saturate(1.12)",
             }}
           />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, transparent 22%)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(105deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 38%, transparent 62%)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to top, #000 0%, rgba(0,0,0,.78) 18%, rgba(0,0,0,.32) 40%, transparent 62%)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "radial-gradient(ellipse 80% 50% at 65% 55%, rgba(197,160,89,.08) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, transparent 22%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 38%, transparent 62%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,.78) 18%, rgba(0,0,0,.32) 40%, transparent 62%)" }} />
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 80% 50% at 65% 55%, rgba(197,160,89,.08) 0%, transparent 70%)", pointerEvents: "none" }} />
         </div>
-        <div style={{
-          position: "absolute", top: 110, left: "5rem", zIndex: 10,
-          display: "flex", alignItems: "center", gap: ".75rem",
-        }}>
+
+        <div style={{ position: "absolute", top: 110, left: "5rem", zIndex: 10, display: "flex", alignItems: "center", gap: ".75rem" }}>
           <span style={{ width: 32, height: 1, background: "#C5A059", display: "inline-block" }} />
-          <span style={{
-            fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700,
-            letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(255,255,255,.55)",
-          }}>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700, letterSpacing: ".28em", textTransform: "uppercase", color: "rgba(255,255,255,.55)" }}>
             The Regenerative Architect
           </span>
         </div>
+
         <div style={{ position: "relative", zIndex: 10, padding: "0 5rem 4.5rem" }}>
           <W style={{ padding: 0 }}>
-            <div
-              ref={heroRef}
-              style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}
-            >
+            <div ref={heroRef} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
               <div style={{ maxWidth: 720 }}>
                 <h1
                   className="hero-child"
@@ -222,14 +217,9 @@ export default function HomePage() {
                   }}
                 >
                   Architecting<br />
-                  <span style={{ color: "#C5A059" }}>
-                    Sustainable<br />Coexistence
-                  </span>
+                  <span style={{ color: "#C5A059" }}>Sustainable<br />Coexistence</span>
                 </h1>
-                <div
-                  className="hero-child"
-                  style={{ display: "flex", alignItems: "center", gap: "2.75rem", flexWrap: "wrap" }}
-                >
+                <div className="hero-child" style={{ display: "flex", alignItems: "center", gap: "2.75rem", flexWrap: "wrap" }}>
                   <button
                     style={{
                       padding: ".95rem 2.4rem",
@@ -246,18 +236,8 @@ export default function HomePage() {
                       cursor: "pointer",
                       transition: "background .3s, border-color .3s, color .3s",
                     }}
-                    onMouseEnter={e => {
-                      const b = e.currentTarget as HTMLButtonElement;
-                      b.style.background = "#fff";
-                      b.style.borderColor = "#fff";
-                      b.style.color = "#000";
-                    }}
-                    onMouseLeave={e => {
-                      const b = e.currentTarget as HTMLButtonElement;
-                      b.style.background = "rgba(0,0,0,.25)";
-                      b.style.borderColor = "rgba(255,255,255,.45)";
-                      b.style.color = "#fff";
-                    }}
+                    onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "#fff"; b.style.borderColor = "#fff"; b.style.color = "#000"; }}
+                    onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(0,0,0,.25)"; b.style.borderColor = "rgba(255,255,255,.45)"; b.style.color = "#fff"; }}
                   >
                     Discover More
                   </button>
@@ -272,8 +252,12 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+
+              {/*  Pause / Play */}
               <div className="hero-child">
                 <button
+                  onClick={togglePlay}
+                  aria-label={isPlaying ? "Pause video" : "Play video"}
                   style={{
                     width: 50, height: 50,
                     borderRadius: "50%",
@@ -286,94 +270,64 @@ export default function HomePage() {
                     cursor: "pointer",
                     transition: "background .3s, transform .3s",
                   }}
-                  onMouseEnter={e => {
-                    const b = e.currentTarget as HTMLButtonElement;
-                    b.style.background = "rgba(255,255,255,.15)";
-                    b.style.transform = "scale(1.06)";
-                  }}
-                  onMouseLeave={e => {
-                    const b = e.currentTarget as HTMLButtonElement;
-                    b.style.background = "rgba(0,0,0,.3)";
-                    b.style.transform = "scale(1)";
-                  }}
+                  onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(255,255,255,.15)"; b.style.transform = "scale(1.06)"; }}
+                  onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(0,0,0,.3)"; b.style.transform = "scale(1)"; }}
                 >
-                  <span className="material-symbols-outlined" style={{ fontSize: 18 }}>pause</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: 18 }}>
+                    {isPlaying ? "pause" : "play_arrow"}
+                  </span>
                 </button>
               </div>
             </div>
           </W>
         </div>
-
-        <div style={{
-          position: "absolute", bottom: "1.75rem",
-          left: "50%", transform: "translateX(-50%)",
-          display: "flex", flexDirection: "column", alignItems: "center", gap: ".45rem",
-          zIndex: 10, opacity: 0.4,
-        }}>
-          <span style={{ fontFamily: "var(--font-label)", fontSize: ".48rem", letterSpacing: ".28em", textTransform: "uppercase", color: "#fff" }}>
-            Scroll
-          </span>
+        <div style={{ position: "absolute", bottom: "1.75rem", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: ".45rem", zIndex: 10, opacity: 0.4 }}>
+          <span style={{ fontFamily: "var(--font-label)", fontSize: ".48rem", letterSpacing: ".28em", textTransform: "uppercase", color: "#fff" }}>Scroll</span>
           <div style={{ width: 1, height: 36, background: "linear-gradient(to bottom, #fff, transparent)" }} />
         </div>
       </section>
+
+      {/* Stats */}
       <section ref={statsRef} style={{ background: "transparent" }}>
         <W>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "2rem", padding: "5rem 0" }}>
             {stats.map(s => (
               <div key={s.label} className="stat-item" style={{ display: "flex", flexDirection: "column", gap: ".6rem", opacity: 0 }}>
-                <span style={{ fontFamily: "var(--font-epilogue),sans-serif", fontSize: "clamp(2.8rem,4.5vw,4.5rem)", fontWeight: 300, color: "#C5A059", lineHeight: 1 }}>
-                  {s.value}
-                </span>
-                <span style={{ fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "#999" }}>
-                  {s.label}
-                </span>
+                <span style={{ fontFamily: "var(--font-epilogue),sans-serif", fontSize: "clamp(2.8rem,4.5vw,4.5rem)", fontWeight: 300, color: "#C5A059", lineHeight: 1 }}>{s.value}</span>
+                <span style={{ fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "#999" }}>{s.label}</span>
               </div>
             ))}
           </div>
         </W>
       </section>
+
+      {/* Pillars */}
       <section ref={pillarsSecRef} style={{ background: "transparent", padding: "7rem 0 8rem" }}>
         <W>
           <div style={{ marginBottom: "4rem" }}>
-            <h2 style={{
-              fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900,
-              fontSize: "clamp(2.2rem,4vw,4.5rem)", textTransform: "uppercase",
-              letterSpacing: "-.03em", lineHeight: 1.1,
-            }}>
-              The Four Pillars of<br />
-              <span style={{ color: "#C5A059" }}>Regenerative Growth</span>
+            <h2 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "clamp(2.2rem,4vw,4.5rem)", textTransform: "uppercase", letterSpacing: "-.03em", lineHeight: 1.1 }}>
+              The Four Pillars of<br /><span style={{ color: "#C5A059" }}>Regenerative Growth</span>
             </h2>
             <div style={{ marginTop: "1.5rem", width: "6rem", height: 3, background: "rgba(197,160,89,.3)" }} />
           </div>
-
           <div ref={pillarsGridRef} style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem" }}>
             {pillars.map(p => (
               <div key={p.num} className="pillar-card" style={pillarCard}>
-                <span style={{
-                  fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700,
-                  letterSpacing: ".3em", textTransform: "uppercase",
-                  color: isDarkMode ? "rgba(255,255,255,.32)" : "rgba(0,0,0,.32)",
-                }}>
+                <span style={{ fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700, letterSpacing: ".3em", textTransform: "uppercase", color: isDarkMode ? "rgba(255,255,255,.32)" : "rgba(0,0,0,.32)" }}>
                   {p.num} / Pillars
                 </span>
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                   <span className="material-symbols-outlined" style={{ color: "#C5A059", fontSize: 36 }}>{p.icon}</span>
-                  <h3 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "1.3rem", textTransform: "uppercase", letterSpacing: "-.01em" }}>
-                    {p.title}
-                  </h3>
+                  <h3 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "1.3rem", textTransform: "uppercase", letterSpacing: "-.01em" }}>{p.title}</h3>
                 </div>
-                <p style={{
-                  fontSize: ".82rem", lineHeight: 1.75,
-                  color: isDarkMode ? "rgba(255,255,255,.5)" : "rgba(0,0,0,.55)",
-                  transition: "color .6s",
-                }}>
-                  {p.desc}
-                </p>
+                <p style={{ fontSize: ".82rem", lineHeight: 1.75, color: isDarkMode ? "rgba(255,255,255,.5)" : "rgba(0,0,0,.55)", transition: "color .6s" }}>{p.desc}</p>
               </div>
             ))}
           </div>
         </W>
       </section>
+
+      {/* Journey cards */}
       <section ref={journeyRef} style={{ background: "transparent", padding: "7rem 0 8rem" }}>
         <W>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "3.5rem" }}>
@@ -382,12 +336,7 @@ export default function HomePage() {
             </h2>
             <div style={{ display: "flex", gap: "1rem" }}>
               {["west","east"].map(d => (
-                <button key={d} style={{
-                  width: 44, height: 44, border: "1px solid rgba(0,0,0,.12)",
-                  background: "transparent", borderRadius: "50%",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  cursor: "pointer", color: "inherit", transition: "background .25s",
-                }}
+                <button key={d} style={{ width: 44, height: 44, border: "1px solid rgba(0,0,0,.12)", background: "transparent", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "inherit", transition: "background .25s" }}
                   onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.background = "rgba(0,0,0,.06)")}
                   onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.background = "transparent")}
                 >
@@ -396,7 +345,6 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.5rem" }}>
             {journeyCards.map(card => (
               <div key={card.title} className="card-anim" style={{ position: "relative", aspectRatio: "4/5", borderRadius: ".25rem", overflow: "hidden", background: "#e5e5e5", cursor: "pointer", opacity: 0 }}
@@ -417,6 +365,8 @@ export default function HomePage() {
           </div>
         </W>
       </section>
+
+      {/* Discover  */}
       <section ref={discoverRef} style={{ background: "transparent", padding: "7rem 0 8rem" }}>
         <W>
           <h2 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "clamp(3.5rem,8vw,8rem)", textTransform: "uppercase", letterSpacing: "-.04em", textAlign: "center", marginBottom: "4rem" }}>
