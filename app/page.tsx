@@ -47,7 +47,7 @@ const cycleNodes = [
   {
     icon: "bolt",
     label: "Energy",
-    top: "0%",
+    top: "-10%",
     left: "50%",
     tx: "-50%",
     ty: "0%",
@@ -56,14 +56,14 @@ const cycleNodes = [
     icon: "eco",
     label: "Agriculture",
     top: "50%",
-    left: "100%",
+    left: "110%",
     tx: "-100%",
     ty: "-50%",
   },
   {
     icon: "biotech",
     label: "Soil & Bio",
-    top: "100%",
+    top: "114%",
     left: "50%",
     tx: "-50%",
     ty: "-100%",
@@ -72,7 +72,7 @@ const cycleNodes = [
     icon: "landscape",
     label: "Land Value",
     top: "50%",
-    left: "0%",
+    left: "-10%",
     tx: "0%",
     ty: "-50%",
   },
@@ -1113,6 +1113,7 @@ export default function HomePage() {
                     key={n.label}
                     style={{
                       position: "absolute",
+                      backgroundColor:"black",
                       top: n.top,
                       left: n.left,
                       transform: `translate(${n.tx}, ${n.ty})`,
@@ -1124,8 +1125,8 @@ export default function HomePage() {
                   >
                     <div
                       style={{
-                        width: 56,
-                        height: 56,
+                        width: 66,
+                        height: 66,
                         borderRadius: "50%",
                         border: "1px solid rgba(197,160,89,.4)",
                         background: "rgba(197,160,89,.06)",
@@ -1136,7 +1137,7 @@ export default function HomePage() {
                     >
                       <span
                         className="material-symbols-outlined"
-                        style={{ color: "#C5A059", fontSize: 22 }}
+                        style={{ color: "#C5A059", fontSize: 26 }}
                       >
                         {n.icon}
                       </span>
@@ -1144,7 +1145,7 @@ export default function HomePage() {
                     <span
                       style={{
                         fontFamily: "var(--font-label)",
-                        fontSize: ".48rem",
+                        fontSize: ".58rem",
                         fontWeight: 700,
                         letterSpacing: ".18em",
                         textTransform: "uppercase",
