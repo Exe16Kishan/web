@@ -119,7 +119,7 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
           <img
             src="/logos/Logo2.png"
             alt="Gugri Industries"
-            className="size-58"
+            className="size-48"
             style={{
               objectFit: "contain",
               transition: "opacity .3s, filter .3s",
