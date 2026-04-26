@@ -56,7 +56,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
               position: "fixed", top: 0, left: 0, bottom: 0,
               width: "min(460px, 92vw)", zIndex: 60,
               background: "rgba(8, 8, 10, 0.72)",
-              backdropFilter: "blur(28px) saturate(160%)",
+              backdropFilter: "blur(40px) saturate(160%)",
               WebkitBackdropFilter: "blur(28px) saturate(160%)",
               borderRight: "1px solid rgba(255,255,255,.07)",
               boxShadow: "4px 0 48px rgba(0,0,0,.65)",
@@ -70,7 +70,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 <img
                   src="/logos/Logo2.png"
                   alt="Gugri Industries"
-                  style={{ height: 48, width: "auto", objectFit: "contain" }}
+                  style={{ height: 90, width: "auto", objectFit: "contain" }}
                 />
               </div>
               <button

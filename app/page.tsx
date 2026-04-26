@@ -504,8 +504,6 @@ export default function HomePage() {
           {[
             { label: "Philosophy", id: "philosophy" },
             { label: "Innovation", id: "innovation" },
-            // { label: "Services", id: "services" },
-            // { label: "Experience", id: "experience" },
           ].map(({ label, id }) => (
             <button
               key={id}             
