@@ -14,7 +14,7 @@ const navLinks = [
   // { href: "/philosophy", label: "Philosophy" },
   // { href: "/innovation", label: "Innovation" },
   { href: "/services",   label: "Services" },
-  { href: "/technology", label: "Technology" },
+  // { href: "/technology", label: "Technology" },
   { href: "/experience", label: "Experience" },
   { href: "/connect",    label: "Connect" },
 ];
