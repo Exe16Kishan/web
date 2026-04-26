@@ -187,7 +187,7 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
 
             {/* Desktop logo */}
             <img
-              src="/logos/CompanyLogo.png"
+              src="/logos/Logo2.png"
               alt="Gugri Industries"
               className="nav-logo-desktop"
               onMouseEnter={e => {
