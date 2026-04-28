@@ -10,11 +10,8 @@ interface SideMenuProps {
 }
 
 const navLinks = [
-  { href: "/",           label: "Home" },
-  // { href: "/philosophy", label: "Philosophy" },
-  // { href: "/innovation", label: "Innovation" },
+  { href: "/",           label: "About Us" },
   { href: "/services",   label: "Services" },
-  // { href: "/technology", label: "Technology" },
   { href: "/experience", label: "Experience" },
   { href: "/connect",    label: "Connect" },
 ];
@@ -55,18 +52,17 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             style={{
               position: "fixed", top: 0, left: 0, bottom: 0,
               width: "min(460px, 92vw)", zIndex: 60,
-              background: "rgba(8, 8, 10, 0.72)",
-              backdropFilter: "blur(40px) saturate(160%)",
-              WebkitBackdropFilter: "blur(28px) saturate(160%)",
-              borderRight: "1px solid rgba(255,255,255,.07)",
-              boxShadow: "4px 0 48px rgba(0,0,0,.65)",
+              background: "rgba(255, 255, 255, 0.4)",
+              backdropFilter: "blur(32px) saturate(180%)",
+              WebkitBackdropFilter: "blur(32px) saturate(180%)",
+              borderRight: "1px solid rgba(255, 255, 255, 0)",
+              boxShadow: "4px 0 48px rgba(0, 0, 0, 0.1)",
               display: "flex", flexDirection: "column", justifyContent: "space-between",
               padding: "0", overflowY: "auto",
             }}
           >
             <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", padding: "2.5rem 3rem 2rem" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: ".55rem" }}>
-          
                 <img
                   src="/logos/Logo2.png"
                   alt="Gugri Industries"
@@ -76,9 +72,9 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
               <button
                 onClick={onClose}
                 aria-label="Close menu"
-                style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(255,255,255,.45)", transition: "color .25s", display: "flex", alignItems: "center", justifyContent: "center", padding: ".25rem", marginTop: ".15rem" }}
-                onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.color = "#fff")}
-                onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,.45)")}
+                style={{ background: "none", border: "none", cursor: "pointer", color: "rgba(0, 0, 0, 0.6)", transition: "color .25s", display: "flex", alignItems: "center", justifyContent: "center", padding: ".25rem", marginTop: ".15rem" }}
+                onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.color = "#000")}
+                onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.color = "rgba(0, 0, 0, 0.6)")}
               >
                 <span className="material-symbols-outlined" style={{ fontSize: 28 }}>close</span>
               </button>
@@ -96,30 +92,29 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.05rem 3rem", fontFamily: "var(--font-epilogue), sans-serif", fontSize: "clamp(1.7rem, 4.5vw, 2.6rem)", fontWeight: 300, letterSpacing: "-.02em", color: "rgba(255,255,255,.38)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,.06)", transition: "color .3s, background .3s, padding-left .35s" }}
-                    onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = "#fff"; el.style.paddingLeft = "3.5rem"; el.style.background = "rgba(255,255,255,.04)"; }}
-                    onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = "rgba(255,255,255,.38)"; el.style.paddingLeft = "3rem"; el.style.background = "transparent"; }}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.05rem 3rem", fontFamily: "var(--font-epilogue), sans-serif", fontSize: "clamp(1.7rem, 4.5vw, 2.6rem)", fontWeight: 300, letterSpacing: "-.02em", color: "rgba(0, 0, 0, 0.59)", textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,.06)", transition: "color .3s, background .3s, padding-left .35s" }}
+                    onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = "#000"; el.style.paddingLeft = "3.5rem"; el.style.background = "rgba(0,0,0,.04)"; }}
+                    onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = "rgba(0, 0, 0, 0.6)"; el.style.paddingLeft = "3rem"; el.style.background = "transparent"; }}
                   >
                     <span>{link.label}</span>
-                    <span className="material-symbols-outlined" style={{ fontSize: 20, color: "rgba(255,255,255,.18)", transition: "color .3s, transform .3s", marginRight: "3rem" }}>arrow_forward</span>
+                    <span className="material-symbols-outlined" style={{ fontSize: 20, color: "rgba(0, 0, 0, 0.6)", transition: "color .3s, transform .3s", marginRight: "3rem" }}>arrow_forward</span>
                   </Link>
                 </motion.div>
               ))}
             </nav>
 
             <div>
-              {/* <div style={{ height: 3, background: "#C5A059", opacity: .65 }} /> */}
               <div style={{ padding: "2rem 3rem 2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                 <div>
-                  <p style={{ fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(255,255,255,.28)", marginBottom: ".3rem" }}>© 2024 Gugri Industries</p>
-                  <p style={{ fontFamily: "var(--font-label)", fontSize: ".55rem", letterSpacing: ".15em", color: "rgba(255,255,255,.18)" }}>Engineering the Natural World</p>
+                  <p style={{ fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", color: "rgba(0, 0, 0, 0.35)", marginBottom: ".3rem" }}>© 2024 Gugri Industries</p>
+                  <p style={{ fontFamily: "var(--font-label)", fontSize: ".55rem", letterSpacing: ".15em", color: "rgba(0, 0, 0, 0.35)" }}>Engineering the Natural World</p>
                 </div>
                 <div style={{ display: "flex", gap: ".6rem" }}>
                   {["ig", "in", "yt"].map(s => (
                     <div key={s}
-                      style={{ width: 32, height: 32, borderRadius: ".25rem", background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-label)", fontSize: ".5rem", fontWeight: 700, letterSpacing: ".05em", textTransform: "uppercase", color: "rgba(255,255,255,.38)", cursor: "pointer", transition: "background .25s, color .25s, border-color .25s" }}
+                      style={{ width: 32, height: 32, borderRadius: ".25rem", background: "rgba(0,0,0,.06)", border: "1px solid rgba(0,0,0,.08)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-label)", fontSize: ".5rem", fontWeight: 700, letterSpacing: ".05em", textTransform: "uppercase", color: "rgba(0,0,0,.38)", cursor: "pointer", transition: "background .25s, color .25s, border-color .25s" }}
                       onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.background = "#C5A059"; el.style.color = "#000"; el.style.borderColor = "#C5A059"; }}
-                      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.background = "rgba(255,255,255,.07)"; el.style.color = "rgba(255,255,255,.38)"; el.style.borderColor = "rgba(255,255,255,.08)"; }}
+                      onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.background = "rgba(0,0,0,.06)"; el.style.color = "rgba(0,0,0,.38)"; el.style.borderColor = "rgba(0,0,0,.08)"; }}
                     >{s}</div>
                   ))}
                 </div>
