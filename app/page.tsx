@@ -134,7 +134,6 @@ const W = ({
       maxWidth: 1440,
       marginLeft: "auto",
       marginRight: "auto",
-      // clamp: 1.25rem on phones → 5rem on wide screens
       paddingLeft: "clamp(1.25rem, 5vw, 5rem)",
       paddingRight: "clamp(1.25rem, 5vw, 5rem)",
       ...style,
@@ -384,7 +383,7 @@ export default function HomePage() {
   return (
     <>
       <style>{`
-        /* Pillar grid: 1 col → 2 col → 4 col */
+        /* Pillar grid */
         .pillars-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -393,7 +392,7 @@ export default function HomePage() {
         @media (min-width: 640px)  { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1280px) { .pillars-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        /* Cards grid: 1 col → 2 col → 3 col */
+        /* Cards grid*/
         .cards-grid-3 {
           display: grid;
           grid-template-columns: 1fr;
@@ -402,7 +401,7 @@ export default function HomePage() {
         @media (min-width: 640px)  { .cards-grid-3 { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .cards-grid-3 { grid-template-columns: repeat(3, 1fr); } }
 
-        /* Stats grid: 2 col → 4 col */
+        /* Stats grid*/
         .stats-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -412,7 +411,7 @@ export default function HomePage() {
         }
         @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        /* Philosophy two-col: 1 → 2 */
+        /* Philosophy */
         .phil-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -421,7 +420,7 @@ export default function HomePage() {
         }
         @media (min-width: 1024px) { .phil-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
 
-        /* Innovation two-col: 1 → 2 */
+        /* Innovation */
         .inno-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -430,7 +429,7 @@ export default function HomePage() {
         }
         @media (min-width: 1024px) { .inno-grid { grid-template-columns: 1fr 1fr; gap: 6rem; } }
 
-        /* CTA grid: 1 → [1fr auto] */
+        /* CTA grid */
         .cta-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -439,7 +438,7 @@ export default function HomePage() {
         }
         @media (min-width: 1024px) { .cta-grid { grid-template-columns: 1fr auto; gap: 4rem; } }
 
-        /* Pillars header: stack → row */
+        /* Pillars header*/
         .pillars-header {
           display: flex;
           flex-direction: column;
@@ -450,7 +449,7 @@ export default function HomePage() {
           .pillars-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
         }
 
-        /* Journey header: stack → row */
+        /* Journey header*/
         .journey-header {
           display: flex;
           flex-direction: column;
@@ -461,7 +460,7 @@ export default function HomePage() {
           .journey-header { flex-direction: row; justify-content: space-between; align-items: flex-end; }
         }
 
-        /* CTA buttons: row on mobile → col on desktop */
+        /* CTA buttons*/
         .cta-btns {
           display: flex;
           flex-direction: row;
@@ -470,7 +469,7 @@ export default function HomePage() {
         }
         @media (min-width: 1024px) { .cta-btns { flex-direction: column; } }
 
-        /* Hero inline nav — hide on small screens */
+        /* Hero inline nav */
         .hero-inline-nav {
           position: absolute;
           top: 35px;
@@ -481,6 +480,57 @@ export default function HomePage() {
           align-items: center;
         }
         @media (min-width: 1025px) { .hero-inline-nav { display: flex; } }
+
+        /* Hero content wrapper */
+        .hero-content-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+        }
+        @media (min-width: 768px) {
+          .hero-content-wrapper {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+          }
+        }
+
+        /* Hero text container */
+        .hero-text-container {
+          text-align: center;
+          max-width: 100%;
+        }
+        @media (min-width: 768px) {
+          .hero-text-container {
+            text-align: left;
+            max-width: 720;
+          }
+        }
+
+        /* Hero button wrapper */
+        .hero-button-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-top: 1.5rem;
+        }
+        @media (min-width: 768px) {
+          .hero-button-wrapper {
+            justify-content: flex-start;
+            margin-top: 0;
+          }
+        }
+
+        /* Pause button - hide on mobile */
+        .pause-btn {
+          display: none;
+        }
+        @media (min-width: 768px) {
+          .pause-btn {
+            display: block;
+          }
+        }
 
         /* Hero eyebrow — hide on small screens */
         .hero-eyebrow {
@@ -504,6 +554,16 @@ export default function HomePage() {
         /* Image hover scale */
         .img-hover { transition: transform .7s ease; }
         .img-hover:hover { transform: scale(1.06); }
+
+        /* Scroll indicator spacing */
+       .scroll-indicator {
+  display: none;
+}
+@media (min-width: 768px) {
+  .scroll-indicator {
+    display: flex;
+  }
+}
       `}</style>
 
       <div
@@ -617,12 +677,12 @@ export default function HomePage() {
                   transition: "color .3s",
                 }}
                 onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.color =
-                    "#C5A059")
+                ((e.currentTarget as HTMLButtonElement).style.color =
+                  "#C5A059")
                 }
                 onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.color =
-                    "rgba(255,255,255,.5)")
+                ((e.currentTarget as HTMLButtonElement).style.color =
+                  "rgba(255,255,255,.5)")
                 }
               >
                 {label}
@@ -639,15 +699,8 @@ export default function HomePage() {
             }}
           >
             <W>
-              <div
-                ref={heroRef}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-end",
-                }}
-              >
-                <div style={{ maxWidth: 720 }}>
+              <div ref={heroRef} className="hero-content-wrapper">
+                <div className="hero-text-container">
                   <h1
                     className="hero-child"
                     style={{
@@ -671,103 +724,108 @@ export default function HomePage() {
                       Coexistence
                     </span>
                   </h1>
-                  <div
-                    className="hero-child"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "2.75rem",
-                      flexWrap: "wrap",
-                      opacity: 0,
-                    }}
-                  >
-                    <button
-                      onClick={() => scrollTo("philosophy")}
+                  <div className="hero-button-wrapper">
+                    <div
+                      className="hero-child"
                       style={{
-                        padding: ".95rem 2.4rem",
-                        border: "1px solid rgba(255,255,255,.45)",
-                        background: "rgba(0,0,0,.25)",
-                        backdropFilter: "blur(10px)",
-                        WebkitBackdropFilter: "blur(10px)",
-                        color: "#fff",
-                        fontFamily: "var(--font-label)",
-                        fontSize: ".62rem",
-                        fontWeight: 700,
-                        letterSpacing: ".2em",
-                        textTransform: "uppercase",
-                        cursor: "pointer",
-                        transition:
-                          "background .3s, border-color .3s, color .3s",
-                      }}
-                      onMouseEnter={(e) => {
-                        const b = e.currentTarget as HTMLButtonElement;
-                        b.style.background = "#fff";
-                        b.style.borderColor = "#fff";
-                        b.style.color = "#000";
-                      }}
-                      onMouseLeave={(e) => {
-                        const b = e.currentTarget as HTMLButtonElement;
-                        b.style.background = "rgba(0,0,0,.25)";
-                        b.style.borderColor = "rgba(255,255,255,.45)";
-                        b.style.color = "#fff";
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "2.75rem",
+                        flexWrap: "wrap",
+                        opacity: 0,
+                        justifyContent: "center",
                       }}
                     >
-                      Discover More
-                    </button>
+                      <button
+                        onClick={() => scrollTo("philosophy")}
+                        style={{
+                          padding: ".95rem 2.4rem",
+                          border: "1px solid rgba(255,255,255,.45)",
+                          background: "rgba(0,0,0,.25)",
+                          backdropFilter: "blur(10px)",
+                          WebkitBackdropFilter: "blur(10px)",
+                          color: "#fff",
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".62rem",
+                          fontWeight: 700,
+                          letterSpacing: ".2em",
+                          textTransform: "uppercase",
+                          cursor: "pointer",
+                          transition:
+                            "background .3s, border-color .3s, color .3s",
+                        }}
+                        onMouseEnter={(e) => {
+                          const b = e.currentTarget as HTMLButtonElement;
+                          b.style.background = "#fff";
+                          b.style.borderColor = "#fff";
+                          b.style.color = "#000";
+                        }}
+                        onMouseLeave={(e) => {
+                          const b = e.currentTarget as HTMLButtonElement;
+                          b.style.background = "rgba(0,0,0,.25)";
+                          b.style.borderColor = "rgba(255,255,255,.45)";
+                          b.style.color = "#fff";
+                        }}
+                      >
+                        Discover More
+                      </button>
+                    </div>
                   </div>
                 </div>
 
                 {/* Pause button */}
-                <div className="hero-child" style={{ opacity: 0 }}>
-                  <button
-                    onClick={togglePlay}
-                    aria-label={isPlaying ? "Pause" : "Play"}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: "50%",
-                      border: "1px solid rgba(255,255,255,.32)",
-                      background: "rgba(0,0,0,.3)",
-                      backdropFilter: "blur(10px)",
-                      WebkitBackdropFilter: "blur(10px)",
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
-                      transition: "background .3s, transform .3s",
-                    }}
-                    onMouseEnter={(e) => {
-                      const b = e.currentTarget as HTMLButtonElement;
-                      b.style.background = "rgba(255,255,255,.15)";
-                      b.style.transform = "scale(1.06)";
-                    }}
-                    onMouseLeave={(e) => {
-                      const b = e.currentTarget as HTMLButtonElement;
-                      b.style.background = "rgba(0,0,0,.3)";
-                      b.style.transform = "scale(1)";
-                    }}
-                  >
-                    <span
-                      className="material-symbols-outlined"
-                      style={{ fontSize: 18 }}
+                <div className="pause-btn">
+                  <div className="hero-child" style={{ opacity: 0 }}>
+                    <button
+                      onClick={togglePlay}
+                      aria-label={isPlaying ? "Pause" : "Play"}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        borderRadius: "50%",
+                        border: "1px solid rgba(255,255,255,.32)",
+                        background: "rgba(0,0,0,.3)",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        color: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        transition: "background .3s, transform .3s",
+                      }}
+                      onMouseEnter={(e) => {
+                        const b = e.currentTarget as HTMLButtonElement;
+                        b.style.background = "rgba(255,255,255,.15)";
+                        b.style.transform = "scale(1.06)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const b = e.currentTarget as HTMLButtonElement;
+                        b.style.background = "rgba(0,0,0,.3)";
+                        b.style.transform = "scale(1)";
+                      }}
                     >
-                      {isPlaying ? "pause" : "play_arrow"}
-                    </span>
-                  </button>
+                      <span
+                        className="material-symbols-outlined"
+                        style={{ fontSize: 18 }}
+                      >
+                        {isPlaying ? "pause" : "play_arrow"}
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </W>
           </div>
 
-          {/* Scroll hint */}
+          {/* Scroll hint  */}
           <div
+            className="scroll-indicator"
             style={{
               position: "absolute",
               bottom: "1.75rem",
               left: "50%",
               transform: "translateX(-50%)",
-              display: "flex",
               flexDirection: "column",
               alignItems: "center",
               gap: ".45rem",
@@ -1513,14 +1571,14 @@ export default function HomePage() {
                       transition: "background .25s",
                     }}
                     onMouseEnter={(e) =>
-                      ((e.currentTarget as HTMLButtonElement).style.background =
-                        isDarkMode
-                          ? "rgba(255,255,255,.07)"
-                          : "rgba(0,0,0,.06)")
+                    ((e.currentTarget as HTMLButtonElement).style.background =
+                      isDarkMode
+                        ? "rgba(255,255,255,.07)"
+                        : "rgba(0,0,0,.06)")
                     }
                     onMouseLeave={(e) =>
-                      ((e.currentTarget as HTMLButtonElement).style.background =
-                        "transparent")
+                    ((e.currentTarget as HTMLButtonElement).style.background =
+                      "transparent")
                     }
                   >
                     <span
