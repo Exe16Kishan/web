@@ -105,7 +105,7 @@ export default function Footer() {
           height: auto;
           object-fit: contain;
           display: block;
-          opacity: 0.08;
+          opacity: 0.11;
           /* Invert so the black logo shows white on dark bg */
           filter: invert(1);
           pointer-events: none;
@@ -115,7 +115,7 @@ export default function Footer() {
           .footer-wordmark { max-width: 480px; }
         }
         @media (min-width: 1024px) {
-          .footer-wordmark { max-width: 680px; opacity: 0.055; }
+          .footer-wordmark { max-width: 900px; opacity: 0.100; }
         }
 
         /* Hide link columns */
@@ -134,11 +134,11 @@ export default function Footer() {
           overflow: "hidden",
         }}
       >
-        <div aria-hidden style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", userSelect: "none", overflow: "hidden" }}>
+        {/* <div aria-hidden style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", userSelect: "none", overflow: "hidden" }}>
           <span className="watermark">GUGRI INDUSTRIES</span>
-        </div>
+        </div> */}
        
-        {/* <div
+        <div
           aria-hidden
           style={{
             position: "absolute",
@@ -153,11 +153,11 @@ export default function Footer() {
           }}
         >
           <img
-            src="/logos/Company_Wordmark_Black.png"
+            src="/logos/Branding_Logo_Dark.png"
             alt=""
             className="footer-wordmark"
           />
-        </div> */}
+        </div>
 
         <div className="footer-inner">
           <div className="footer-grid">

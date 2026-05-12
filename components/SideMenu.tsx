@@ -64,9 +64,9 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", padding: "2.5rem 3rem 2rem" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: ".55rem" }}>
                 <img
-                  src="/logos/Logo2.png"
+                  src="/logos/NavBrandLogo.png"
                   alt="Gugri Industries"
-                  style={{ height: 90, width: "auto", objectFit: "contain" }}
+                  style={{ height: 190, width: "auto", objectFit: "contain" }}
                 />
               </div>
               <button

@@ -42,13 +42,13 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
 
         /* Desktop */
         .nav-logo-desktop {
-          height: 88px;
+          height: 110px;
           width: auto;
           max-width: 220px;
           object-fit: contain;
           display: block;
           transition: opacity .3s, filter .3s;
-          filter: blur(0.3px) brightness(1.05);
+          filter: blur(0.2px) brightness(1.05);
         }
 
         /* Show/hide based on breakpoint */
@@ -187,7 +187,7 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
 
             {/* Desktop logo */}
             <img
-              src="/logos/Logo2.png"
+              src="/logos/Wordmark_Light.png"
               alt="Gugri Industries"
               className="nav-logo-desktop"
               onMouseEnter={e => {
