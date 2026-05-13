@@ -284,13 +284,13 @@ export default function ExperiencePage() {
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, transparent 40%)" }} />
           </div>
 
-          <W style={{ position: "relative", zIndex: 1, width: "100%", paddingTop: "clamp(7rem,12vw,10rem)", paddingBottom: "clamp(4rem,8vw,7rem)" }}>
+          <W style={{ position: "relative", zIndex: 1,width: "100%", paddingTop: "clamp(7rem,12vw,10rem)", paddingBottom: "clamp(4rem,8vw,7rem)" }}>
             <div className="hero-content-row">
               <div style={{ maxWidth: 700 }}>
                 <span className="h-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".38em", textTransform: "uppercase", color: "#C5A059", display: "block", marginBottom: "1.5rem", opacity: 0 }}>
                   Project Vision
                 </span>
-                <h1 className="h-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.6rem, 7vw, 7rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.5rem", opacity: 0 }}>
+                <h1 className="h-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.6rem, 6vw, 6rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.5rem", opacity: 0 }}>
                   Where Nature<br />
                   <em style={{ fontStyle: "italic", fontWeight: 300, color: "#C5A059" }}>Meets</em>{" "}Luxury
                 </h1>

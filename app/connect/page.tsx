@@ -163,7 +163,7 @@ export default function ConnectPage() {
         .connect-hero-title {
           font-family: var(--font-epilogue), sans-serif;
           font-weight: 900;
-          font-size: clamp(2.8rem, 9.5vw, 9rem);
+          font-size: clamp(2.8rem, 9vw, 6rem);
           line-height: 0.97;
           letter-spacing: -0.04em;
           text-transform: uppercase;
