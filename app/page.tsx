@@ -4,12 +4,14 @@ import Footer from "@/components/Footer";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 // DATA 
 
+const philosophy = "/pictures/services-resort.png"
 const stats = [
   { value: "3x",   label: "Revenue Per Acre" },
   { value: "40%",  label: "Water Savings" },
@@ -32,15 +34,15 @@ const cycleNodes = [
 ];
 
 const journeyCards = [
-  { category: "Architecture", title: "911 Ridge Estate.",     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCepr3IZ5MY3BmKN3p3y5_daHUtuB5h2sQw86JRoFyIGm-1tRNdonqB7xXEokD6xULYXIugfWM9lpkySjqW1NEAHIIKeaSBYx-49upr3G0e4ggy45QfOPdaCHEfKz0gQUAzN8JXYddcns9sG1kfvdfnlcrY4MMt3xl2Pl_8rjZdqefZoYZFNpKNkqDJl_o_yNSkutu7W9V0U75f9-NVc8J6QZc3FkHJtdTlql0_EqERf1DhkGacnb1ZtOuzJgZz3NUwCJR3MIA7ZbM" },
-  { category: "Regeneration",  title: "718 Timber Haven.",    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAL1y_4kmTWDPOP2ga1uxCy3JknZQoHrhewAl2oKAK_qNmPG5oRulCCYoV1ROziYCjH-PGP7UxkrOYQSe6XRXNmgGwvoTE3fl2ZR3yRwmTYc-C8kcaDnc0uUVAQYb76zZ4xyjK5kjijmtETwyKw3LW9WbthnyQqKl1SWBJFkOnyez6FXDFFz_2WrkXp9LOnTKSb1ztjiWC1JrBFiFR2Djtl00bTzV5yuFeX9UXhuTeJInhPXMVIOtLC5Yd5RXFIcXVffosb8Pf-rkE" },
-  { category: "Heritage",      title: "Emerald Canopy Lodge.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCiiRaa2LjMjk8BnUaERbt00jMcADnRgCfcq9ljYI3UNQYS7XSU9u7VNMq-WCRmYToK8pWSxkG7_H_DDKZUuyDY0y45IqXQ99GgUichNAKHBKOMTO1d2kRplBPgtit-Ni8x6YPr_PXSLCNHthl_mKIh1qDOMcVn59mYthRg9UTJA5bIzRQxpObRrqKSmHhuH0d15Uy7IOvrRtr_Un6jOUu2Kr8Am6kjxtCjls4nM9LdM_AI_B1AmpZJbfTXsde1PO89WeTwlLWBxTg" },
+  { category: "Architecture", title: "Eco Villa Estate.",     img: "/pictures/eco-villas.png" },
+  { category: "Regeneration",  title: "718 Indoor Haven.",    img: "/pictures/indoor-nature.png" },
+  { category: "Heritage",      title: "Emerald Canopy Lodge.", img: "/pictures/services-agriculture.png" },
 ];
 
 const discoverCards = [
-  { title: "Green Architecture",   desc: "Vertical living in the heart of nature.",  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDebbN3NwuLRmy55g1ePb3CmZ2t0vJsGhwxhtvabEwZACKHBrLyZN6aOBUTZnGY_LqFdGljyzSN5Et72fcHuGpIyvOBMJ6HrX-R5m9Y8Ygb16d17JnNGlIxYNE90ogQJ2LbCLZdHrco0h6G7MfJ0iHVvdgO3cA7-Gp4YRrKcF4T9tXmSXtMqKW4oUAkX40RACiSye6ZQn661gs6OJkpHupyqugtZhR_0VNGriyqLmTsJkt_B7O3rsfKA3gMWJ75aw5iz4epCkSXHc" },
-  { title: "Eco-Performance",      desc: "Sustainable movement for explorers.",       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBh4a8eKc_h8VEtbHLGuMmb5xHBPZoQIfoUIoeVR_AYjNRzpOUEmu3BMxZx9dHGnC0d7I1K8I6oP2chK6-0xd6f7Pgl9AR6rWer-0xA1y5MvZAiTgtyUBGcmLKciGfA2zLK6W8eMzeDwkC41mK5c6cvG6ZS-Jd2vF-Z-XiGbnVjQdC5VdRcz3eIOf7VIkbVATUQh738RWda7IKgpZR23ul62UtsWm1Kg8EAYuEXj4Yu8WJKCTg-0LpWJM4_J7SvclgAI7iz58nXvmM" },
-  { title: "Solar Infrastructure", desc: "Powering tomorrow's sanctuary today.",      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYxO9LGVq630sLcF5T6sYvFa9fqbUJRDg7AKjvwRNcQT5rNfK7grs_wyVBOlSXTjAwBnf7UF9CQLtvt9ayunNleeXBnurff8uOp4Xrc4IPt36FzUytMexTUmMvGoaoz_O3pqyyqK_Sznx1CF1uryPc021oM2WcfLL1ra-A68i2qz5Ld_2g8wofNtKhtMprQoXH3Fc9PGB27XujTfOCY0d_byXcHtRAQR2DKJL4gi0pGtr92Jsb6E_Uo8Ahcwf9AFgOA8uEnnfTOyQ" },
+  { title: "Green Architecture",   desc: "Vertical living in the heart of nature.",  img: "/pictures/FarmbyLake.png" },
+  { title: "Eco-Performance",      desc: "Sustainable movement for explorers.",       img: "/pictures/solar-trees.png" },
+  { title: "Solar Infrastructure", desc: "Powering tomorrow's sanctuary today.",      img: "/pictures/services-energy.png" },
 ];
 
 // HELPERS 
@@ -177,6 +179,27 @@ export default function HomePage() {
         }
         @media (min-width: 640px)  { .cards-grid-3 { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .cards-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+        /* ── Problem two-col ── */
+        .problem-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3.5rem;
+          align-items: center;
+        }
+        @media (min-width: 1024px) { .problem-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+
+        /* ── Layers rows ── */
+        .layers-row {
+          display: grid;
+          grid-template-columns: 80px 1fr;
+          gap: 2rem;
+          align-items: start;
+          padding: 3rem 2.5rem;
+          border-top: 1px solid rgba(255,255,255,.08);
+        }
+        .layers-row:last-child { border-bottom: 1px solid rgba(255,255,255,.08); }
+        @media (max-width: 640px) { .layers-row { grid-template-columns: 56px 1fr; gap: 1.25rem; padding: 2rem 1.25rem; } }
 
         /* ── Stats grid ── */
         .stats-grid {
@@ -441,6 +464,32 @@ export default function HomePage() {
                     >
                       Discover More
                     </button>
+                    <Link href={"/connect"}>
+                    <button
+                      onClick={() => scrollTo("philosophy")}
+                      
+                      style={{
+                        padding: ".95rem 2.4rem",
+                        borderBottom: "1px solid #C5A059",
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                        color: "#C5A059",
+                        fontFamily: "var(--font-label)",
+                        fontSize: ".62rem",
+                        fontWeight: 700,
+                        letterSpacing: ".2em",
+                        textTransform: "uppercase",
+                        cursor: "pointer",
+                        transition: "background .3s, border-color .3s, color .3s",
+                      }}
+                      onMouseEnter={e => { const b = e.currentTarget as HTMLButtonElement;  b.style.color = "#fff"; }}
+                      onMouseLeave={e => { const b = e.currentTarget as HTMLButtonElement;  b.style.color = "#C5A059"; }}
+                    
+                     
+                    >
+                      Partner With Us
+                    </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -504,7 +553,7 @@ export default function HomePage() {
             <div className="phil-grid">
               <div className="phil-anim" style={{ opacity: 0 }}>
                 <div style={{ position: "relative", borderRadius: ".25rem", overflow: "hidden", aspectRatio: "4/5" }}>
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL1y_4kmTWDPOP2ga1uxCy3JknZQoHrhewAl2oKAK_qNmPG5oRulCCYoV1ROziYCjH-PGP7UxkrOYQSe6XRXNmgGwvoTE3fl2ZR3yRwmTYc-C8kcaDnc0uUVAQYb76zZ4xyjK5kjijmtETwyKw3LW9WbthnyQqKl1SWBJFkOnyez6FXDFFz_2WrkXp9LOnTKSb1ztjiWC1JrBFiFR2Djtl00bTzV5yuFeX9UXhuTeJInhPXMVIOtLC5Yd5RXFIcXVffosb8Pf-rkE"
+                  <img src={philosophy}
                     alt="Timber Haven" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 55%)" }} />
                   <div style={{ position: "absolute", bottom: "2.5rem", left: "2.5rem", right: "2.5rem", borderLeft: "3px solid #C5A059", paddingLeft: "1.25rem" }}>
@@ -545,6 +594,94 @@ export default function HomePage() {
                   </button>
                 </div>
               </div>
+            </div>
+          </W>
+        </section>
+
+        {/* THE PROBLEM */}
+        <section style={{ background: "transparent", padding: "8rem 0" }}>
+          <W>
+            <div className="problem-grid">
+              <div>
+                <SectionEyebrow text="The Problem" />
+                <h2 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "clamp(1.8rem,3vw,3.5rem)", letterSpacing: "-.03em", lineHeight: 1.1, marginBottom: "2rem" }}>
+                  Land Is{" "}
+                  <em style={{ color: "#C5A059", fontStyle: "italic" }}>Underutilized</em>{" "}
+                  Economically and{" "}
+                  <em style={{ color: "#C5A059", fontStyle: "italic" }}>Overstressed</em>{" "}
+                  Environmentally
+                </h2>
+                <p style={{ color: "rgba(255,255,255,.52)", lineHeight: 1.85, fontSize: ".92rem", marginBottom: "1.5rem" }}>
+                  Across the world, vast tracts of arable land generate a fraction of their true potential. Conventional agriculture depletes soil, monoculture farming erodes biodiversity, and landowners watch their most valuable asset slowly degrade.
+                </p>
+                <p style={{ color: "rgba(255,255,255,.52)", lineHeight: 1.85, fontSize: ".92rem", marginBottom: "1.5rem" }}>
+                  Meanwhile, the energy transition demands land. Water scarcity threatens food security. Carbon markets remain inaccessible to small and mid-scale landowners.
+                </p>
+                <p style={{ color: "rgba(255,255,255,.52)", lineHeight: 1.85, fontSize: ".92rem" }}>
+                  The result? A paradox — land that could be the foundation of generational wealth becomes a liability.{" "}
+                  <em style={{ color: "#C5A059", fontStyle: "italic" }}>We exist to resolve this paradox.</em>
+                </p>
+              </div>
+              <div style={{ borderRadius: ".25rem", overflow: "hidden", aspectRatio: "4/3" }}>
+                <img
+                  src="/pictures/services-agriculture.png"
+                  alt="Regenerative farmland"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            </div>
+          </W>
+        </section>
+
+        {/* MAXIMUM POTENTIAL MODEL */}
+        <section style={{ background: "transparent", padding: "8rem 0" }}>
+          <W>
+            <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+              <SectionEyebrow text="Maximum Potential Model" center />
+              <h2 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "clamp(2rem,4vw,4.5rem)", letterSpacing: "-.03em", lineHeight: 1.1, marginBottom: "1.25rem" }}>
+                Three Layers of{" "}
+                <em style={{ color: "#C5A059", fontStyle: "italic" }}>Stacked</em>{" "}
+                Value
+              </h2>
+              <p style={{ color: "rgba(255,255,255,.45)", fontSize: "clamp(.88rem,1.1vw,1rem)", maxWidth: 520, margin: "0 auto", lineHeight: 1.8 }}>
+                Our proprietary 3-layer system transforms underutilized land into a high-performance regenerative asset, generating value from every dimension.
+              </p>
+            </div>
+
+            <div style={{ border: "1px solid rgba(255,255,255,.08)", borderBottom: "none", borderRadius: ".25rem .25rem 0 0", overflow: "hidden" }}>
+              {[
+                {
+                  num: "01",
+                  title: "Soil & Biodiversity",
+                  desc: "The foundation of everything. We restore soil microbiome health through cover cropping, composting, and bio-amendments. Enhanced soil becomes a carbon sink, a water reservoir, and the bedrock of premium agricultural output. Biodiversity monitoring ensures ecological resilience.",
+                },
+                {
+                  num: "02",
+                  title: "Solar + Water Systems",
+                  desc: "Agrivoltaic installations provide dual-use infrastructure — generating clean energy while creating optimal micro-climates for shade-loving crops. Integrated water harvesting, smart irrigation, and greywater recycling systems ensure zero-waste water management across the entire ecosystem.",
+                },
+                {
+                  num: "03",
+                  title: "Revenue Stacking — Food + Energy + Carbon",
+                  desc: "The economic engine. Premium organic produce generates agricultural revenue. Solar installations feed surplus energy back to the grid. Verified carbon sequestration creates tradeable carbon credits. Three independent revenue streams from a single piece of land — resilient, compounding, regenerative.",
+                },
+              ].map(layer => (
+                <div key={layer.num} className="layers-row" style={{ background: "rgba(255,255,255,.02)" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(197,160,89,.04)"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,.02)"; }}>
+                  <span style={{ fontFamily: "var(--font-epilogue),sans-serif", fontSize: "clamp(1.4rem,2.5vw,2rem)", fontWeight: 300, color: "#C5A059", lineHeight: 1, paddingTop: ".2rem" }}>
+                    {layer.num}
+                  </span>
+                  <div>
+                    <h3 style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 700, fontSize: "clamp(.95rem,1.4vw,1.2rem)", letterSpacing: "-.01em", marginBottom: "1rem", color: "inherit" }}>
+                      {layer.title}
+                    </h3>
+                    <p style={{ color: "rgba(255,255,255,.45)", fontSize: ".88rem", lineHeight: 1.8 }}>
+                      {layer.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </W>
         </section>
@@ -660,7 +797,7 @@ export default function HomePage() {
                   The <span style={{ color: "#C5A059" }}>Architecture</span> of<br />Regenerative Growth
                 </h2>
               </div>
-              <div style={{ display: "flex", gap: "1rem", flexShrink: 0 }}>
+              {/* <div style={{ display: "flex", gap: "1rem", flexShrink: 0 }}>
                 {["west", "east"].map(d => (
                   <button key={d}
                     style={{ width: 44, height: 44, border: `1px solid ${isDarkMode ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.12)"}`, background: "transparent", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "inherit", transition: "background .25s" }}
@@ -669,7 +806,7 @@ export default function HomePage() {
                     <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{d}</span>
                   </button>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <div className="cards-grid-3">

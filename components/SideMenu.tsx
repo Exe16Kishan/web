@@ -52,9 +52,9 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             style={{
               position: "fixed", top: 0, left: 0, bottom: 0,
               width: "min(460px, 92vw)", zIndex: 60,
-              background: "rgba(255, 255, 255, 0.4)",
-              backdropFilter: "blur(32px) saturate(180%)",
-              WebkitBackdropFilter: "blur(32px) saturate(180%)",
+              background: "rgba(255, 255, 255, 0.65)",
+              backdropFilter: "blur(10px) saturate(100%)",
+              WebkitBackdropFilter: "blur(12px) saturate(100%)",
               borderRight: "1px solid rgba(255, 255, 255, 0)",
               boxShadow: "4px 0 48px rgba(0, 0, 0, 0.1)",
               display: "flex", flexDirection: "column", justifyContent: "space-between",
