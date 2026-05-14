@@ -16,6 +16,8 @@ const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSPr
 
 export default function ConnectPage() {
   const heroRef    = useRef<HTMLElement>(null);
+    // const videoRef    = useRef<HTMLVideoElement>(null);
+
   const formColRef = useRef<HTMLDivElement>(null);
   const sideColRef = useRef<HTMLDivElement>(null);
 
@@ -163,7 +165,7 @@ export default function ConnectPage() {
         .connect-hero-title {
           font-family: var(--font-epilogue), sans-serif;
           font-weight: 900;
-          font-size: clamp(2.8rem, 9.5vw, 9rem);
+          font-size: clamp(2.8rem, 9vw, 6rem);
           line-height: 0.97;
           letter-spacing: -0.04em;
           text-transform: uppercase;
@@ -181,12 +183,11 @@ export default function ConnectPage() {
         >
           {/* BG */}
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtabJJvIRlWZx7rUiglLvyp2HujH6fqG6dMYRahtOpRM5irpqQJ47y4Xs5L_xQCxC0f6TAI3AI9HHAqj0MGMFjEVYPXh8pO7276Isa4XbGq55cidKJVSGDuJ-5jW51HUd_vn4RtdPnpqNyi4rOGjvuVG56WSuG7UUTeKTblBoRJO3hLbe-FzblRb6NPbtdNYK57SM-G7Q3KRq7e0BsUVsWJlTwIeKs-B60ajUTHgQWZ_VlzACbZj-mtMx13NnpC4lznL2g1Q33JHI"
-              alt="Forest architecture"
-              style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.45) contrast(1.15)" }}
-            />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.5) 0%, transparent 30%, transparent 60%, #000 100%)" }} />
+            <video  src="/videos/Connect.mp4" autoPlay loop muted playsInline
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "contrast(1.08) saturate(1.12)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, transparent 22%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 38%, transparent 62%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,.78) 18%, rgba(0,0,0,.32) 40%, transparent 62%)" }} />
           </div>
 
           {/* Text */}

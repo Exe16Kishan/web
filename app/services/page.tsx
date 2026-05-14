@@ -345,9 +345,9 @@ export default function ServicesAndTechnologyPage() {
             <W>
               <div ref={heroRef} className="svc-hero-content">
                 {/* Headline */}
-                <div style={{ maxWidth: 720 }}>
+                <div  style={{ maxWidth: 720 }}>
                   <h1 className="h-anim"
-                    style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(3rem, 7vw, 7.5rem)", lineHeight: 1.0, textTransform: "uppercase", letterSpacing: "-.04em", color: "#fff", marginBottom: "1.75rem", opacity: 0 }}>
+                    style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(3rem, 4vw, 5rem)", lineHeight: 1.0, textTransform: "uppercase", letterSpacing: "-.04em", color: "#fff", marginBottom: "1.75rem", opacity: 0 }}>
                     Three Verticals,<br />
                     <em style={{ fontStyle: "normal", color: "#C5A059" }}>One Vision.</em>
                   </h1>
@@ -358,7 +358,7 @@ export default function ServicesAndTechnologyPage() {
                 </div>
 
                 {/* Philosophy card */}
-                <div className="h-anim"
+                <div className="h-anim hidden md:block"
                   style={{ flexShrink: 0, maxWidth: 300, width: "100%", borderRadius: ".25rem", padding: "2.5rem", opacity: 0, background: "rgba(19,19,19,.85)", border: "1px solid rgba(255,255,255,.08)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
                   <span style={{ display: "block", fontFamily: "var(--font-label)", fontSize: ".55rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "#C5A059", marginBottom: "1rem" }}>
                     Core Philosophy
@@ -383,7 +383,7 @@ export default function ServicesAndTechnologyPage() {
           <W>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <SectionEyebrow text="Core Services" center />
-              <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.5rem, 5vw, 5rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05, marginBottom: "1.5rem" }}>
+              <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.5rem, 4vw, 4rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05, marginBottom: "1.5rem" }}>
                 Three Verticals,{" "}
                 <em style={{ fontStyle: "normal", color: "#C5A059" }}>One Vision</em>
               </h2>
@@ -443,7 +443,7 @@ export default function ServicesAndTechnologyPage() {
           <W>
             <div style={{ textAlign: "center", marginBottom: "4rem" }}>
               <SectionEyebrow text="Technology" center />
-              <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.5rem, 5.5vw, 6rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1, marginBottom: "1.25rem" }}>
+              <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.5rem, 4vw,4rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1, marginBottom: "1.25rem" }}>
                 Intelligence That <em style={{ fontStyle: "normal", color: "#C5A059" }}>Nurtures</em>
               </h2>
               <p style={{ color: "rgba(255,255,255,.42)", maxWidth: 560, margin: "0 auto", lineHeight: 1.8, fontSize: "1rem" }}>
@@ -504,9 +504,9 @@ export default function ServicesAndTechnologyPage() {
               {/* Left text */}
               <div>
                 <h2 className="sat-anim"
-                  style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.045em", lineHeight: 0.95, fontSize: "clamp(3rem, 6.5vw, 7rem)", marginBottom: "2rem", opacity: 0 }}>
+                  style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.045em", lineHeight: 0.95, fontSize: "clamp(3rem, 4vw, 4rem)", marginBottom: "2rem", opacity: 0 }}>
                   Satellite<br />
-                  <span style={{ color: "#C5A059" }}>Insight</span>.
+                  <span style={{ color: "#C5A059" }}>Insight</span>
                 </h2>
                 <p className="sat-anim"
                   style={{ color: "rgba(255,255,255,.38)", lineHeight: 1.8, maxWidth: 420, marginBottom: "3rem", fontSize: "1rem", opacity: 0 }}>
@@ -542,7 +542,7 @@ export default function ServicesAndTechnologyPage() {
           <W>
             <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
               <SectionEyebrow text="Core Frameworks" center />
-              <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.045em", lineHeight: 1, fontSize: "clamp(2.5rem, 5.5vw, 6rem)" }}>
+              <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.045em", lineHeight: 1, fontSize: "clamp(2.5rem, 4vw, 4rem)" }}>
                 Technological Pillars
               </h2>
             </div>
@@ -644,7 +644,7 @@ export default function ServicesAndTechnologyPage() {
               <div>
                 <SectionEyebrow text="Partner With Us" />
                 <h2 className="c-anim"
-                  style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05, fontSize: "clamp(2.5rem, 5.5vw, 6rem)", marginBottom: "1.5rem", opacity: 0 }}>
+                  style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05, fontSize: "clamp(2.5rem, 4vw, 4rem)", marginBottom: "1.5rem", opacity: 0 }}>
                   Ready to Architect<br />
                   <span style={{ color: "#C5A059" }}>The Next Epoch?</span>
                 </h2>
