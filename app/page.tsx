@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // DATA 
 
+const philosophy = "/pictures/services-resort.png"
 const stats = [
   { value: "3x",   label: "Revenue Per Acre" },
   { value: "40%",  label: "Water Savings" },
@@ -32,15 +33,15 @@ const cycleNodes = [
 ];
 
 const journeyCards = [
-  { category: "Architecture", title: "911 Ridge Estate.",     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCepr3IZ5MY3BmKN3p3y5_daHUtuB5h2sQw86JRoFyIGm-1tRNdonqB7xXEokD6xULYXIugfWM9lpkySjqW1NEAHIIKeaSBYx-49upr3G0e4ggy45QfOPdaCHEfKz0gQUAzN8JXYddcns9sG1kfvdfnlcrY4MMt3xl2Pl_8rjZdqefZoYZFNpKNkqDJl_o_yNSkutu7W9V0U75f9-NVc8J6QZc3FkHJtdTlql0_EqERf1DhkGacnb1ZtOuzJgZz3NUwCJR3MIA7ZbM" },
-  { category: "Regeneration",  title: "718 Timber Haven.",    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAL1y_4kmTWDPOP2ga1uxCy3JknZQoHrhewAl2oKAK_qNmPG5oRulCCYoV1ROziYCjH-PGP7UxkrOYQSe6XRXNmgGwvoTE3fl2ZR3yRwmTYc-C8kcaDnc0uUVAQYb76zZ4xyjK5kjijmtETwyKw3LW9WbthnyQqKl1SWBJFkOnyez6FXDFFz_2WrkXp9LOnTKSb1ztjiWC1JrBFiFR2Djtl00bTzV5yuFeX9UXhuTeJInhPXMVIOtLC5Yd5RXFIcXVffosb8Pf-rkE" },
-  { category: "Heritage",      title: "Emerald Canopy Lodge.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCiiRaa2LjMjk8BnUaERbt00jMcADnRgCfcq9ljYI3UNQYS7XSU9u7VNMq-WCRmYToK8pWSxkG7_H_DDKZUuyDY0y45IqXQ99GgUichNAKHBKOMTO1d2kRplBPgtit-Ni8x6YPr_PXSLCNHthl_mKIh1qDOMcVn59mYthRg9UTJA5bIzRQxpObRrqKSmHhuH0d15Uy7IOvrRtr_Un6jOUu2Kr8Am6kjxtCjls4nM9LdM_AI_B1AmpZJbfTXsde1PO89WeTwlLWBxTg" },
+  { category: "Architecture", title: "Eco Villa Estate.",     img: "/pictures/eco-villas.png" },
+  { category: "Regeneration",  title: "718 Indoor Haven.",    img: "/pictures/indoor-nature.png" },
+  { category: "Heritage",      title: "Emerald Canopy Lodge.", img: "/pictures/services-agriculture.png" },
 ];
 
 const discoverCards = [
-  { title: "Green Architecture",   desc: "Vertical living in the heart of nature.",  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDebbN3NwuLRmy55g1ePb3CmZ2t0vJsGhwxhtvabEwZACKHBrLyZN6aOBUTZnGY_LqFdGljyzSN5Et72fcHuGpIyvOBMJ6HrX-R5m9Y8Ygb16d17JnNGlIxYNE90ogQJ2LbCLZdHrco0h6G7MfJ0iHVvdgO3cA7-Gp4YRrKcF4T9tXmSXtMqKW4oUAkX40RACiSye6ZQn661gs6OJkpHupyqugtZhR_0VNGriyqLmTsJkt_B7O3rsfKA3gMWJ75aw5iz4epCkSXHc" },
-  { title: "Eco-Performance",      desc: "Sustainable movement for explorers.",       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBh4a8eKc_h8VEtbHLGuMmb5xHBPZoQIfoUIoeVR_AYjNRzpOUEmu3BMxZx9dHGnC0d7I1K8I6oP2chK6-0xd6f7Pgl9AR6rWer-0xA1y5MvZAiTgtyUBGcmLKciGfA2zLK6W8eMzeDwkC41mK5c6cvG6ZS-Jd2vF-Z-XiGbnVjQdC5VdRcz3eIOf7VIkbVATUQh738RWda7IKgpZR23ul62UtsWm1Kg8EAYuEXj4Yu8WJKCTg-0LpWJM4_J7SvclgAI7iz58nXvmM" },
-  { title: "Solar Infrastructure", desc: "Powering tomorrow's sanctuary today.",      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYxO9LGVq630sLcF5T6sYvFa9fqbUJRDg7AKjvwRNcQT5rNfK7grs_wyVBOlSXTjAwBnf7UF9CQLtvt9ayunNleeXBnurff8uOp4Xrc4IPt36FzUytMexTUmMvGoaoz_O3pqyyqK_Sznx1CF1uryPc021oM2WcfLL1ra-A68i2qz5Ld_2g8wofNtKhtMprQoXH3Fc9PGB27XujTfOCY0d_byXcHtRAQR2DKJL4gi0pGtr92Jsb6E_Uo8Ahcwf9AFgOA8uEnnfTOyQ" },
+  { title: "Green Architecture",   desc: "Vertical living in the heart of nature.",  img: "/pictures/FarmbyLake.png" },
+  { title: "Eco-Performance",      desc: "Sustainable movement for explorers.",       img: "/pictures/solar-trees.png" },
+  { title: "Solar Infrastructure", desc: "Powering tomorrow's sanctuary today.",      img: "/pictures/services-energy.png" },
 ];
 
 // HELPERS 
@@ -504,7 +505,7 @@ export default function HomePage() {
             <div className="phil-grid">
               <div className="phil-anim" style={{ opacity: 0 }}>
                 <div style={{ position: "relative", borderRadius: ".25rem", overflow: "hidden", aspectRatio: "4/5" }}>
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL1y_4kmTWDPOP2ga1uxCy3JknZQoHrhewAl2oKAK_qNmPG5oRulCCYoV1ROziYCjH-PGP7UxkrOYQSe6XRXNmgGwvoTE3fl2ZR3yRwmTYc-C8kcaDnc0uUVAQYb76zZ4xyjK5kjijmtETwyKw3LW9WbthnyQqKl1SWBJFkOnyez6FXDFFz_2WrkXp9LOnTKSb1ztjiWC1JrBFiFR2Djtl00bTzV5yuFeX9UXhuTeJInhPXMVIOtLC5Yd5RXFIcXVffosb8Pf-rkE"
+                  <img src={philosophy}
                     alt="Timber Haven" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 55%)" }} />
                   <div style={{ position: "absolute", bottom: "2.5rem", left: "2.5rem", right: "2.5rem", borderLeft: "3px solid #C5A059", paddingLeft: "1.25rem" }}>
@@ -660,7 +661,7 @@ export default function HomePage() {
                   The <span style={{ color: "#C5A059" }}>Architecture</span> of<br />Regenerative Growth
                 </h2>
               </div>
-              <div style={{ display: "flex", gap: "1rem", flexShrink: 0 }}>
+              {/* <div style={{ display: "flex", gap: "1rem", flexShrink: 0 }}>
                 {["west", "east"].map(d => (
                   <button key={d}
                     style={{ width: 44, height: 44, border: `1px solid ${isDarkMode ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.12)"}`, background: "transparent", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: "inherit", transition: "background .25s" }}
@@ -669,7 +670,7 @@ export default function HomePage() {
                     <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{d}</span>
                   </button>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <div className="cards-grid-3">

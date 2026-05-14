@@ -17,13 +17,13 @@ const inquireItems = [
 ];
 
 const galleryImages = [
-  { id: 1, category: "Architecture", title: "Ridge Estate Villa",      img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCepr3IZ5MY3BmKN3p3y5_daHUtuB5h2sQw86JRoFyIGm-1tRNdonqB7xXEokD6xULYXIugfWM9lpkySjqW1NEAHIIKeaSBYx-49upr3G0e4ggy45QfOPdaCHEfKz0gQUAzN8JXYddcns9sG1kfvdfnlcrY4MMt3xl2Pl_8rjZdqefZoYZFNpKNkqDJl_o_yNSkutu7W9V0U75f9-NVc8J6QZc3FkHJtdTlql0_EqERf1DhkGacnb1ZtOuzJgZz3NUwCJR3MIA7ZbM" },
+  { id: 1, category: "Architecture", title: "Ridge Estate Villa",      img: "/pictures/eco-villas.png" },
   { id: 2, category: "Energy",       title: "Solar Infrastructure",   img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYxO9LGVq630sLcF5T6sYvFa9fqbUJRDg7AKjvwRNcQT5rNfK7grs_wyVBOlSXTjAwBnf7UF9CQLtvt9ayunNleeXBnurff8uOp4Xrc4IPt36FzUytMexTUmMvGoaoz_O3pqyyqK_Sznx1CF1uryPc021oM2WcfLL1ra-A68i2qz5Ld_2g8wofNtKhtMprQoXH3Fc9PGB27XujTfOCY0d_byXcHtRAQR2DKJL4gi0pGtr92Jsb6E_Uo8Ahcwf9AFgOA8uEnnfTOyQ" },
-  { id: 3, category: "Agriculture",  title: "Precision Crop Circles", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDebbN3NwuLRmy55g1ePb3CmZ2t0vJsGhwxhtvabEwZACKHBrLyZN6aOBUTZnGY_LqFdGljyzSN5Et72fcHuGpIyvOBMJ6HrX-R5m9Y8Ygb16d17JnNGlIxYNE90ogQJ2LbCLZdHrco0h6G7MfJ0iHVvdgO3cA7-Gp4YRrKcF4T9tXmSXtMqKW4oUAkX40RACiSye6ZQn661gs6OJkpHupyqugtZhR_0VNGriyqLmTsJkt_B7O3rsfKA3gMWJ75aw5iz4epCkSXHc" },
-  { id: 4, category: "Landscape",    title: "Timber Haven Forest",    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAL1y_4kmTWDPOP2ga1uxCy3JknZQoHrhewAl2oKAK_qNmPG5oRulCCYoV1ROziYCjH-PGP7UxkrOYQSe6XRXNmgGwvoTE3fl2ZR3yRwmTYc-C8kcaDnc0uUVAQYb76zZ4xyjK5kjijmtETwyKw3LW9WbthnyQqKl1SWBJFkOnyez6FXDFFz_2WrkXp9LOnTKSb1ztjiWC1JrBFiFR2Djtl00bTzV5yuFeX9UXhuTeJInhPXMVIOtLC5Yd5RXFIcXVffosb8Pf-rkE" },
-  { id: 5, category: "Retreat",      title: "Emerald Canopy Lodge",   img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCiiRaa2LjMjk8BnUaERbt00jMcADnRgCfcq9ljYI3UNQYS7XSU9u7VNMq-WCRmYToK8pWSxkG7_H_DDKZUuyDY0y45IqXQ99GgUichNAKHBKOMTO1d2kRplBPgtit-Ni8x6YPr_PXSLCNHthl_mKIh1qDOMcVn59mYthRg9UTJA5bIzRQxpObRrqKSmHhuH0d15Uy7IOvrRtr_Un6jOUu2Kr8Am6kjxtCjls4nM9LdM_AI_B1AmpZJbfTXsde1PO89WeTwlLWBxTg" },
+  { id: 3, category: "Agriculture",  title: "Precision Crop Circles", img: "/pictures/services-agriculture.png" },
+  { id: 4, category: "Landscape",    title: "Haven Forest",    img: "/pictures/Experience2.jpg" },
+  { id: 5, category: "Retreat",      title: "Emerald Canopy Lodge",   img: "/pictures/FarmbyLake.png" },
   { id: 6, category: "Interior",     title: "Biophilic Living Space", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCwPeY19orczkCitxPeIgWKKntK2LNEUPLXZEwhRCXr2PUNWwGgnb-pw_AU3-QeCm8lbiVj7W589nOuYbuXt9pY_0TdIWKLMyJXuwOSdweC_2-pxdl8ArIa_b6uw5q6slrWpJIUB9efa3sWEeNLHPUwBA_biI05YaqMozQVsopbxwSrCoWJeFzI1QhYoce5J31NUqOlJlRUXaNANhV4dgSn4RrnrNquBSZQjZSWfdLvXCdcJo11ZLDUZ9IOffFiU4JBvyoy5KEtIoQ" },
-  { id: 7, category: "Mobility",     title: "Eco-Terrain Vehicles",  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBh4a8eKc_h8VEtbHLGuMmb5xHBPZoQIfoUIoeVR_AYjNRzpOUEmu3BMxZx9dHGnC0d7I1K8I6oP2chK6-0xd6f7Pgl9AR6rWer-0xA1y5MvZAiTgtyUBGcmLKciGfA2zLK6W8eMzeDwkC41mK5c6cvG6ZS-Jd2vF-Z-XiGbnVjQdC5VdRcz3eIOf7VIkbVATUQh738RWda7IKgpZR23ul62UtsWm1Kg8EAYuEXj4Yu8WJKCTg-0LpWJM4_J7SvclgAI7iz58nXvmM" },
+  { id: 7, category: "Mobility",     title: "Eco-Terrain",  img: "/pictures/services-energy.png" },
   { id: 8, category: "Technology",   title: "Satellite Imaging Grid", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCRnjLfcKbU7CNVFtaM12HJnd12741xb2ev2eOXPUzv9VUrgYnaS4iSPhYt_LFf-MggD-Kk1_BYC1D6nFH0CQUtU01e2lY1apMhm5Ef9iNC79QbX1ptYKyBvvnvcTnpB9JN9ApFYzSIocR8q1KYN6GvaySmN5_thtBqP2eujBZthvB06HGwsnuPITR6RQq-t-Iolt5oMg0lXe0qPAn-gpq8cO09IWpc4ZffOmvNAvkn_0uSVh4Gs-nJR1tlQ6CsWC8GmyTxGKack00" },
 ];
 
@@ -220,6 +220,8 @@ export default function ExperiencePage() {
           .hero-content-row { flex-direction:column; align-items:flex-start; gap:2rem; }
           .hero-btns { flex-direction:column; align-items:flex-start; }
         }
+          .hero-btns-wrapper { display: none; }
+          @media(min-width: 768px) { .hero-btns-wrapper { display: flex; } }
 
         /* Bento header  */
         .bento-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3.5rem; gap:1.5rem; }
@@ -278,19 +280,19 @@ export default function ExperiencePage() {
         {/* HERO */}
         <section ref={heroRef} style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuApkHP08yex_lTnONCFOtPTjwwaFSKh60EOMWoSPk29izgQCg28fnxdkIYj6mkjtzcwhJAAgeXJvhJASPSLH8W3Ahxx_dtvhLprwiCQL1UUqrh17vQIPg8k_1aeQvMjd5LlrG82tWAeV5hAce41WfXYhZlCZu1W00W7OJWamgrdR2qLcqEYIJtmpk0bc7NcHbmJcxoxDjQ_NT39Rzk-g9r0rLllL_U-QeT7AwsaUeaCmszi9ThVTj4QGp5NFs69OG0ReYKPwYGFyJM"
-              alt="Luxury resort" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.58 }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #000 0%, rgba(0,0,0,.7) 50%, rgba(0,0,0,.2) 100%)" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, transparent 40%)" }} />
+            <img src="/pictures/eco-villas.png"
+              alt="Luxury resort" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.68 }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #000 0%, rgba(0,0,0,.7) 30%, rgba(0,0,0,.2) 100%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, transparent 10%)" }} />
           </div>
 
-          <W style={{ position: "relative", zIndex: 1,width: "100%", paddingTop: "clamp(7rem,12vw,10rem)", paddingBottom: "clamp(4rem,8vw,7rem)" }}>
+          <W style={{ position: "relative", zIndex: 1, width: "100%", paddingTop: "clamp(14rem,24vw,20rem)", paddingBottom: "clamp(4rem,8vw,7rem)" }}>
             <div className="hero-content-row">
-              <div style={{ maxWidth: 700 }}>
+              <div className="md:relative -left-28" style={{ maxWidth: 700 }}>
                 <span className="h-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".38em", textTransform: "uppercase", color: "#C5A059", display: "block", marginBottom: "1.5rem", opacity: 0 }}>
                   Project Vision
                 </span>
-                <h1 className="h-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.6rem, 6vw, 6rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.5rem", opacity: 0 }}>
+                <h1 className="h-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2.6rem, 6vw, 5rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.5rem", opacity: 0 }}>
                   Where Nature<br />
                   <em style={{ fontStyle: "italic", fontWeight: 300, color: "#C5A059" }}>Meets</em>{" "}Luxury
                 </h1>
@@ -299,7 +301,7 @@ export default function ExperiencePage() {
                 </p>
               </div>
               <div className="h-anim" style={{ opacity: 0 }}>
-                <div className="hero-btns">
+                <div  className="hero-btns-wrapper hero-btns md:relative -right-10">
                   <button style={{ padding: ".9rem 2.2rem", border: "1px solid rgba(255,255,255,.4)", background: "transparent", color: "#fff", fontFamily: "var(--font-label)", fontSize: ".6rem", fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", cursor: "pointer", transition: "all .3s ease", whiteSpace: "nowrap" }}
                     onMouseEnter={e=>{const b=e.currentTarget as HTMLButtonElement;b.style.background="#fff";b.style.color="#000";b.style.borderColor="#fff";}}
                     onMouseLeave={e=>{const b=e.currentTarget as HTMLButtonElement;b.style.background="transparent";b.style.color="#fff";b.style.borderColor="rgba(255,255,255,.4)";}}>
@@ -324,14 +326,14 @@ export default function ExperiencePage() {
           <W>
             <div className="bento-header">
               <div style={{ maxWidth: 500 }}>
-                <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(1.7rem,4vw,4rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.1, marginBottom: "1rem" }}>
+                <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(1.7rem,4vw,3rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.1, marginBottom: "1rem" }}>
                   Immerse Yourself in a <span style={{ color: "#C5A059" }}>Living Ecosystem</span>
                 </h2>
                 <p style={{ color: "rgba(255,255,255,.35)", fontSize: ".84rem", lineHeight: 1.8 }}>
                   Indoor beach pools, open landscape villas, nature-integrated infrastructure — every detail designed to blur the boundary between architecture and the natural world.
                 </p>
               </div>
-              <div style={{ display: "flex", gap: ".75rem", flexShrink: 0 }}>
+              {/* <div style={{ display: "flex", gap: ".75rem", flexShrink: 0 }}>
                 {["west", "east"].map(d => (
                   <button key={d} style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(255,255,255,.12)", background: "transparent", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "background .25s" }}
                     onMouseEnter={e=>((e.currentTarget as HTMLButtonElement).style.background="rgba(255,255,255,.1)")}
@@ -339,7 +341,7 @@ export default function ExperiencePage() {
                     <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{d}</span>
                   </button>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             <div className="bento-grid">
@@ -385,7 +387,7 @@ export default function ExperiencePage() {
             <div className="gallery-header">
               <div>
                 <SectionEyebrow text="Project Galleries" />
-                <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem, 5vw, 5rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05 }}>
+                <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem, 5vw, 3rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05 }}>
                   Glimpses of a <em style={{ fontStyle: "normal", color: "#C5A059" }}>Living World</em>
                 </h2>
               </div>
@@ -452,8 +454,8 @@ export default function ExperiencePage() {
           <W>
             <div className="inquire-grid">
               <div>
-                <span className="i-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".57rem", fontWeight: 700, letterSpacing: ".42em", textTransform: "uppercase", color: "#C5A059", display: "block", marginBottom: "1.75rem", opacity: 0 }}>Direct Access</span>
-                <h3 className="i-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem,5vw,5.5rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.75rem", opacity: 0 }}>
+                <span className="i-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".70rem", fontWeight: 700, letterSpacing: ".42em", textTransform: "uppercase", color: "#C5A059", display: "block", marginBottom: "1.75rem", opacity: 0 }}>Direct Access</span>
+                <h3 className="i-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem,5vw,4rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.0, marginBottom: "1.75rem", opacity: 0 }}>
                   Inquire About<br />The Project
                 </h3>
                 <p className="i-anim" style={{ color: "#999", fontSize: "1rem", lineHeight: 1.85, marginBottom: "3rem", maxWidth: 460, opacity: 0 }}>
@@ -474,7 +476,7 @@ export default function ExperiencePage() {
                 </div>
               </div>
               <div className="i-anim" style={{ borderRadius: ".375rem", overflow: "hidden", aspectRatio: "4/5", opacity: 0 }}>
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCepr3IZ5MY3BmKN3p3y5_daHUtuB5h2sQw86JRoFyIGm-1tRNdonqB7xXEokD6xULYXIugfWM9lpkySjqW1NEAHIIKeaSBYx-49upr3G0e4ggy45QfOPdaCHEfKz0gQUAzN8JXYddcns9sG1kfvdfnlcrY4MMt3xl2Pl_8rjZdqefZoYZFNpKNkqDJl_o_yNSkutu7W9V0U75f9-NVc8J6QZc3FkHJtdTlql0_EqERf1DhkGacnb1ZtOuzJgZz3NUwCJR3MIA7ZbM"
+                <img src="/pictures/Experience2.jpg"
                   alt="Luxury retreat" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform .7s" }}
                   onMouseEnter={e=>((e.currentTarget as HTMLImageElement).style.transform="scale(1.04)")}
                   onMouseLeave={e=>((e.currentTarget as HTMLImageElement).style.transform="scale(1)")} />
@@ -489,7 +491,7 @@ export default function ExperiencePage() {
             <div className="blogs-header">
               <div>
                 <SectionEyebrow text="Journal" />
-                <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem, 5vw, 5rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05 }}>
+                <h2 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem, 5vw, 3rem)", textTransform: "uppercase", letterSpacing: "-.04em", lineHeight: 1.05 }}>
                   Ideas That <em style={{ fontStyle: "normal", color: "#C5A059" }}>Regenerate</em>
                 </h2>
               </div>
@@ -567,7 +569,7 @@ export default function ExperiencePage() {
             </div>
 
             {/* Newsletter */}
-            <div style={{ marginTop: "5rem", padding: "clamp(1.5rem,4vw,3rem) clamp(1.5rem,4vw,4rem)", background: "rgba(197,160,89,.04)", border: "1px solid rgba(197,160,89,.12)", borderRadius: ".375rem" }}>
+            <div style={{ marginTop: "5rem", padding: "clamp(1.5rem,4vw,3rem) clamp(1.5rem,4vw,2rem)", background: "rgba(197,160,89,.04)", border: "1px solid rgba(197,160,89,.12)", borderRadius: ".375rem" }}>
               <div className="newsletter-bar">
                 <div>
                   <h4 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(1rem,1.5vw,1.5rem)", textTransform: "uppercase", letterSpacing: "-.02em", marginBottom: ".5rem" }}>
@@ -590,18 +592,17 @@ export default function ExperiencePage() {
         </section>
 
         {/* QUOTE*/}
-        <section ref={quoteRef} style={{ background: "#000", padding: "clamp(5rem,10vw,8rem) 0", textAlign: "center", position: "relative", overflow: "hidden" }}>
+        <section ref={quoteRef} style={{ background: "#000", padding: "clamp(5rem,10vw,4rem) ", textAlign: "center", position: "relative", overflow: "hidden" }}>
           <div aria-hidden style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", userSelect: "none" }}>
             <span style={{ fontFamily: "var(--font-epilogue),sans-serif", fontWeight: 900, fontSize: "clamp(5rem,18vw,22rem)", color: "rgba(255,255,255,.018)", textTransform: "uppercase", letterSpacing: "-.05em", lineHeight: 1, whiteSpace: "nowrap" }}>ECOSYSTEM</span>
           </div>
           <W style={{ position: "relative", zIndex: 1 }}>
-            <span className="q-anim material-symbols-outlined" style={{ color: "#C5A059", fontSize: 48, display: "block", marginBottom: "2.5rem", opacity: 0 }}>format_quote</span>
-            <blockquote className="q-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontStyle: "italic", fontWeight: 300, fontSize: "clamp(1.5rem, 4vw, 4.5rem)", lineHeight: 1.2, maxWidth: 820, margin: "0 auto 2.5rem", opacity: 0 }}>
+            <blockquote className="q-anim" style={{ fontFamily: "var(--font-epilogue), sans-serif", fontStyle: "italic", fontWeight: 300, fontSize: "clamp(1.5rem, 4vw, 3.5rem)", lineHeight: 1.2, maxWidth: 820, margin: "0 auto 2.5rem", opacity: 0 }}>
               &ldquo;Luxury is no longer about excess. It is about the{" "}
               <strong style={{ color: "#C5A059", fontWeight: 900, fontStyle: "italic" }}>unfiltered connection</strong>{" "}
               between the soul and the earth.&rdquo;
             </blockquote>
-            <cite className="q-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".57rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", fontStyle: "normal", opacity: 0 }}>
+            <cite className="q-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".67rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", fontStyle: "normal", opacity: 0 }}>
               — Utkarsh Gugri, Founder
             </cite>
           </W>

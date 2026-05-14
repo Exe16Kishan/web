@@ -9,7 +9,7 @@ import { useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 // DATA 
-
+const technologyImg = "/pictures/technology.png"
 const services = [
   {
     num: "01",
@@ -17,7 +17,7 @@ const services = [
     title: "Farm Management",
     desc: "End-to-end regenerative farm management — from soil health restoration and organic certification to precision crop planning, harvest logistics, and market access. Data-driven, nature-aligned.",
     tags: ["Soil Health Restoration", "Precision Crop Planning"],
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDDebbN3NwuLRmy55g1ePb3CmZ2t0vJsGhwxhtvabEwZACKHBrLyZN6aOBUTZnGY_LqFdGljyzSN5Et72fcHuGpIyvOBMJ6HrX-R5m9Y8Ygb16d17JnNGlIxYNE90ogQJ2LbCLZdHrco0h6G7MfJ0iHVvdgO3cA7-Gp4YRrKcF4T9tXmSXtMqKW4oUAkX40RACiSye6ZQn661gs6OJkpHupyqugtZhR_0VNGriyqLmTsJkt_B7O3rsfKA3gMWJ75aw5iz4epCkSXHc",
+    img: "/pictures/services-agriculture.png",
   },
   {
     num: "02",
@@ -25,7 +25,7 @@ const services = [
     title: "Renewable Energy",
     desc: "Agrivoltaic systems, solar tree installations, and distributed energy infrastructure designed to coexist with agriculture. Dual-use land that generates clean power while nurturing crops.",
     tags: ["Agrivoltaic Systems", "Distributed Infrastructure"],
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYxO9LGVq630sLcF5T6sYvFa9fqbUJRDg7AKjvwRNcQT5rNfK7grs_wyVBOlSXTjAwBnf7UF9CQLtvt9ayunNleeXBnurff8uOp4Xrc4IPt36FzUytMexTUmMvGoaoz_O3pqyyqK_Sznx1CF1uryPc021oM2WcfLL1ra-A68i2qz5Ld_2g8wofNtKhtMprQoXH3Fc9PGB27XujTfOCY0d_byXcHtRAQR2DKJL4gi0pGtr92Jsb6E_Uo8Ahcwf9AFgOA8uEnnfTOyQ",
+    img: "/pictures/services-energy.png"
   },
   {
     num: "03",
@@ -33,7 +33,7 @@ const services = [
     title: "Sustainable Real Estate",
     desc: "Nature-integrated living spaces — eco villas, farm resorts, and wellness retreats designed with biophilic architecture. Spaces where luxury and ecology coexist in harmony.",
     tags: ["Biophilic Architecture", "Eco Villas & Resorts"],
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCepr3IZ5MY3BmKN3p3y5_daHUtuB5h2sQw86JRoFyIGm-1tRNdonqB7xXEokD6xULYXIugfWM9lpkySjqW1NEAHIIKeaSBYx-49upr3G0e4ggy45QfOPdaCHEfKz0gQUAzN8JXYddcns9sG1kfvdfnlcrY4MMt3xl2Pl_8rjZdqefZoYZFNpKNkqDJl_o_yNSkutu7W9V0U75f9-NVc8J6QZc3FkHJtdTlql0_EqERf1DhkGacnb1ZtOuzJgZz3NUwCJR3MIA7ZbM",
+    img: "/pictures/services-resort.png",
   },
 ];
 
@@ -456,7 +456,7 @@ export default function ServicesAndTechnologyPage() {
               {/* Left image */}
               <div style={{ borderRadius: ".25rem", overflow: "hidden", border: "1px solid rgba(255,255,255,.08)", aspectRatio: "4/5" }}>
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYxO9LGVq630sLcF5T6sYvFa9fqbUJRDg7AKjvwRNcQT5rNfK7grs_wyVBOlSXTjAwBnf7UF9CQLtvt9ayunNleeXBnurff8uOp4Xrc4IPt36FzUytMexTUmMvGoaoz_O3pqyyqK_Sznx1CF1uryPc021oM2WcfLL1ra-A68i2qz5Ld_2g8wofNtKhtMprQoXH3Fc9PGB27XujTfOCY0d_byXcHtRAQR2DKJL4gi0pGtr92Jsb6E_Uo8Ahcwf9AFgOA8uEnnfTOyQ"
+                  src={technologyImg}
                   alt="Technology"
                   style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1)", transition: "filter .7s" }}
                   onMouseEnter={e => (e.currentTarget.style.filter = "grayscale(0)")}
