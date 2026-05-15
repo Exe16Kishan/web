@@ -52,7 +52,7 @@ function scrollTo(id: string) {
 }
 
 const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
-  <div style={{ width: "100%", maxWidth: 1440, marginLeft: "auto", marginRight: "auto", paddingLeft: "clamp(1.25rem, 5vw, 5rem)", paddingRight: "clamp(1.25rem, 5vw, 5rem)", ...style }}>
+  <div style={{ width: "100%", maxWidth: 1440, marginLeft: "auto", marginRight: "auto", paddingLeft: "clamp(1.25rem, 5vw, 3rem)", paddingRight: "clamp(1.25rem, 5vw, 3rem)", ...style }}>
     {children}
   </div>
 );
@@ -331,7 +331,7 @@ export default function HomePage() {
         @media (min-width: 768px) {
           .hero-text {
             position: relative;
-            left : -13%;
+            left : 0;
             max-width: 650px;
             text-align: left;        /* left-align on desktop */
           }

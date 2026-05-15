@@ -56,8 +56,8 @@ const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSPr
       maxWidth: 1440,
       marginLeft: "auto",
       marginRight: "auto",
-      paddingLeft:  "clamp(1.25rem, 5vw, 5rem)",
-      paddingRight: "clamp(1.25rem, 5vw, 5rem)",
+      paddingLeft:  "clamp(1.25rem, 5vw, 1rem)",
+      paddingRight: "clamp(1.25rem, 5vw, 1rem)",
       ...style,
     }}
   >
@@ -311,12 +311,19 @@ export default function ServicesAndTechnologyPage() {
         {/* HERO */}
         <section style={{ position: "relative", width: "100%", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "flex-end", overflow: "hidden" }}>
           {/* BG video */}
-          <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+          {/* <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
             <video src="/videos/Services&TechIntro.mp4" autoPlay loop muted playsInline
               style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "contrast(1.08) saturate(1.12)" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, transparent 22%)" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 38%, transparent 62%)" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,.78) 18%, rgba(0,0,0,.32) 40%, transparent 62%)" }} />
+          </div> */}
+
+          <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+            <img src="/pictures/vision-split.png"
+              alt="Luxury resort" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.88 }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #000 0%, rgba(0,0,0,.3) 30%, rgba(0,0,0,.3) 100%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, transparent 10%)" }} />
           </div>
 
           {/* Eyebrow */}
@@ -406,14 +413,12 @@ export default function ServicesAndTechnologyPage() {
                       onMouseEnter={e => (e.currentTarget.style.transform = "scale(1.05)")}
                       onMouseLeave={e => (e.currentTarget.style.transform = "scale(1)")} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,.65) 100%)" }} />
-                    <div style={{ position: "absolute", top: "1.5rem", right: "1.5rem", width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(197,160,89,.5)", background: "rgba(0,0,0,.4)", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(8px)" }}>
-                      <span style={{ fontFamily: "var(--font-epilogue)", fontWeight: 900, fontSize: ".7rem", color: "#C5A059" }}>{svc.num}</span>
-                    </div>
+        
                   </div>
 
                   {/* Body */}
                   <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "clamp(1.5rem,3vw,2.5rem)" }}>
-                    <span style={{ fontFamily: "var(--font-label)", fontWeight: 700, textTransform: "uppercase", fontSize: ".55rem", letterSpacing: ".28em", color: "#C5A059", marginBottom: ".75rem" }}>{svc.vertical}</span>
+                    {/* <span style={{ fontFamily: "var(--font-label)", fontWeight: 700, textTransform: "uppercase", fontSize: ".55rem", letterSpacing: ".28em", color: "#C5A059", marginBottom: ".75rem" }}>{svc.vertical}</span> */}
                     <h3 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, textTransform: "uppercase", letterSpacing: "-.02em", lineHeight: 1.1, fontSize: "clamp(1.3rem, 2vw, 1.75rem)", marginBottom: "1.25rem" }}>{svc.title}</h3>
                     <p style={{ color: "rgba(255,255,255,.42)", fontSize: ".85rem", lineHeight: 1.75, marginBottom: "2rem", flex: 1 }}>{svc.desc}</p>
                     <div style={{ display: "flex", flexDirection: "column", gap: ".6rem", marginBottom: "2rem" }}>
@@ -424,13 +429,13 @@ export default function ServicesAndTechnologyPage() {
                         </div>
                       ))}
                     </div>
-                    <button
+                    {/* <button
                       style={{ display: "inline-flex", alignItems: "center", gap: ".5rem", background: "none", border: 0, cursor: "pointer", padding: 0, fontFamily: "var(--font-label)", fontWeight: 700, textTransform: "uppercase", fontSize: ".58rem", letterSpacing: ".2em", color: "#C5A059", transition: "gap .3s" }}
                       onMouseEnter={e => (e.currentTarget.style.gap = "1rem")}
                       onMouseLeave={e => (e.currentTarget.style.gap = ".5rem")}>
                       Learn More
                       <span className="material-symbols-outlined" style={{ fontSize: 15 }}>arrow_forward</span>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               ))}
@@ -458,9 +463,8 @@ export default function ServicesAndTechnologyPage() {
                 <img
                   src={technologyImg}
                   alt="Technology"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(1)", transition: "filter .7s" }}
-                  onMouseEnter={e => (e.currentTarget.style.filter = "grayscale(0)")}
-                  onMouseLeave={e => (e.currentTarget.style.filter = "grayscale(1)")}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  
                 />
               </div>
 
