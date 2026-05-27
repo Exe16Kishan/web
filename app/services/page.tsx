@@ -486,7 +486,7 @@ export default function ServicesAndTechnologyPage() {
             {/* Stats bar */}
             <div className="stats-bar">
               {[
-                { label: "Active Nodes",          value: "14,209"    },
+                { label: "Active Nodes",          value: "14+"    },
                 { label: "Prediction Accuracy",   value: "99.4%"     },
                 { label: "Carbon Credits Issued",  value: "8,340"     },
                 { label: "Adaptive Response",      value: "Real-time" },

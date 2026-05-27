@@ -602,9 +602,9 @@ export default function ExperiencePage() {
               <strong style={{ color: "#C5A059", fontWeight: 900, fontStyle: "italic" }}>unfiltered connection</strong>{" "}
               between the soul and the earth.&rdquo;
             </blockquote>
-            <cite className="q-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".67rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", fontStyle: "normal", opacity: 0 }}>
+            {/* <cite className="q-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".67rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", fontStyle: "normal", opacity: 0 }}>
               — Utkarsh Gugri, Founder
-            </cite>
+            </cite> */}
           </W>
         </section>
 

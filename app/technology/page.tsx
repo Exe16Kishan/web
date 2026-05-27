@@ -249,7 +249,7 @@ export default function TechnologyPage() {
                   <span style={{ fontFamily: "var(--font-label)", fontSize: ".57rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.35)" }}>
                     Active Nodes
                   </span>
-                  <span style={{ fontFamily: "var(--font-label)", fontSize: ".7rem", fontWeight: 700, color: "#C5A059" }}>14,209</span>
+                  <span style={{ fontFamily: "var(--font-label)", fontSize: ".7rem", fontWeight: 700, color: "#C5A059" }}>14</span>
                 </div>
                 <div style={{ height: 4, background: "rgba(255,255,255,.06)", borderRadius: 2, overflow: "hidden" }}>
                   <div style={{ width: "75%", height: "100%", background: "#C5A059", borderRadius: 2 }} />
