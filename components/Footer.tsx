@@ -153,7 +153,7 @@ export default function Footer() {
           }}
         >
           <img
-            src="/logos/Branding_Logo_Dark.png"
+            src="/logos/Wordmark_Dark.png"
             alt=""
             className="footer-wordmark"
           />
@@ -178,7 +178,7 @@ export default function Footer() {
                 International / English
               </div>
               <img
-                src="/logos/Footer.png"
+                src="/logos/NavBrandLogo.png"
                 alt="Gugri Industries"
                 style={{
                   height: 110,

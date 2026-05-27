@@ -280,9 +280,9 @@ export default function ExperiencePage() {
         {/* HERO */}
         <section ref={heroRef} style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-            <img src="/pictures/eco-villas.png"
-              alt="Luxury resort" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.68 }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #000 0%, rgba(0,0,0,.7) 30%, rgba(0,0,0,.2) 100%)" }} />
+            <img src="/pictures/cyclic-ecosystem.png"
+              alt="Luxury resort" style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.98 }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #000 0%, rgba(0,0,0,.7) 20%, rgba(0,0,0,.2) 100%)" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, transparent 10%)" }} />
           </div>
 
@@ -602,9 +602,9 @@ export default function ExperiencePage() {
               <strong style={{ color: "#C5A059", fontWeight: 900, fontStyle: "italic" }}>unfiltered connection</strong>{" "}
               between the soul and the earth.&rdquo;
             </blockquote>
-            <cite className="q-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".67rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", fontStyle: "normal", opacity: 0 }}>
+            {/* <cite className="q-anim" style={{ fontFamily: "var(--font-label)", fontSize: ".67rem", fontWeight: 700, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(255,255,255,.35)", fontStyle: "normal", opacity: 0 }}>
               — Utkarsh Gugri, Founder
-            </cite>
+            </cite> */}
           </W>
         </section>
 
