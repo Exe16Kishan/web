@@ -17,7 +17,7 @@ const stats = [
   { value: "3x", label: "Revenue Per Acre" },
   { value: "40%", label: "Water Savings" },
   { value: "25+", label: "Acres Managed" },
-  { value: "0.0", label: "Carbon Negative Footprint Goal" },
+  { value: "Carbon Negative", label: "Footprint Goal" },
 ];
 
 const pillars = [
@@ -770,56 +770,6 @@ export default function HomePage() {
               }}
             />
           </div>
-        </section>
-
-        {/* STATS  */}
-        <section
-          ref={statsRef}
-          id="stats"
-          style={{ background: "transparent" }}
-        >
-          <W>
-            <div className="stats-grid">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="stat-item"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: ".6rem",
-                    opacity: 0,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-epilogue),sans-serif",
-                      fontSize: "clamp(2.8rem,4.5vw,4.5rem)",
-                      fontWeight: 300,
-                      color: "#C5A059",
-                      lineHeight: 1,
-                      textAlign: "center",
-                    }}
-                  >
-                    {s.value}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-label)",
-                      fontSize: ".6rem",
-                      fontWeight: 600,
-                      letterSpacing: ".22em",
-                      textTransform: "uppercase",
-                      color: bgMode === "light" ? LIGHT.muted : DARK.muted,
-                      textAlign: "center",
-                    }}
-                  >
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </W>
         </section>
 
         {/* ABOUT US */}
@@ -2852,6 +2802,57 @@ export default function HomePage() {
                       arrow_forward
                     </span>
                   </div>
+                </div>
+              ))}
+            </div>
+          </W>
+        </section>
+
+        {/* STATS  */}
+        <section
+          ref={statsRef}
+          id="stats"
+          style={{ background: "transparent" }}
+        >
+          <W>
+            <div className="stats-grid">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="stat-item"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: ".6rem",
+                    opacity: 0,
+                
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-epilogue),sans-serif",
+                      fontSize: "clamp(2.8rem,4.5vw,4.5rem)",
+                      fontWeight: 300,
+                      color: "#C5A059",
+                      lineHeight: 1,
+                      textAlign: "center",
+                    }}
+                  >
+                    {s.value}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-label)",
+                      fontSize: ".6rem",
+                      fontWeight: 600,
+                      letterSpacing: ".22em",
+                      textTransform: "uppercase",
+                      color: bgMode === "light" ? LIGHT.muted : DARK.muted,
+                      textAlign: "center",
+                    }}
+                  >
+                    {s.label}
+                  </span>
                 </div>
               ))}
             </div>
