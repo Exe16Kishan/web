@@ -2825,17 +2825,17 @@ export default function HomePage() {
                     flexDirection: "column",
                     gap: ".6rem",
                     opacity: 0,
-                
                   }}
                 >
                   <span
                     style={{
                       fontFamily: "var(--font-epilogue),sans-serif",
-                      fontSize: "clamp(2.8rem,4.5vw,4.5rem)",
+                      fontSize: "clamp(1.6rem,3vw,4.5rem)",
                       fontWeight: 300,
                       color: "#C5A059",
                       lineHeight: 1,
                       textAlign: "center",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     {s.value}
