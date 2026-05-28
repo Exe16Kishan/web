@@ -116,12 +116,24 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
               flexShrink: 0,
               zIndex: 1,
             }}
-            onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.color = "#C5A059")}
-            onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.color = "#fff")}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLButtonElement).style.color = "#C5A059")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLButtonElement).style.color = "#fff")
+            }
           >
             {/* Hamburger */}
-            <div style={{ width: 24, height: 17, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-              {[0, 1, 2].map(i => (
+            <div
+              style={{
+                width: 24,
+                height: 17,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              {[0, 1, 2].map((i) => (
                 <span
                   key={i}
                   style={{
@@ -131,9 +143,11 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
                     transformOrigin: "center",
                     transition: "transform .45s ease, opacity .3s",
                     transform:
-                      menuOpen && i === 0 ? "translateY(7.75px) rotate(45deg)"
-                      : menuOpen && i === 2 ? "translateY(-7.75px) rotate(-45deg)"
-                      : "none",
+                      menuOpen && i === 0
+                        ? "translateY(7.75px) rotate(45deg)"
+                        : menuOpen && i === 2
+                          ? "translateY(-7.75px) rotate(-45deg)"
+                          : "none",
                     opacity: menuOpen && i === 1 ? 0 : 1,
                   }}
                 />
@@ -144,7 +158,7 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
               style={{
                 fontFamily: "var(--font-inter), sans-serif",
                 fontSize: ".625rem",
-                fontWeight: 700,
+                fontWeight: 600,
                 letterSpacing: ".18em",
                 textTransform: "uppercase",
                 display: "none",
@@ -173,12 +187,12 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
               src="/logos/CompanyLogo.png"
               alt="Gugri Industries"
               className="nav-logo-mobile"
-              onMouseEnter={e => {
+              onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLImageElement;
                 el.style.opacity = ".7";
                 el.style.filter = "brightness(1.2)";
               }}
-              onMouseLeave={e => {
+              onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLImageElement;
                 el.style.opacity = "1";
                 el.style.filter = "brightness(1.05)";
@@ -190,12 +204,12 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
               src="/logos/Wordmark_Light.png"
               alt="Gugri Industries"
               className="nav-logo-desktop"
-              onMouseEnter={e => {
+              onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLImageElement;
                 el.style.opacity = ".7";
                 el.style.filter = "blur(0px) brightness(1.1)";
               }}
-              onMouseLeave={e => {
+              onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLImageElement;
                 el.style.opacity = "1";
                 el.style.filter = "blur(0.6px) brightness(1.05)";
@@ -211,7 +225,7 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
               border: "1px solid rgba(255,255,255,.22)",
               color: "#fff",
               fontFamily: "var(--font-inter), sans-serif",
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: ".18em",
               textTransform: "uppercase",
               textDecoration: "none",
@@ -220,12 +234,12 @@ export default function Navbar({ onMenuClick, menuOpen = false }: NavbarProps) {
               whiteSpace: "nowrap",
               zIndex: 1,
             }}
-            onMouseEnter={e => {
+            onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               el.style.background = "#fff";
               el.style.color = "#000";
             }}
-            onMouseLeave={e => {
+            onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               el.style.background = "transparent";
               el.style.color = "#fff";

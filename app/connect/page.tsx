@@ -69,7 +69,7 @@ export default function ConnectPage() {
     display: "block",
     fontFamily: "var(--font-label)",
     fontSize: "0.6rem",
-    fontWeight: 700,
+    fontWeight: 600,
     letterSpacing: "0.22em",
     textTransform: "uppercase",
     color: "rgba(255,255,255,0.35)",
@@ -78,7 +78,7 @@ export default function ConnectPage() {
   const eyebrow: React.CSSProperties = {
     fontFamily: "var(--font-label)",
     fontSize: "0.57rem",
-    fontWeight: 700,
+    fontWeight: 600,
     letterSpacing: "0.38em",
     textTransform: "uppercase",
     color: "#C5A059",
@@ -220,11 +220,11 @@ export default function ConnectPage() {
               {/* Eyebrow */}
               <div className="f-anim" style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem", opacity: 0 }}>
                 <span style={{ display: "inline-block", width: 36, height: 1, background: "#C5A059" }} />
-                <span style={{ fontFamily: "var(--font-label)", fontSize: ".58rem", fontWeight: 700, letterSpacing: ".28em", textTransform: "uppercase", color: "#C5A059" }}>Private Consultation</span>
+                <span style={{ fontFamily: "var(--font-label)", fontSize: ".58rem", fontWeight: 600, letterSpacing: ".28em", textTransform: "uppercase", color: "#C5A059" }}>Private Consultation</span>
               </div>
 
               <h2 className="f-anim"
-                style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 900, fontSize: "clamp(2rem, 2.8vw, 3rem)", textTransform: "uppercase", letterSpacing: "-.03em", marginBottom: ".5rem", opacity: 0 }}>
+                style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 600, fontSize: "clamp(2rem, 2.8vw, 3rem)", textTransform: "uppercase", letterSpacing: "-.03em", marginBottom: ".5rem", opacity: 0 }}>
                 Inquiry
               </h2>
               <p className="f-anim"
@@ -296,7 +296,7 @@ export default function ConnectPage() {
                   background: "#C5A059",
                   color: "#000",
                   fontFamily: "var(--font-label)",
-                  fontWeight: 700,
+                  fontWeight: 600,
                   fontSize: ".62rem",
                   letterSpacing: ".22em",
                   textTransform: "uppercase",
@@ -367,8 +367,8 @@ export default function ConnectPage() {
                     ["Sunday",          "By Appointment"],
                   ].map(([day, hrs]) => (
                     <div key={day} style={{ display: "flex", justifyContent: "space-between", padding: ".6rem 0", borderBottom: "1px solid rgba(255,255,255,.06)", gap: "1rem" }}>
-                      <span style={{ fontFamily: "var(--font-label)", fontSize: ".56rem", fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", color: "rgba(255,255,255,.35)" }}>{day}</span>
-                      <span style={{ fontFamily: "var(--font-label)", fontSize: ".56rem", fontWeight: 700, color: "#C5A059", whiteSpace: "nowrap" }}>{hrs}</span>
+                      <span style={{ fontFamily: "var(--font-label)", fontSize: ".56rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "rgba(255,255,255,.35)" }}>{day}</span>
+                      <span style={{ fontFamily: "var(--font-label)", fontSize: ".56rem", fontWeight: 600, color: "#C5A059", whiteSpace: "nowrap" }}>{hrs}</span>
                     </div>
                   ))}
                 </div>

@@ -17,7 +17,7 @@ const footerCols = [
 const label: React.CSSProperties = {
   fontFamily: "var(--font-inter), sans-serif",
   fontSize: ".6rem",
-  fontWeight: 700,
+  fontWeight: 600,
   letterSpacing: ".2em",
   textTransform: "uppercase",
   color: "#fff",
@@ -137,7 +137,7 @@ export default function Footer() {
         {/* <div aria-hidden style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none", userSelect: "none", overflow: "hidden" }}>
           <span className="watermark">GUGRI INDUSTRIES</span>
         </div> */}
-       
+
         <div
           aria-hidden
           style={{
@@ -174,7 +174,12 @@ export default function Footer() {
                   marginBottom: "2rem",
                 }}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 18 }}>public</span>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 18 }}
+                >
+                  public
+                </span>
                 International / English
               </div>
               <img
@@ -190,16 +195,22 @@ export default function Footer() {
               />
             </div>
 
-            {footerCols.map(col => (
+            {footerCols.map((col) => (
               <div key={col.title} className="footer-link-col">
                 <span style={label}>{col.title}</span>
-                {col.links.map(l => (
+                {col.links.map((l) => (
                   <Link
                     key={l}
                     href="#"
                     style={footLink}
-                    onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")}
-                    onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,.35)")}
+                    onMouseEnter={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.color =
+                        "#C5A059")
+                    }
+                    onMouseLeave={(e) =>
+                      ((e.currentTarget as HTMLAnchorElement).style.color =
+                        "rgba(255,255,255,.35)")
+                    }
                   >
                     {l}
                   </Link>
@@ -208,7 +219,9 @@ export default function Footer() {
             ))}
 
             <div className="footer-digital">
-              <span style={label} className="footer-digital-label">Digital Experience</span>
+              <span style={label} className="footer-digital-label">
+                Digital Experience
+              </span>
               <div className="store-btns">
                 {[
                   {
@@ -239,32 +252,62 @@ export default function Footer() {
                       flex: 1,
                       minWidth: 0,
                     }}
-                    onMouseEnter={e => {
+                    onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor = s.color;
                       e.currentTarget.style.transform = "translateY(-2px)";
                     }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.borderColor = "rgba(255,255,255,.12)";
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor =
+                        "rgba(255,255,255,.12)";
                       e.currentTarget.style.transform = "translateY(0)";
                     }}
                   >
                     <img
                       src={s.icon}
                       alt={s.name}
-                      style={{ width: 18, height: 18, objectFit: "contain", filter: "invert(1)", flexShrink: 0 }}
+                      style={{
+                        width: 18,
+                        height: 18,
+                        objectFit: "contain",
+                        filter: "invert(1)",
+                        flexShrink: 0,
+                      }}
                     />
-                    <div style={{ display: "flex", flexDirection: "column", lineHeight: 1, minWidth: 0 }}>
-                      <span style={{ fontSize: ".65rem", color: "rgba(255,255,255,.4)", marginBottom: ".1rem", whiteSpace: "nowrap" }}>{s.sub}</span>
-                      <span style={{ fontSize: ".75rem", fontWeight: 600, color: "#fff", whiteSpace: "nowrap" }}>{s.name}</span>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        lineHeight: 1,
+                        minWidth: 0,
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: ".65rem",
+                          color: "rgba(255,255,255,.4)",
+                          marginBottom: ".1rem",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {s.sub}
+                      </span>
+                      <span
+                        style={{
+                          fontSize: ".75rem",
+                          fontWeight: 600,
+                          color: "#fff",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {s.name}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
           </div>
 
-          
           <div
             style={{
               borderTop: "1px solid rgba(255,255,255,.06)",
@@ -276,7 +319,12 @@ export default function Footer() {
             }}
           >
             <div className="footer-legal">
-              {["Legal Notice", "Privacy Policy", "Cookie Policy", "Accessibility"].map(t => (
+              {[
+                "Legal Notice",
+                "Privacy Policy",
+                "Cookie Policy",
+                "Accessibility",
+              ].map((t) => (
                 <Link
                   key={t}
                   href="#"
@@ -289,8 +337,14 @@ export default function Footer() {
                     textDecoration: "none",
                     transition: "color .25s",
                   }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")}
-                  onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,.22)")}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLAnchorElement).style.color =
+                      "#C5A059")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLAnchorElement).style.color =
+                      "rgba(255,255,255,.22)")
+                  }
                 >
                   {t}
                 </Link>
@@ -306,7 +360,8 @@ export default function Footer() {
                 textAlign: "center",
               }}
             >
-              © 2024 GUGRI INDUSTRIES. Engineering the Natural World. All Rights Reserved.
+              © 2024 GUGRI INDUSTRIES. Engineering the Natural World. All Rights
+              Reserved.
             </p>
           </div>
         </div>
