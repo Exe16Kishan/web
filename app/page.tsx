@@ -90,7 +90,7 @@ const journeyCards = [
   {
     category: "Architecture",
     title: "Eco Villa Estate.",
-    img: "/pictures/eco-villas.png",
+    img: "/pictures/eco-villas.jpg",
   },
   {
     category: "Regeneration",
@@ -113,7 +113,7 @@ const discoverCards = [
   {
     title: "Eco-Performance",
     desc: "Sustainable movement for explorers.",
-    img: "/pictures/solar-trees.png",
+    img: "/pictures/eco-performance.jpg",
   },
   {
     title: "Solar Infrastructure",

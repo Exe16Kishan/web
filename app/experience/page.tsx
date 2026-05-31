@@ -29,7 +29,7 @@ const galleryImages = [
     id: 1,
     category: "Architecture",
     title: "Ridge Estate Villa",
-    img: "/pictures/eco-villas.png",
+    img: "/pictures/eco-villas.jpg",
   },
   {
     id: 2,
@@ -411,7 +411,7 @@ export default function ExperiencePage() {
         >
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
             <img
-              src="/pictures/cyclic-ecosystem.png"
+              src="/pictures/expLandImg.jpg"
               alt="Luxury resort"
               style={{
                 width: "100%",
