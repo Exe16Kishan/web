@@ -1084,7 +1084,7 @@ export default function HomePage() {
               </div>
 
               {/* Two belief cards side by side */}
-              <div
+              {/* <div
                 className="phil-anim"
                 style={{
                   display: "grid",
@@ -1186,7 +1186,7 @@ export default function HomePage() {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* ── Ornamental Divider ── */}

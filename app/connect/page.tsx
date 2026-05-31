@@ -8,15 +8,31 @@ import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
-  <div style={{ width: "100%", maxWidth: 1440, marginLeft: "auto", marginRight: "auto", paddingLeft: "clamp(1.25rem, 5vw, 5rem)", paddingRight: "clamp(1.25rem, 5vw, 5rem)", ...style }}>
+const W = ({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) => (
+  <div
+    style={{
+      width: "100%",
+      maxWidth: 1440,
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingLeft: "clamp(1.25rem, 5vw, 5rem)",
+      paddingRight: "clamp(1.25rem, 5vw, 5rem)",
+      ...style,
+    }}
+  >
     {children}
   </div>
 );
 
 export default function ConnectPage() {
-  const heroRef    = useRef<HTMLElement>(null);
-    // const videoRef    = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  // const videoRef    = useRef<HTMLVideoElement>(null);
 
   const formColRef = useRef<HTMLDivElement>(null);
   const sideColRef = useRef<HTMLDivElement>(null);
@@ -26,32 +42,57 @@ export default function ConnectPage() {
       gsap.fromTo(
         heroRef.current.querySelectorAll(".h-anim"),
         { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.22, duration: 1.15, ease: "power3.out", delay: 0.3 }
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.22,
+          duration: 1.15,
+          ease: "power3.out",
+          delay: 0.3,
+        },
       );
     }
     if (formColRef.current) {
       ScrollTrigger.create({
-        trigger: formColRef.current, start: "top 68%", once: true,
-        onEnter: () => gsap.fromTo(
-          formColRef.current!.querySelectorAll(".f-anim"),
-          { y: 32, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.08, duration: 0.72, ease: "power3.out" }
-        ),
+        trigger: formColRef.current,
+        start: "top 68%",
+        once: true,
+        onEnter: () =>
+          gsap.fromTo(
+            formColRef.current!.querySelectorAll(".f-anim"),
+            { y: 32, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              stagger: 0.08,
+              duration: 0.72,
+              ease: "power3.out",
+            },
+          ),
       });
     }
     if (sideColRef.current) {
       ScrollTrigger.create({
-        trigger: sideColRef.current, start: "top 68%", once: true,
-        onEnter: () => gsap.fromTo(
-          sideColRef.current!.querySelectorAll(".s-anim"),
-          { y: 32, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.12, duration: 0.72, ease: "power3.out" }
-        ),
+        trigger: sideColRef.current,
+        start: "top 68%",
+        once: true,
+        onEnter: () =>
+          gsap.fromTo(
+            sideColRef.current!.querySelectorAll(".s-anim"),
+            { y: 32, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              stagger: 0.12,
+              duration: 0.72,
+              ease: "power3.out",
+            },
+          ),
       });
     }
   }, []);
 
-  // Shared input/focus styles 
+  // Shared input/focus styles
   const inputBase: React.CSSProperties = {
     width: "100%",
     background: "transparent",
@@ -85,10 +126,16 @@ export default function ConnectPage() {
     display: "block",
     marginBottom: "1.25rem",
   };
-  const onFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    ((e.currentTarget as HTMLElement).style.borderBottomColor = "#C5A059");
-  const onBlur  = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    ((e.currentTarget as HTMLElement).style.borderBottomColor = "#434843");
+  const onFocus = (
+    e: React.FocusEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => ((e.currentTarget as HTMLElement).style.borderBottomColor = "#C5A059");
+  const onBlur = (
+    e: React.FocusEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => ((e.currentTarget as HTMLElement).style.borderBottomColor = "#434843");
 
   return (
     <>
@@ -175,117 +222,321 @@ export default function ConnectPage() {
       `}</style>
 
       <div style={{ background: "#000", color: "#fff", overflowX: "hidden" }}>
-
         {/* HERO */}
         <section
           ref={heroRef}
-          style={{ position: "relative", height: "100vh", minHeight: 560, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", overflow: "hidden" }}
+          style={{
+            position: "relative",
+            height: "100vh",
+            minHeight: 560,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+          }}
         >
           {/* BG */}
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-            <video  src="/videos/Connect.mp4" autoPlay loop muted playsInline
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", filter: "contrast(1.08) saturate(1.12)" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, transparent 22%)" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(105deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 38%, transparent 62%)" }} />
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,.78) 18%, rgba(0,0,0,.32) 40%, transparent 62%)" }} />
+            <video
+              src="/videos/Connect.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 30%",
+                filter: "contrast(1.08) saturate(1.12)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,.42) 0%, transparent 22%)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(105deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.38) 38%, transparent 62%)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to top, #000 0%, rgba(0,0,0,.78) 18%, rgba(0,0,0,.32) 40%, transparent 62%)",
+              }}
+            />
           </div>
 
           {/* Text */}
-          <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "0 clamp(1.25rem, 5vw, 3rem)", maxWidth: 900, width: "100%" }}>
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+              textAlign: "center",
+              padding: "0 clamp(1.25rem, 5vw, 3rem)",
+              maxWidth: 900,
+              width: "100%",
+            }}
+          >
             <h1 className="h-anim connect-hero-title" style={{ opacity: 0 }}>
               Let&apos;s Build the{" "}
-              <span style={{ color: "#C5A059" }}>Future</span>
-              {" "}Together
+              <span style={{ color: "#C5A059" }}>Future</span> Together
             </h1>
-            <p className="h-anim"
-              style={{ fontFamily: "var(--font-body)", fontWeight: 300, fontSize: "clamp(.9rem, 1.5vw, 1.25rem)", color: "rgba(255,255,255,.52)", lineHeight: 1.7, maxWidth: 500, margin: "0 auto", opacity: 0 }}>
-              Pioneering sustainable luxury through regenerative architectural partnerships and engineered precision.
+            <p
+              className="h-anim"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontWeight: 300,
+                fontSize: "clamp(.9rem, 1.5vw, 1.25rem)",
+                color: "rgba(255,255,255,.52)",
+                lineHeight: 1.7,
+                maxWidth: 500,
+                margin: "0 auto",
+                opacity: 0,
+              }}
+            >
+              Pioneering sustainable luxury through regenerative architectural
+              partnerships and engineered precision.
             </p>
           </div>
 
           {/* Scroll hint */}
-          <div style={{ position: "absolute", bottom: "2.8rem", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: ".6rem", opacity: 0.38, zIndex: 1 }}>
-            <span style={{ fontFamily: "var(--font-label)", fontSize: ".52rem", letterSpacing: ".3em", textTransform: "uppercase", color: "#fff" }}>Scroll to Explore</span>
+          <div
+            style={{
+              position: "absolute",
+              bottom: "2.8rem",
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: ".6rem",
+              opacity: 0.38,
+              zIndex: 1,
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-label)",
+                fontSize: ".52rem",
+                letterSpacing: ".3em",
+                textTransform: "uppercase",
+                color: "#fff",
+              }}
+            >
+              Scroll to Explore
+            </span>
             <div style={{ width: 1, height: 48, background: "#C5A059" }} />
           </div>
         </section>
 
         {/* FORM + SIDEBAR */}
         <section className="connect-body">
-
           {/* ── FORM COLUMN ── */}
           <div ref={formColRef} className="connect-form-col">
             <div style={{ maxWidth: 500, width: "100%" }}>
-
               {/* Eyebrow */}
-              <div className="f-anim" style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem", opacity: 0 }}>
-                <span style={{ display: "inline-block", width: 36, height: 1, background: "#C5A059" }} />
-                <span style={{ fontFamily: "var(--font-label)", fontSize: ".58rem", fontWeight: 600, letterSpacing: ".28em", textTransform: "uppercase", color: "#C5A059" }}>Private Consultation</span>
+              <div
+                className="f-anim"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                  marginBottom: "2rem",
+                  opacity: 0,
+                }}
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: 36,
+                    height: 1,
+                    background: "#C5A059",
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-label)",
+                    fontSize: ".58rem",
+                    fontWeight: 600,
+                    letterSpacing: ".28em",
+                    textTransform: "uppercase",
+                    color: "#C5A059",
+                  }}
+                >
+                  Private Consultation
+                </span>
               </div>
 
-              <h2 className="f-anim"
-                style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 600, fontSize: "clamp(2rem, 2.8vw, 3rem)", textTransform: "uppercase", letterSpacing: "-.03em", marginBottom: ".5rem", opacity: 0 }}>
+              <h2
+                className="f-anim"
+                style={{
+                  fontFamily: "var(--font-epilogue), sans-serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(2rem, 2.8vw, 3rem)",
+                  textTransform: "uppercase",
+                  letterSpacing: "-.03em",
+                  marginBottom: ".5rem",
+                  opacity: 0,
+                }}
+              >
                 Inquiry
               </h2>
-              <p className="f-anim"
-                style={{ color: "rgba(255,255,255,.32)", fontSize: ".88rem", marginBottom: "2.5rem", lineHeight: 1.7, opacity: 0 }}>
+              <p
+                className="f-anim"
+                style={{
+                  color: "rgba(255,255,255,.32)",
+                  fontSize: ".88rem",
+                  marginBottom: "2.5rem",
+                  lineHeight: 1.7,
+                  opacity: 0,
+                }}
+              >
                 Submit your details for a private architectural consultation.
               </p>
 
               {/* Name + Email */}
               <div className="form-two-col">
-                <div className="f-anim" style={{ marginBottom: "2.25rem", opacity: 0 }}>
+                <div
+                  className="f-anim"
+                  style={{ marginBottom: "2.25rem", opacity: 0 }}
+                >
                   <label style={fieldLabel}>Full Name</label>
-                  <input type="text" placeholder="Your full name" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
+                  <input
+                    type="text"
+                    placeholder="Your full name"
+                    style={inputBase}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
                 </div>
-                <div className="f-anim" style={{ marginBottom: "2.25rem", opacity: 0 }}>
+                <div
+                  className="f-anim"
+                  style={{ marginBottom: "2.25rem", opacity: 0 }}
+                >
                   <label style={fieldLabel}>Email Address</label>
-                  <input type="email" placeholder="your@email.com" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    style={inputBase}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
                 </div>
               </div>
 
               {/* Phone */}
-              <div className="f-anim" style={{ marginBottom: "2.25rem", opacity: 0 }}>
+              <div
+                className="f-anim"
+                style={{ marginBottom: "2.25rem", opacity: 0 }}
+              >
                 <label style={fieldLabel}>Phone (optional)</label>
-                <input type="tel" placeholder="+91 000 000 0000" style={inputBase} onFocus={onFocus} onBlur={onBlur} />
+                <input
+                  type="tel"
+                  placeholder="+91 000 000 0000"
+                  style={inputBase}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
               </div>
 
               {/* Project type */}
-              <div className="f-anim select-wrap" style={{ marginBottom: "2.25rem", position: "relative", opacity: 0 }}>
-                <label style={{ ...fieldLabel, color: "#C5A059" }}>Select Project Type</label>
+              <div
+                className="f-anim select-wrap"
+                style={{
+                  marginBottom: "2.25rem",
+                  position: "relative",
+                  opacity: 0,
+                }}
+              >
+                <label style={{ ...fieldLabel, color: "#C5A059" }}>
+                  Select Project Type
+                </label>
                 <div style={{ position: "relative" }}>
                   <select
                     defaultValue=""
-                    style={{ ...inputBase, appearance: "none", cursor: "pointer", paddingRight: "1.5rem", fontSize: ".88rem", color: "rgba(255,255,255,.65)" }}
-                    onFocus={onFocus} onBlur={onBlur}
+                    style={{
+                      ...inputBase,
+                      appearance: "none",
+                      cursor: "pointer",
+                      paddingRight: "1.5rem",
+                      fontSize: ".88rem",
+                      color: "rgba(255,255,255,.65)",
+                    }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                   >
-                    <option value=""      style={{ background: "#131313" }}>Area of Interest</option>
-                    <option value="res"   style={{ background: "#131313" }}>Residential Masterpiece</option>
-                    <option value="com"   style={{ background: "#131313" }}>Sustainable Commercial Space</option>
-                    <option value="regen" style={{ background: "#131313" }}>Regenerative Strategy</option>
-                    <option value="press" style={{ background: "#131313" }}>Press &amp; Media</option>
+                    <option value="" style={{ background: "#131313" }}>
+                      Area of Interest
+                    </option>
+                    <option value="res" style={{ background: "#131313" }}>
+                      Residential Masterpiece
+                    </option>
+                    <option value="com" style={{ background: "#131313" }}>
+                      Sustainable Commercial Space
+                    </option>
+                    <option value="regen" style={{ background: "#131313" }}>
+                      Regenerative Strategy
+                    </option>
+                    <option value="press" style={{ background: "#131313" }}>
+                      Press &amp; Media
+                    </option>
                   </select>
-                  <span className="material-symbols-outlined"
-                    style={{ position: "absolute", right: 0, bottom: ".6rem", fontSize: 18, color: "rgba(255,255,255,.35)", pointerEvents: "none" }}>
+                  <span
+                    className="material-symbols-outlined"
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      bottom: ".6rem",
+                      fontSize: 18,
+                      color: "rgba(255,255,255,.35)",
+                      pointerEvents: "none",
+                    }}
+                  >
                     expand_more
                   </span>
                 </div>
               </div>
 
               {/* Message */}
-              <div className="f-anim" style={{ marginBottom: "2.5rem", opacity: 0 }}>
+              <div
+                className="f-anim"
+                style={{ marginBottom: "2.5rem", opacity: 0 }}
+              >
                 <label style={fieldLabel}>Message</label>
                 <textarea
                   rows={4}
                   placeholder="Tell us about your project vision..."
                   style={{ ...inputBase, resize: "none", paddingTop: ".4rem" }}
-                  onFocus={onFocus} onBlur={onBlur}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
                 />
               </div>
 
               {/* Privacy note */}
-              <p className="f-anim" style={{ fontSize: ".72rem", color: "rgba(255,255,255,.22)", lineHeight: 1.6, marginBottom: "1.75rem", opacity: 0 }}>
-                By submitting, you agree to our Privacy Policy. We never share your data with third parties.
+              <p
+                className="f-anim"
+                style={{
+                  fontSize: ".72rem",
+                  color: "rgba(255,255,255,.22)",
+                  lineHeight: 1.6,
+                  marginBottom: "1.75rem",
+                  opacity: 0,
+                }}
+              >
+                By submitting, you agree to our Privacy Policy. We never share
+                your data with third parties.
               </p>
 
               {/* Submit */}
@@ -311,76 +562,185 @@ export default function ConnectPage() {
                   transition: "filter .25s, transform .15s",
                   opacity: 0,
                 }}
-                onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.1)")}
-                onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.filter = "none")}
-                onMouseDown={e => ((e.currentTarget as HTMLButtonElement).style.transform = "scale(0.985)")}
-                onMouseUp={e => ((e.currentTarget as HTMLButtonElement).style.transform = "scale(1)")}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.filter =
+                    "brightness(1.1)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.filter = "none")
+                }
+                onMouseDown={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.transform =
+                    "scale(0.985)")
+                }
+                onMouseUp={(e) =>
+                  ((e.currentTarget as HTMLButtonElement).style.transform =
+                    "scale(1)")
+                }
               >
                 Send Message
-                <span className="material-symbols-outlined" style={{ fontSize: 17 }}>arrow_forward</span>
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 17 }}
+                >
+                  arrow_forward
+                </span>
               </button>
             </div>
           </div>
 
           {/* SIDEBAR */}
           <div ref={sideColRef} className="connect-side-col">
-
             <div className="connect-side-info">
               {/* Location */}
               <div className="s-anim" style={{ opacity: 0 }}>
                 <span style={eyebrow}>Location</span>
-                <h3 style={{ fontFamily: "var(--font-epilogue), sans-serif", fontWeight: 300, fontSize: "clamp(1.35rem, 2.2vw, 2rem)", lineHeight: 1.2, marginBottom: "1rem" }}>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-epilogue), sans-serif",
+                    fontWeight: 300,
+                    fontSize: "clamp(1.35rem, 2.2vw, 2rem)",
+                    lineHeight: 1.2,
+                    marginBottom: "1rem",
+                  }}
+                >
                   India Headquarters
                 </h3>
-                <p style={{ color: "rgba(255,255,255,.42)", lineHeight: 1.9, fontSize: ".88rem", fontFamily: "var(--font-body)" }}>
-                  A-404, Tech Park North,<br />
-                  Electronic City, Bangalore 560100<br />
-                  Karnataka, India
+                <p
+                  style={{
+                    color: "rgba(255,255,255,.42)",
+                    lineHeight: 1.9,
+                    fontSize: ".88rem",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  C-39, Indrapuri, Gwalior Road,
+                  <br />
+                  284002, Jhansi, Uttar Pradesh, India
                 </p>
               </div>
 
               {/* Digital contact */}
               <div className="s-anim" style={{ opacity: 0 }}>
                 <span style={eyebrow}>Digital</span>
-                <div style={{ display: "flex", flexDirection: "column", gap: ".85rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: ".85rem",
+                  }}
+                >
                   {[
-                    { href: "mailto:connect@gugriindustries.com", text: "connect@gugriindustries.com" },
-                    { href: "tel:+918005550192",                  text: "+91 800 555 0192" },
-                  ].map(link => (
-                    <a key={link.href} href={link.href}
-                      style={{ fontFamily: "var(--font-epilogue), sans-serif", fontSize: "clamp(.95rem, 1.5vw, 1.45rem)", fontWeight: 400, color: "#fff", textDecoration: "none", transition: "color .25s", display: "block", wordBreak: "break-word" }}
-                      onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = "#C5A059")}
-                      onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.color = "#fff")}>
+                    {
+                      href: "mailto:connect@gugri.in",
+                      text: "connect@gugri.in",
+                    },
+                    { href: "tel:+919238146215", text: "+91 923 814 6215" },
+                  ].map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      style={{
+                        fontFamily: "var(--font-epilogue), sans-serif",
+                        fontSize: "clamp(.95rem, 1.5vw, 1.45rem)",
+                        fontWeight: 400,
+                        color: "#fff",
+                        textDecoration: "none",
+                        transition: "color .25s",
+                        display: "block",
+                        wordBreak: "break-word",
+                      }}
+                      onMouseEnter={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.color =
+                          "#C5A059")
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.color =
+                          "#fff")
+                      }
+                    >
                       {link.text}
                     </a>
                   ))}
                 </div>
               </div>
 
-              {/* Hours */}
+              {/* Hours
               <div className="s-anim" style={{ opacity: 0 }}>
                 <span style={eyebrow}>Office Hours</span>
-                <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: ".5rem",
+                  }}
+                >
                   {[
                     ["Monday – Friday", "9:00 AM – 7:00 PM IST"],
-                    ["Saturday",        "10:00 AM – 4:00 PM IST"],
-                    ["Sunday",          "By Appointment"],
+                    ["Saturday", "10:00 AM – 4:00 PM IST"],
+                    ["Sunday", "By Appointment"],
                   ].map(([day, hrs]) => (
-                    <div key={day} style={{ display: "flex", justifyContent: "space-between", padding: ".6rem 0", borderBottom: "1px solid rgba(255,255,255,.06)", gap: "1rem" }}>
-                      <span style={{ fontFamily: "var(--font-label)", fontSize: ".56rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "rgba(255,255,255,.35)" }}>{day}</span>
-                      <span style={{ fontFamily: "var(--font-label)", fontSize: ".56rem", fontWeight: 600, color: "#C5A059", whiteSpace: "nowrap" }}>{hrs}</span>
+                    <div
+                      key={day}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: ".6rem 0",
+                        borderBottom: "1px solid rgba(255,255,255,.06)",
+                        gap: "1rem",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".56rem",
+                          fontWeight: 600,
+                          letterSpacing: ".14em",
+                          textTransform: "uppercase",
+                          color: "rgba(255,255,255,.35)",
+                        }}
+                      >
+                        {day}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".56rem",
+                          fontWeight: 600,
+                          color: "#C5A059",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {hrs}
+                      </span>
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Bottom image */}
             <div
               className="s-anim"
-              style={{ borderRadius: ".375rem", overflow: "hidden", height: 200, filter: "grayscale(1) contrast(1.25)", opacity: 0.38, transition: "opacity .65s, filter .65s", flexShrink: 0 }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLDivElement; el.style.opacity = "1"; el.style.filter = "grayscale(0) contrast(1)"; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLDivElement; el.style.opacity = "0.38"; el.style.filter = "grayscale(1) contrast(1.25)"; }}
+              style={{
+                borderRadius: ".375rem",
+                overflow: "hidden",
+                height: 200,
+                filter: "grayscale(1) contrast(1.25)",
+                opacity: 0.38,
+                transition: "opacity .65s, filter .65s",
+                flexShrink: 0,
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.opacity = "1";
+                el.style.filter = "grayscale(0) contrast(1)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.opacity = "0.38";
+                el.style.filter = "grayscale(1) contrast(1.25)";
+              }}
             >
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuABQtbNBXrrgjAmph8_ZhYgqRjRkaAFsqUzljDKfDnNNA8QSGEIuTHsBxYrjw5W9dRLGTeqCZeiHnKu8mZY9AR9wxA_SK4YvQASODPnPew1Wtla9Cbtph8jX_AujJBJvI-q_NS86hOjltn5GeMTln2nx_jqlV2N0X27UEneW_aJ3N59Ti3jTYn_Bq1t7PuET7xYy3qTmpdeX5MpeAnKzYR4tw4SiIDcirYsGERzVWsfA9aQEEZnWJULul8ohcLwi3uo0XvTCAtLpfg"

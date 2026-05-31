@@ -307,6 +307,64 @@ export default function ServicesAndTechnologyPage() {
       <style>{`
         *, *::before, *::after { box-sizing: border-box; }
 
+        .svc-card-v2 {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border-radius: .25rem;
+        overflow: hidden;
+        opacity: 0;
+        border: 1px solid rgba(255,255,255,.07);
+        background: #0a0a0a;
+        transition: border-color .4s, box-shadow .4s;
+      }
+      .svc-card-v2:hover {
+        border-color: rgba(197,160,89,.35);
+        box-shadow: 0 24px 64px rgba(0,0,0,.55);
+      }
+      .svc-card-v2 .card-top-accent {
+        height: 2px;
+        background: linear-gradient(to right, #C5A059, rgba(197,160,89,.15));
+        width: 100%;
+      }
+      .svc-card-v2 .card-num {
+        font-family: var(--font-epilogue), sans-serif;
+        font-size: 5rem;
+        font-weight: 800;
+        letter-spacing: -.08em;
+        line-height: 1;
+        color: rgba(197,160,89,.07);
+        position: absolute;
+        top: 1.5rem;
+        right: 1.75rem;
+        pointer-events: none;
+        user-select: none;
+        transition: color .4s;
+      }
+      .svc-card-v2:hover .card-num { color: rgba(197,160,89,.13); }
+
+      .svc-point {
+        display: flex;
+        align-items: flex-start;
+        gap: .75rem;
+        padding: .75rem 0;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+        transition: padding-left .25s;
+        cursor: default;
+      }
+      .svc-point:last-child { border-bottom: none; }
+      .svc-point:hover { padding-left: .5rem; }
+      .svc-point:hover .svc-point-dot { background: #C5A059; }
+      .svc-point-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(197,160,89,.45);
+        margin-top: .45rem;
+        flex-shrink: 0;
+        transition: background .25s;
+      }
         .svc-tag {
           display: inline-block;
           padding: .35rem .9rem;
@@ -688,53 +746,69 @@ export default function ServicesAndTechnologyPage() {
               </p>
             </div>
 
-            <div ref={cardsRef} className="svc-grid">
-              {services.map((svc) => (
+            <div
+              ref={cardsRef}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gap: "1px",
+                background: "rgba(255,255,255,.06)",
+                border: "1px solid rgba(255,255,255,.06)",
+                borderRadius: ".35rem",
+                overflow: "hidden",
+              }}
+            >
+              {services.map((svc, idx) => (
                 <div
                   key={svc.num}
-                  className="svc-card"
-                  style={{
-                    background: "rgba(10,10,10,1)",
-                    border: "1px solid rgba(255,255,255,.07)",
-                    borderRadius: ".25rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1.5rem",
-                    padding: "2.5rem",
-                    opacity: 0,
-                    transition:
-                      "border-color .3s, transform .3s, box-shadow .3s",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.borderColor = "rgba(197,160,89,.3)";
-                    el.style.transform = "translateY(-4px)";
-                    el.style.boxShadow = "0 16px 48px rgba(0,0,0,.5)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLDivElement;
-                    el.style.borderColor = "rgba(255,255,255,.07)";
-                    el.style.transform = "translateY(0)";
-                    el.style.boxShadow = "none";
-                  }}
+                  className="svc-card svc-card-v2"
+                  style={{ opacity: 0 }}
                 >
-                  <img src={svc.img} alt="" className="card-bg" />
-                  <div className="card-overlay" />
+                  {/* Top accent line */}
+                  {/* <div className="card-top-accent" /> */}
 
-                  {/* <div className="card-content" style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
-                    <span style={{ fontFamily: "var(--font-epilogue),sans-serif", fontSize: "2.5rem", fontWeight: 300, color: "#C5A059", lineHeight: 1 }}>{svc.num}</span>
-                    <span className="material-symbols-outlined" style={{ color: "#C5A059", fontSize: 32 }}>{svc.icon}</span>
-                  </div> */}
+                  {/* Ghost number */}
+                  {/* <span className="card-num">{svc.num}</span> */}
 
-                  <div className="card-content">
+                  {/* Header block */}
+                  <div
+                    style={{
+                      padding: "2.5rem 2.5rem 2rem",
+                      borderBottom: "1px solid rgba(255,255,255,.06)",
+                      position: "relative",
+                    }}
+                  >
+                    {/* Icon */}
+                    {/* <div
+                      style={{
+                        width: 52,
+                        height: 52,
+                        borderRadius: ".35rem",
+                        background: "rgba(197,160,89,.08)",
+                        border: "1px solid rgba(197,160,89,.2)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: "1.75rem",
+                      }}
+                    >
+                      <span
+                        className="material-symbols-outlined"
+                        style={{ color: "#C5A059", fontSize: 26 }}
+                      >
+                        {svc.icon}
+                      </span>
+                    </div> */}
+
                     <h3
                       style={{
                         fontFamily: "var(--font-epilogue),sans-serif",
-                        fontWeight: 600,
-                        fontSize: "1.25rem",
-                        letterSpacing: "-.02em",
-                        color: D.heading,
+                        fontWeight: 700,
+                        fontSize: "1.4rem",
+                        letterSpacing: "-.03em",
+                        color: "#fff",
                         marginBottom: ".5rem",
+                        lineHeight: 1.1,
                       }}
                     >
                       {svc.title}
@@ -742,50 +816,70 @@ export default function ServicesAndTechnologyPage() {
                     <p
                       style={{
                         fontFamily: "var(--font-label)",
-                        fontSize: ".58rem",
+                        fontSize: ".55rem",
                         fontWeight: 600,
-                        letterSpacing: ".18em",
+                        letterSpacing: ".2em",
                         textTransform: "uppercase",
                         color: "#C5A059",
+                        marginBottom: "1.25rem",
                       }}
                     >
                       {svc.tagline}
                     </p>
+                    <p
+                      style={{
+                        color: "rgba(255,255,255,.48)",
+                        fontSize: ".85rem",
+                        lineHeight: 1.8,
+                      }}
+                    >
+                      {svc.desc}
+                    </p>
                   </div>
 
-                  <p
-                    className="card-content"
-                    style={{
-                      color: D.body,
-                      fontSize: ".88rem",
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {svc.desc}
-                  </p>
+                  {/* Points list */}
+                  <div style={{ padding: "2rem 2.5rem", flex: 1 }}>
+                    <span
+                      style={{
+                        display: "block",
+                        fontFamily: "var(--font-label)",
+                        fontSize: ".52rem",
+                        fontWeight: 600,
+                        letterSpacing: ".26em",
+                        textTransform: "uppercase",
+                        color: "rgba(197,160,89,.55)",
+                        marginBottom: "1.25rem",
+                      }}
+                    >
+                      Capabilities
+                    </span>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      {svc.tags.map((tag) => (
+                        <div key={tag} className="svc-point">
+                          <span className="svc-point-dot" />
+                          <span
+                            style={{
+                              fontSize: ".82rem",
+                              color: "rgba(255,255,255,.58)",
+                              lineHeight: 1.55,
+                              letterSpacing: ".01em",
+                            }}
+                          >
+                            {tag}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
+                  {/* Footer CTA */}
                   <div
-                    className="card-content"
                     style={{
+                      padding: "1.5rem 2.5rem",
+                      borderTop: "1px solid rgba(255,255,255,.05)",
                       display: "flex",
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      gap: ".5rem",
-                    }}
-                  >
-                    {svc.tags.map((tag) => (
-                      <span key={tag} className="svc-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div
-                    className="card-content"
-                    style={{
-                      marginTop: "auto",
-                      paddingTop: "1rem",
-                      borderTop: `1px solid ${D.border}`,
+                      alignItems: "center",
+                      justifyContent: "space-between",
                     }}
                   >
                     <button
@@ -797,12 +891,13 @@ export default function ServicesAndTechnologyPage() {
                         border: "none",
                         cursor: "pointer",
                         fontFamily: "var(--font-label)",
-                        fontSize: ".6rem",
+                        fontSize: ".58rem",
                         fontWeight: 600,
                         letterSpacing: ".2em",
                         textTransform: "uppercase",
                         color: "#C5A059",
                         transition: "gap .25s",
+                        padding: 0,
                       }}
                       onMouseEnter={(e) =>
                         ((e.currentTarget as HTMLButtonElement).style.gap =
@@ -813,14 +908,25 @@ export default function ServicesAndTechnologyPage() {
                           ".5rem")
                       }
                     >
-                      Explore More{" "}
+                      Explore Vertical
                       <span
                         className="material-symbols-outlined"
-                        style={{ fontSize: 16 }}
+                        style={{ fontSize: 15 }}
                       >
                         arrow_forward
                       </span>
                     </button>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-epilogue),sans-serif",
+                        fontSize: ".65rem",
+                        fontWeight: 300,
+                        color: "rgba(255,255,255,.12)",
+                        letterSpacing: ".05em",
+                      }}
+                    >
+                      {String(idx + 1).padStart(2, "0")} / 03
+                    </span>
                   </div>
                 </div>
               ))}
