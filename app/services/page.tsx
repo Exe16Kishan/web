@@ -764,7 +764,7 @@ export default function ServicesAndTechnologyPage() {
               </p>
             </div>
 
-            {/* ── CARDS GRID — gap replaces the 1px background divider trick ── */}
+            {/* CARDS GRID  */}
             <div
               ref={cardsRef}
               style={{
@@ -792,7 +792,7 @@ export default function ServicesAndTechnologyPage() {
                   {/* All card content */}
                   <div className="card-content">
 
-                    {/* ── Fixed-height header so all three cards align ── */}
+                    {/* Fixed-height header  */}
                     <div className="card-header">
                       <h3
                         style={{
@@ -1094,7 +1094,7 @@ export default function ServicesAndTechnologyPage() {
               {[
                 { label: "Active Nodes", value: "5" },
                 { label: "Prediction Accuracy", value: "95%" },
-                { label: "Carbon Credits Issued", value: "8,340" },
+                { label: "Carbon Credits Issued", value: "--" },
                 { label: "Adaptive Response", value: "Real-time" },
               ].map((stat) => (
                 <div
