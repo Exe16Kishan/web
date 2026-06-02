@@ -89,20 +89,23 @@ const cycleNodes = [
 const journeyCards = [
   {
     category: "Architecture",
-    title: "Eco Villa Estate.",
-    img: "/pictures/eco-villas.jpg",
+    title: "Regenerative Agriculture",
+    tagline: "Restoring Land. Growing Resilient Futures.",
+    img: "/pictures/first.jpg",
     link: "/services/",
   },
   {
     category: "Regeneration",
-    title: "718 Indoor Haven.",
-    img: "/pictures/indoor-nature.png",
+    title: "Renewable energy",
+    tagline: "Clean Energy. Integrated with Nature.",
+    img: "/pictures/second.png",
     link: "/services/",
   },
   {
     category: "Heritage",
-    title: "Emerald Canopy Lodge.",
-    img: "/pictures/services-agriculture.png",
+    title: "Sustainable communities",
+    tagline: "Designing Life Around Nature.",
+    img: "/pictures/third.jpg",
     link: "/services/",
   },
 ];
@@ -2663,7 +2666,7 @@ export default function HomePage() {
                       }}
                     >
                       <div>
-                        <p
+                        {/* <p
                           style={{
                             fontFamily: "var(--font-label)",
                             fontSize: ".55rem",
@@ -2674,7 +2677,7 @@ export default function HomePage() {
                           }}
                         >
                           {card.category}
-                        </p>
+                        </p> */}
                         <h3
                           style={{
                             fontFamily: "var(--font-epilogue),sans-serif",
@@ -2686,6 +2689,18 @@ export default function HomePage() {
                         >
                           {card.title}
                         </h3>
+                         <p
+                        style={{
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".55rem",
+                          fontWeight: 600,
+                          letterSpacing: ".2em",
+                          textTransform: "uppercase",
+                          color: "#C5A059",
+                        }}
+                      >
+                        {card.tagline}
+                      </p>
                       </div>
                       <span
                         className="material-symbols-outlined"
