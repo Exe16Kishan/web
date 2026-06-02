@@ -308,63 +308,63 @@ export default function ServicesAndTechnologyPage() {
         *, *::before, *::after { box-sizing: border-box; }
 
         .svc-card-v2 {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        border-radius: .25rem;
-        overflow: hidden;
-        opacity: 0;
-        border: 1px solid rgba(255,255,255,.07);
-        background: #0a0a0a;
-        transition: border-color .4s, box-shadow .4s;
-      }
-      .svc-card-v2:hover {
-        border-color: rgba(197,160,89,.35);
-        box-shadow: 0 24px 64px rgba(0,0,0,.55);
-      }
-      .svc-card-v2 .card-top-accent {
-        height: 2px;
-        background: linear-gradient(to right, #C5A059, rgba(197,160,89,.15));
-        width: 100%;
-      }
-      .svc-card-v2 .card-num {
-        font-family: var(--font-epilogue), sans-serif;
-        font-size: 5rem;
-        font-weight: 800;
-        letter-spacing: -.08em;
-        line-height: 1;
-        color: rgba(197,160,89,.07);
-        position: absolute;
-        top: 1.5rem;
-        right: 1.75rem;
-        pointer-events: none;
-        user-select: none;
-        transition: color .4s;
-      }
-      .svc-card-v2:hover .card-num { color: rgba(197,160,89,.13); }
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          padding: 0;
+          border-radius: .25rem;
+          overflow: hidden;
+          opacity: 0;
+          border: 1px solid rgba(255,255,255,.07);
+          background: #0a0a0a;
+          transition: border-color .4s, box-shadow .4s;
+        }
+        .svc-card-v2:hover {
+          border-color: rgba(197,160,89,.35);
+          box-shadow: 0 24px 64px rgba(0,0,0,.55);
+        }
+        .svc-card-v2 .card-top-accent {
+          height: 2px;
+          background: linear-gradient(to right, #C5A059, rgba(197,160,89,.15));
+          width: 100%;
+        }
+        .svc-card-v2 .card-num {
+          font-family: var(--font-epilogue), sans-serif;
+          font-size: 5rem;
+          font-weight: 800;
+          letter-spacing: -.08em;
+          line-height: 1;
+          color: rgba(197,160,89,.07);
+          position: absolute;
+          top: 1.5rem;
+          right: 1.75rem;
+          pointer-events: none;
+          user-select: none;
+          transition: color .4s;
+        }
+        .svc-card-v2:hover .card-num { color: rgba(197,160,89,.13); }
 
-      .svc-point {
-        display: flex;
-        align-items: flex-start;
-        gap: .75rem;
-        padding: .75rem 0;
-        border-bottom: 1px solid rgba(255,255,255,.05);
-        transition: padding-left .25s;
-        cursor: default;
-      }
-      .svc-point:last-child { border-bottom: none; }
-      .svc-point:hover { padding-left: .5rem; }
-      .svc-point:hover .svc-point-dot { background: #C5A059; }
-      .svc-point-dot {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: rgba(197,160,89,.45);
-        margin-top: .45rem;
-        flex-shrink: 0;
-        transition: background .25s;
-      }
+        .svc-point {
+          display: flex;
+          align-items: flex-start;
+          gap: .75rem;
+          padding: .75rem 0;
+          border-bottom: 1px solid rgba(255,255,255,.05);
+          transition: padding-left .25s;
+          cursor: default;
+        }
+        .svc-point:last-child { border-bottom: none; }
+        .svc-point:hover { padding-left: .5rem; }
+        .svc-point:hover .svc-point-dot { background: #C5A059; }
+        .svc-point-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: rgba(197,160,89,.45);
+          margin-top: .45rem;
+          flex-shrink: 0;
+          transition: background .25s;
+        }
         .svc-tag {
           display: inline-block;
           padding: .35rem .9rem;
@@ -427,33 +427,51 @@ export default function ServicesAndTechnologyPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 5;                        /* subtle — visible but not distracting */
-          filter: blur(2px) saturate(0.);
-          transform: scale(1.05);              /* slight scale so blur doesn't show edges */
-          transition: opacity 0.5s ease, transform 0.7s ease;
+          opacity: 0.22;
+          filter: blur(3px) saturate(0.6);
+          transform: scale(1.06);
+          transition: opacity 0.6s ease, transform 0.8s ease, filter 0.6s ease;
           pointer-events: none;
           z-index: 0;
         }
         .svc-card:hover .card-bg {
-          opacity: 0.30;
+          opacity: 0.38;
+          filter: blur(2px) saturate(0.8);
           transform: scale(1.12);
         }
 
-        /* Strong gradient overlay ensures text always readable */
+        /* Semi-transparent gradient overlay */
         .svc-card .card-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg,
-            rgba(8,8,8,0.55) 0%,
-            rgba(8,8,8,0.82) 50%,
-            rgba(8,8,8,0.97) 100%
+          background: linear-gradient(
+            180deg,
+            rgba(6,6,6,0.45) 0%,
+            rgba(6,6,6,0.62) 40%,
+            rgba(6,6,6,0.88) 100%
           );
           z-index: 1;
           pointer-events: none;
         }
 
         /* All card content sits above the overlay */
-        .svc-card .card-content { position: relative; z-index: 2; }
+        .svc-card .card-content {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          justify-content: flex-start;
+        }
+
+        /* Fixed-height header block so CAPABILITIES label aligns across all cards */
+        .svc-card .card-header {
+          padding: 2.5rem 2.5rem 2rem;
+          min-height: 230px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+        }
       `}</style>
 
       <div
@@ -465,7 +483,7 @@ export default function ServicesAndTechnologyPage() {
           overflowX: "hidden",
         }}
       >
-        {/* HERO  */}
+        {/* HERO */}
         <section
           style={{
             position: "relative",
@@ -746,187 +764,152 @@ export default function ServicesAndTechnologyPage() {
               </p>
             </div>
 
+            {/* ── CARDS GRID — gap replaces the 1px background divider trick ── */}
             <div
               ref={cardsRef}
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                gap: "1px",
-                background: "rgba(255,255,255,.06)",
-                border: "1px solid rgba(255,255,255,.06)",
-                borderRadius: ".35rem",
-                overflow: "hidden",
+                gap: "1.25rem",
               }}
             >
-              {services.map((svc, idx) => (
+              {services.map((svc) => (
                 <div
                   key={svc.num}
                   className="svc-card svc-card-v2"
                   style={{ opacity: 0 }}
                 >
-                  {/* Top accent line */}
-                  {/* <div className="card-top-accent" /> */}
+                  {/* Blurred background image */}
+                  <img
+                    className="card-bg"
+                    src={svc.img}
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  {/* Semi-transparent overlay */}
+                  <div className="card-overlay" />
 
-                  {/* Ghost number */}
-                  {/* <span className="card-num">{svc.num}</span> */}
+                  {/* All card content */}
+                  <div className="card-content">
 
-                  {/* Header block */}
-                  <div
-                    style={{
-                      padding: "2.5rem 2.5rem 2rem",
-                      borderBottom: "1px solid rgba(255,255,255,.06)",
-                      position: "relative",
-                    }}
-                  >
-                    {/* Icon */}
-                    {/* <div
+                    {/* ── Fixed-height header so all three cards align ── */}
+                    <div className="card-header">
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-epilogue),sans-serif",
+                          fontWeight: 700,
+                          fontSize: "1.4rem",
+                          letterSpacing: "-.03em",
+                          color: "#fff",
+                          marginBottom: ".5rem",
+                          lineHeight: 1.1,
+                        }}
+                      >
+                        {svc.title}
+                      </h3>
+                      <p
+                        style={{
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".55rem",
+                          fontWeight: 600,
+                          letterSpacing: ".2em",
+                          textTransform: "uppercase",
+                          color: "#C5A059",
+                          marginBottom: "1.25rem",
+                        }}
+                      >
+                        {svc.tagline}
+                      </p>
+                      <p
+                        style={{
+                          color: "rgba(255,255,255,.48)",
+                          fontSize: ".85rem",
+                          lineHeight: 1.8,
+                        }}
+                      >
+                        {svc.desc}
+                      </p>
+                    </div>
+
+                    {/* Points list */}
+                    <div style={{ padding: "2rem 2.5rem", flex: 1 }}>
+                      <span
+                        style={{
+                          display: "block",
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".52rem",
+                          fontWeight: 600,
+                          letterSpacing: ".26em",
+                          textTransform: "uppercase",
+                          color: "rgba(197,160,89,.55)",
+                          marginBottom: "1.25rem",
+                        }}
+                      >
+                        Capabilities
+                      </span>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        {svc.tags.map((tag) => (
+                          <div key={tag} className="svc-point">
+                            <span className="svc-point-dot" />
+                            <span
+                              style={{
+                                fontSize: ".82rem",
+                                color: "rgba(255,255,255,.58)",
+                                lineHeight: 1.55,
+                                letterSpacing: ".01em",
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Footer CTA */}
+                    <div
                       style={{
-                        width: 52,
-                        height: 52,
-                        borderRadius: ".35rem",
-                        background: "rgba(197,160,89,.08)",
-                        border: "1px solid rgba(197,160,89,.2)",
+                        padding: "1.5rem 2.5rem",
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: "1.75rem",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <span
-                        className="material-symbols-outlined"
-                        style={{ color: "#C5A059", fontSize: 26 }}
+                      <button
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: ".5rem",
+                          background: "none",
+                          border: "none",
+                          cursor: "pointer",
+                          fontFamily: "var(--font-label)",
+                          fontSize: ".58rem",
+                          fontWeight: 600,
+                          letterSpacing: ".2em",
+                          textTransform: "uppercase",
+                          color: "#C5A059",
+                          transition: "gap .25s",
+                          padding: 0,
+                        }}
+                        onMouseEnter={(e) =>
+                          ((e.currentTarget as HTMLButtonElement).style.gap =
+                            ".85rem")
+                        }
+                        onMouseLeave={(e) =>
+                          ((e.currentTarget as HTMLButtonElement).style.gap =
+                            ".5rem")
+                        }
                       >
-                        {svc.icon}
-                      </span>
-                    </div> */}
-
-                    <h3
-                      style={{
-                        fontFamily: "var(--font-epilogue),sans-serif",
-                        fontWeight: 700,
-                        fontSize: "1.4rem",
-                        letterSpacing: "-.03em",
-                        color: "#fff",
-                        marginBottom: ".5rem",
-                        lineHeight: 1.1,
-                      }}
-                    >
-                      {svc.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-label)",
-                        fontSize: ".55rem",
-                        fontWeight: 600,
-                        letterSpacing: ".2em",
-                        textTransform: "uppercase",
-                        color: "#C5A059",
-                        marginBottom: "1.25rem",
-                      }}
-                    >
-                      {svc.tagline}
-                    </p>
-                    <p
-                      style={{
-                        color: "rgba(255,255,255,.48)",
-                        fontSize: ".85rem",
-                        lineHeight: 1.8,
-                      }}
-                    >
-                      {svc.desc}
-                    </p>
-                  </div>
-
-                  {/* Points list */}
-                  <div style={{ padding: "2rem 2.5rem", flex: 1 }}>
-                    <span
-                      style={{
-                        display: "block",
-                        fontFamily: "var(--font-label)",
-                        fontSize: ".52rem",
-                        fontWeight: 600,
-                        letterSpacing: ".26em",
-                        textTransform: "uppercase",
-                        color: "rgba(197,160,89,.55)",
-                        marginBottom: "1.25rem",
-                      }}
-                    >
-                      Capabilities
-                    </span>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      {svc.tags.map((tag) => (
-                        <div key={tag} className="svc-point">
-                          <span className="svc-point-dot" />
-                          <span
-                            style={{
-                              fontSize: ".82rem",
-                              color: "rgba(255,255,255,.58)",
-                              lineHeight: 1.55,
-                              letterSpacing: ".01em",
-                            }}
-                          >
-                            {tag}
-                          </span>
-                        </div>
-                      ))}
+                        Read more
+                        <span
+                          className="material-symbols-outlined"
+                          style={{ fontSize: 15 }}
+                        >
+                          arrow_forward
+                        </span>
+                      </button>
                     </div>
-                  </div>
-
-                  {/* Footer CTA */}
-                  <div
-                    style={{
-                      padding: "1.5rem 2.5rem",
-                      borderTop: "1px solid rgba(255,255,255,.05)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <button
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: ".5rem",
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        fontFamily: "var(--font-label)",
-                        fontSize: ".58rem",
-                        fontWeight: 600,
-                        letterSpacing: ".2em",
-                        textTransform: "uppercase",
-                        color: "#C5A059",
-                        transition: "gap .25s",
-                        padding: 0,
-                      }}
-                      onMouseEnter={(e) =>
-                        ((e.currentTarget as HTMLButtonElement).style.gap =
-                          ".85rem")
-                      }
-                      onMouseLeave={(e) =>
-                        ((e.currentTarget as HTMLButtonElement).style.gap =
-                          ".5rem")
-                      }
-                    >
-                      Explore Vertical
-                      <span
-                        className="material-symbols-outlined"
-                        style={{ fontSize: 15 }}
-                      >
-                        arrow_forward
-                      </span>
-                    </button>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-epilogue),sans-serif",
-                        fontSize: ".65rem",
-                        fontWeight: 300,
-                        color: "rgba(255,255,255,.12)",
-                        letterSpacing: ".05em",
-                      }}
-                    >
-                      {String(idx + 1).padStart(2, "0")} / 03
-                    </span>
                   </div>
                 </div>
               ))}
@@ -990,7 +973,7 @@ export default function ServicesAndTechnologyPage() {
           </W>
         </section>
 
-        {/* TECHNOLOGY  */}
+        {/* TECHNOLOGY */}
         <section
           id="technology"
           ref={techRef}
@@ -1109,8 +1092,8 @@ export default function ServicesAndTechnologyPage() {
             {/* Stats bar */}
             <div className="stats-bar">
               {[
-                { label: "Active Nodes", value: "14+" },
-                { label: "Prediction Accuracy", value: "99.4%" },
+                { label: "Active Nodes", value: "5" },
+                { label: "Prediction Accuracy", value: "95%" },
                 { label: "Carbon Credits Issued", value: "8,340" },
                 { label: "Adaptive Response", value: "Real-time" },
               ].map((stat) => (
@@ -1280,7 +1263,7 @@ export default function ServicesAndTechnologyPage() {
           </W>
         </section>
 
-        {/* TECHNOLOGICAL PILLARS  */}
+        {/* TECHNOLOGICAL PILLARS */}
         <section
           ref={pillarsRef}
           style={{
@@ -1518,7 +1501,7 @@ export default function ServicesAndTechnologyPage() {
                         color: "#C5A059",
                       }}
                     >
-                      14+
+                      5
                     </span>
                   </div>
                   <div
@@ -1532,7 +1515,7 @@ export default function ServicesAndTechnologyPage() {
                     <div
                       style={{
                         height: "100%",
-                        width: "75%",
+                        width: "25%",
                         background: "#C5A059",
                         borderRadius: 99,
                       }}
@@ -1675,7 +1658,7 @@ export default function ServicesAndTechnologyPage() {
                       protect crops and optimise energy generation cycles.
                     </p>
                     {[
-                      ["Prediction Accuracy", "99.4%"],
+                      ["Prediction Accuracy", "95%"],
                       ["Adaptive Response", "Real-time"],
                     ].map(([label, val]) => (
                       <div
@@ -1809,8 +1792,8 @@ export default function ServicesAndTechnologyPage() {
                 </p>
               </div>
               <div className="c-anim cta-btns" style={{ opacity: 0 }}>
-                <a
-                  href="/connect"
+                
+                  <a href="/connect"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",

@@ -95,7 +95,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 }}
               >
                 <img
-                  src="/logos/NavBrandLogo.png"
+                  src="/logos/Branding_Logo_Dark.png"
                   alt="Gugri Industries"
                   style={{ height: 190, width: "auto", objectFit: "contain" }}
                 />

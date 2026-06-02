@@ -5,13 +5,29 @@ import Link from "next/link";
 const footerCols = [
   {
     title: "Architecture",
-    links: ["Estate Models", "Configurator", "Global Locations", "Services"],
+    links: [
+      { title: "Estate Models", link: "#" },
+      { title: "Configurator", link: "#" },
+      { title: "Global Locations", link: "#" },
+      { title: "Services", link: "#" },
+    ],
   },
   {
     title: "Company",
-    links: ["Sustainability", "Careers", "Investor Relations", "Newsroom"],
+    links: [
+      { title: "Sustainability", link: "#" },
+      { title: "Investor Relations", link: "#" },
+      { title: "Newsroom", link: "#" },
+    ],
   },
-  { title: "Social", links: ["Instagram", "LinkedIn", "Youtube"] },
+  {
+    title: "Social",
+    links: [
+      { title: "Instagram", link: "#" },
+      { title: "LinkedIn", link: "#" },
+      { title: "Youtube", link: "#" },
+    ],
+  },
 ];
 
 const label: React.CSSProperties = {
@@ -183,10 +199,10 @@ export default function Footer() {
                 International / English
               </div>
               <img
-                src="/logos/NavBrandLogo.png"
+                src="/logos/CompanyLogo.png"
                 alt="Gugri Industries"
                 style={{
-                  height: 110,
+                  height: 180,
                   width: "auto",
                   objectFit: "contain",
                   display: "block",
@@ -198,10 +214,10 @@ export default function Footer() {
             {footerCols.map((col) => (
               <div key={col.title} className="footer-link-col">
                 <span style={label}>{col.title}</span>
-                {col.links.map((l) => (
+                {col.links.map(({link,title}) => (
                   <Link
-                    key={l}
-                    href="#"
+                    key={title}
+                    href={link}
                     style={footLink}
                     onMouseEnter={(e) =>
                       ((e.currentTarget as HTMLAnchorElement).style.color =
@@ -212,7 +228,7 @@ export default function Footer() {
                         "rgba(255,255,255,.35)")
                     }
                   >
-                    {l}
+                    {title}
                   </Link>
                 ))}
               </div>
@@ -360,7 +376,7 @@ export default function Footer() {
                 textAlign: "center",
               }}
             >
-              © 2024 GUGRI INDUSTRIES. Engineering the Natural World. All Rights
+              © 2026 GUGRI INDUSTRIES. Engineering the Natural World. All Rights
               Reserved.
             </p>
           </div>

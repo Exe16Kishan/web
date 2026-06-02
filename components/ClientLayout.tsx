@@ -6,6 +6,7 @@ import SideMenu from "@/components/SideMenu";
 import SmoothScroll from "./SmoothScroll";
 import ScrollProgress from "./ScrollProgress";
 
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   

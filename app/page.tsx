@@ -91,22 +91,25 @@ const journeyCards = [
     category: "Architecture",
     title: "Eco Villa Estate.",
     img: "/pictures/eco-villas.jpg",
+    link: "/services/",
   },
   {
     category: "Regeneration",
     title: "718 Indoor Haven.",
     img: "/pictures/indoor-nature.png",
+    link: "/services/",
   },
   {
     category: "Heritage",
     title: "Emerald Canopy Lodge.",
     img: "/pictures/services-agriculture.png",
+    link: "/services/",
   },
 ];
 
 const discoverCards = [
   {
-    title: "Green Architecture",
+    title: "Sustainable Ecosystems",
     desc: "Vertical living in the heart of nature.",
     img: "/pictures/FarmbyLake.png",
   },
@@ -795,11 +798,10 @@ export default function HomePage() {
                   color: bgMode === "light" ? LIGHT.heading : DARK.heading,
                 }}
               >
-                Land Is Not a Resource.
-                <br />
-                It Is an{" "}
+                The Future of Earth
+                <br />{" "}
                 <em style={{ color: "#C5A059", fontStyle: "italic" }}>
-                  Asset to Regenerate.
+                  Is Still Being Written.
                 </em>
               </h2>
               <p
@@ -813,8 +815,8 @@ export default function HomePage() {
                   opacity: 0,
                 }}
               >
-                We are a regenerative ecosystem development company that
-                architects multi-layered, self-sustaining land systems — where
+                We are a Sustainable development Organization that architects
+                multi-layered, self-sustaining land ecosystems — where
                 agriculture, renewable energy, carbon sequestration, water
                 conservation, wellness infrastructure, and future communities do
                 not compete for land, but coexist and reinforce one another.
@@ -853,11 +855,13 @@ export default function HomePage() {
                       lineHeight: 1.8,
                     }}
                   >
-                    To us, land is not a resource to be exhausted for short-term
-                    gain, but an asset to be regenerated for generations to
-                    come. Every project is built on a simple belief: development
-                    should leave land healthier, communities stronger, and the
-                    future more abundant than before.
+                    Our mission is to transform underutilized or conventionally
+                    exploited land into regenerative ecosystems capable of
+                    producing sustainable agriculture, clean energy,
+                    environmental restoration, long-term economic resilience,
+                    community infrastructure, wellness-oriented living, and
+                    future-ready development — all within one interconnected
+                    system.
                   </p>
                 </div>
                 <div
@@ -1785,7 +1789,7 @@ export default function HomePage() {
                 }}
               >
                 <img
-                  src="/pictures/services-agriculture.png"
+                  src="/pictures/ProblemSideImage.jpg"
                   alt="Degraded farmland representing the land crisis"
                   style={{
                     width: "100%",
@@ -1794,6 +1798,7 @@ export default function HomePage() {
                     display: "block",
                     filter: "saturate(.7) contrast(1.1)",
                   }}
+                  className="object-[40%_55%]"
                 />
                 {/* dark overlay */}
                 <div
@@ -1805,7 +1810,7 @@ export default function HomePage() {
                   }}
                 />
                 {/* floating stat badge */}
-                <div
+                {/* <div
                   style={{
                     position: "absolute",
                     top: "2rem",
@@ -1841,7 +1846,7 @@ export default function HomePage() {
                   >
                     People face hunger
                   </span>
-                </div>
+                </div> */}
 
                 {/* bottom-left label */}
                 <div
@@ -2603,93 +2608,94 @@ export default function HomePage() {
             </div>
             <div className="cards-grid-3">
               {journeyCards.map((card) => (
-                <div
-                  key={card.title}
-                  className="card-anim"
-                  style={{
-                    position: "relative",
-                    aspectRatio: "4/5",
-                    borderRadius: ".25rem",
-                    overflow: "hidden",
-                    background: "#e5e5e5",
-                    cursor: "pointer",
-                    opacity: 0,
-                  }}
-                  onMouseEnter={(e) => {
-                    const img = e.currentTarget.querySelector(
-                      "img",
-                    ) as HTMLImageElement;
-                    if (img) img.style.transform = "scale(1.06)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const img = e.currentTarget.querySelector(
-                      "img",
-                    ) as HTMLImageElement;
-                    if (img) img.style.transform = "scale(1)";
-                  }}
-                >
-                  <img
-                    src={card.img}
-                    alt={card.title}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      transition: "transform .7s ease",
-                    }}
-                  />
+                <Link href={card.link} key={card.title}>
                   <div
+                    className="card-anim"
                     style={{
-                      position: "absolute",
-                      inset: 0,
-                      background:
-                        "linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 55%)",
+                      position: "relative",
+                      aspectRatio: "4/5",
+                      borderRadius: ".25rem",
+                      overflow: "hidden",
+                      background: "#e5e5e5",
+                      cursor: "pointer",
+                      opacity: 0,
                     }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: "2.5rem",
-                      left: "2.5rem",
-                      right: "2.5rem",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-end",
+                    onMouseEnter={(e) => {
+                      const img = e.currentTarget.querySelector(
+                        "img",
+                      ) as HTMLImageElement;
+                      if (img) img.style.transform = "scale(1.06)";
+                    }}
+                    onMouseLeave={(e) => {
+                      const img = e.currentTarget.querySelector(
+                        "img",
+                      ) as HTMLImageElement;
+                      if (img) img.style.transform = "scale(1)";
                     }}
                   >
-                    <div>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-label)",
-                          fontSize: ".55rem",
-                          letterSpacing: ".22em",
-                          textTransform: "uppercase",
-                          color: "rgba(255,255,255,.55)",
-                          marginBottom: ".35rem",
-                        }}
-                      >
-                        {card.category}
-                      </p>
-                      <h3
-                        style={{
-                          fontFamily: "var(--font-epilogue),sans-serif",
-                          fontWeight: 600,
-                          fontSize: "1.3rem",
-                          color: "#fff",
-                          letterSpacing: "-.02em",
-                        }}
-                      >
-                        {card.title}
-                      </h3>
-                    </div>
-                    <span
-                      className="material-symbols-outlined"
-                      style={{ color: "#fff", fontSize: 26 }}
+                    <img
+                      src={card.img}
+                      alt={card.title}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        transition: "transform .7s ease",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 55%)",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "2.5rem",
+                        left: "2.5rem",
+                        right: "2.5rem",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "flex-end",
+                      }}
                     >
-                      arrow_forward
-                    </span>
+                      <div>
+                        <p
+                          style={{
+                            fontFamily: "var(--font-label)",
+                            fontSize: ".55rem",
+                            letterSpacing: ".22em",
+                            textTransform: "uppercase",
+                            color: "rgba(255,255,255,.55)",
+                            marginBottom: ".35rem",
+                          }}
+                        >
+                          {card.category}
+                        </p>
+                        <h3
+                          style={{
+                            fontFamily: "var(--font-epilogue),sans-serif",
+                            fontWeight: 600,
+                            fontSize: "1.3rem",
+                            color: "#fff",
+                            letterSpacing: "-.02em",
+                          }}
+                        >
+                          {card.title}
+                        </h3>
+                      </div>
+                      <span
+                        className="material-symbols-outlined"
+                        style={{ color: "#fff", fontSize: 26 }}
+                      >
+                        arrow_forward
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </W>

@@ -80,7 +80,7 @@ export const blogs = [
     id: "regenerative-farming-future",
     category: "Agriculture",
     readTime: "6 min read",
-    date: "Mar 2025",
+    date: "Mar 2026",
     title: "Why Regenerative Farming Is the Future of Global Food Security",
     excerpt:
       "Conventional agriculture is depleting the very soil it depends on. We explore how regenerative techniques are reversing this — and creating more yield per acre in the process.",
@@ -116,7 +116,7 @@ For landowners and investors, regenerative land is increasingly seen as the most
     id: "agrivoltaics-dual-land-use",
     category: "Energy",
     readTime: "4 min read",
-    date: "Feb 2025",
+    date: "Feb 2026",
     title: "Agrivoltaics: When Solar Panels and Crops Grow Together",
     excerpt:
       "Dual-use land is no longer a concept — it's a reality generating 3x more value per hectare than conventional single-use agriculture.",
@@ -140,7 +140,7 @@ The future of Indian agriculture is not a choice between food and energy. It is 
     id: "biophilic-architecture-wellness",
     category: "Architecture",
     readTime: "5 min read",
-    date: "Jan 2025",
+    date: "Jan 2026",
     title:
       "Biophilic Architecture: How Nature-Integrated Design Transforms Mental Health",
     excerpt:
@@ -165,7 +165,7 @@ In our flagship estate projects, biophilic design is not an add-on. It is the br
     id: "carbon-credits-land",
     category: "Sustainability",
     readTime: "7 min read",
-    date: "Dec 2024",
+    date: "Jan 2026",
     title:
       "Carbon Credits: How Your Land Can Generate Passive Revenue While Healing the Planet",
     excerpt:
@@ -538,7 +538,7 @@ export default function ExperiencePage() {
                   >
                     Explore Retreats
                   </button>
-                  <button
+                  {/* <button
                     style={{
                       background: "transparent",
                       border: "none",
@@ -556,7 +556,7 @@ export default function ExperiencePage() {
                     }}
                   >
                     View Private Gallery
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -669,7 +669,7 @@ export default function ExperiencePage() {
                 }}
               >
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwPeY19orczkCitxPeIgWKKntK2LNEUPLXZEwhRCXr2PUNWwGgnb-pw_AU3-QeCm8lbiVj7W589nOuYbuXt9pY_0TdIWKLMyJXuwOSdweC_2-pxdl8ArIa_b6uw5q6slrWpJIUB9efa3sWEeNLHPUwBA_biI05YaqMozQVsopbxwSrCoWJeFzI1QhYoce5J31NUqOlJlRUXaNANhV4dgSn4RrnrNquBSZQjZSWfdLvXCdcJo11ZLDUZ9IOffFiU4JBvyoy5KEtIoQ"
+                  src="/pictures/Beach.jpg"
                   alt="Lagoon"
                   style={{
                     width: "100%",
@@ -744,12 +744,12 @@ export default function ExperiencePage() {
               <div className="bento-right">
                 {[
                   {
-                    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDypP0eHa--oxOtdSXIKfVJXPUBYQarRhUs40eWW5l4efsv9m77_-n3ExWDz1b_KBaR97JAUiCYwOgehZ1iDgFvLlQkm9OS4OJribpakCwJ_44v8sg_ZsXWOqJfMn8sW8LLfKNxu18TK_v6a65xAxywMti-8Lazh5llETpfrr4ivMxA2Yu_j10LJnL4JModklxbgr24rBOIsc6SFwrQb5H63_F9ElQ5l-5HFmtrFqXWp0Kvf03Aa_CCQvhEmNaBcY799y2FtvXKG0M",
+                    img: "/pictures/services-resort.png",
                     title: "Open Landscape Villas",
                     sub: "Blurring the boundary of home.",
                   },
                   {
-                    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYxO9LGVq630sLcF5T6sYvFa9fqbUJRDg7AKjvwRNcQT5rNfK7grs_wyVBOlSXTjAwBnf7UF9CQLtvt9ayunNleeXBnurff8uOp4Xrc4IPt36FzUytMexTUmMvGoaoz_O3pqyyqK_Sznx1CF1uryPc021oM2WcfLL1ra-A68i2qz5Ld_2g8wofNtKhtMprQoXH3Fc9PGB27XujTfOCY0d_byXcHtRAQR2DKJL4gi0pGtr92Jsb6E_Uo8Ahcwf9AFgOA8uEnnfTOyQ",
+                    img: "/pictures/ExperienceBento.jpg",
                     title: "Nature-Integrated Infrastructure",
                     sub: "Powering a living ecosystem.",
                   },
@@ -871,7 +871,7 @@ export default function ExperiencePage() {
                   </em>
                 </h2>
               </div>
-              <button
+              {/* <button
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -909,7 +909,7 @@ export default function ExperiencePage() {
                 >
                   arrow_forward
                 </span>
-              </button>
+              </button> */}
             </div>
 
             <div className="gallery-masonry">
@@ -1086,7 +1086,7 @@ export default function ExperiencePage() {
                   background: "rgba(255,255,255,.06)",
                 }}
               />
-              <span
+              {/* <span
                 style={{
                   fontFamily: "var(--font-label)",
                   fontSize: ".55rem",
@@ -1098,7 +1098,7 @@ export default function ExperiencePage() {
                 }}
               >
                 8 of 64 images shown
-              </span>
+              </span> */}
               <div
                 style={{
                   height: 1,

@@ -4,7 +4,10 @@ import Footer from "@/components/Footer";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useActionState } from "react";
+import { toast } from "sonner";
+import { submitContactForm, type ContactFormState } from "@/app/actions/contact";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,12 +33,46 @@ const W = ({
   </div>
 );
 
+const initialState: ContactFormState = {
+  success: false,
+  message: "",
+};
+
 export default function ConnectPage() {
   const heroRef = useRef<HTMLElement>(null);
-  // const videoRef    = useRef<HTMLVideoElement>(null);
-
   const formColRef = useRef<HTMLDivElement>(null);
   const sideColRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const [state, formAction, pending] = useActionState(
+    submitContactForm,
+    initialState
+  );
+
+  // Reset form on success
+  const [lastSuccess, setLastSuccess] = useState(false);
+  if (state.success && !lastSuccess) {
+    setLastSuccess(true);
+    formRef.current?.reset();
+    setTimeout(() => setLastSuccess(false), 100);
+  }
+
+  // Sonner toast on state change
+  useEffect(() => {
+    if (state.message) {
+      if (state.success) {
+        toast.success(state.message, {
+          duration: 5000,
+          icon: "✦",
+        });
+      } else {
+        toast.error(state.message, {
+          duration: 6000,
+          icon: "✕",
+        });
+      }
+    }
+  }, [state]);
 
   useGSAP(() => {
     if (heroRef.current) {
@@ -49,7 +86,7 @@ export default function ConnectPage() {
           duration: 1.15,
           ease: "power3.out",
           delay: 0.3,
-        },
+        }
       );
     }
     if (formColRef.current) {
@@ -67,7 +104,7 @@ export default function ConnectPage() {
               stagger: 0.08,
               duration: 0.72,
               ease: "power3.out",
-            },
+            }
           ),
       });
     }
@@ -86,13 +123,12 @@ export default function ConnectPage() {
               stagger: 0.12,
               duration: 0.72,
               ease: "power3.out",
-            },
+            }
           ),
       });
     }
   }, []);
 
-  // Shared input/focus styles
   const inputBase: React.CSSProperties = {
     width: "100%",
     background: "transparent",
@@ -106,6 +142,7 @@ export default function ConnectPage() {
     transition: "border-color 0.3s",
     boxSizing: "border-box",
   };
+
   const fieldLabel: React.CSSProperties = {
     display: "block",
     fontFamily: "var(--font-label)",
@@ -116,6 +153,7 @@ export default function ConnectPage() {
     color: "rgba(255,255,255,0.35)",
     marginBottom: "0.65rem",
   };
+
   const eyebrow: React.CSSProperties = {
     fontFamily: "var(--font-label)",
     fontSize: "0.57rem",
@@ -126,22 +164,24 @@ export default function ConnectPage() {
     display: "block",
     marginBottom: "1.25rem",
   };
+
   const onFocus = (
     e: React.FocusEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => ((e.currentTarget as HTMLElement).style.borderBottomColor = "#C5A059");
+
   const onBlur = (
     e: React.FocusEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => ((e.currentTarget as HTMLElement).style.borderBottomColor = "#434843");
+
+  const getFieldError = (field: string) => state.errors?.[field]?.[0];
 
   return (
     <>
       <style>{`
-
-        /* Body  */
         .connect-body {
           display: grid;
           grid-template-columns: 1fr;
@@ -151,16 +191,12 @@ export default function ConnectPage() {
         @media (min-width: 1024px) {
           .connect-body { grid-template-columns: 58% 42%; min-height: 85vh; }
         }
-
-        /* Form column padding */
         .connect-form-col {
           padding: clamp(3rem, 6vw, 6.5rem) clamp(1.25rem, 10vw, 7rem);
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
-
-        /* Sidebar padding */
         .connect-side-col {
           background: #131313;
           border-left: none;
@@ -178,8 +214,6 @@ export default function ConnectPage() {
             gap: 0;
           }
         }
-
-        /* Sidebar */
         .connect-side-info {
           display: flex;
           flex-direction: column;
@@ -192,8 +226,6 @@ export default function ConnectPage() {
             gap: 2.5rem;
           }
         }
-
-        /* Two-col form  */
         .form-two-col {
           display: grid;
           grid-template-columns: 1fr;
@@ -202,13 +234,9 @@ export default function ConnectPage() {
         @media (min-width: 640px) {
           .form-two-col { grid-template-columns: 1fr 1fr; gap: 0 3rem; }
         }
-
-        /* Input focus  */
         .select-wrap select:focus {
           border-bottom-color: #C5A059;
         }
-
-        /* Hero text size  */
         .connect-hero-title {
           font-family: var(--font-epilogue), sans-serif;
           font-weight: 900;
@@ -218,6 +246,32 @@ export default function ConnectPage() {
           text-transform: uppercase;
           color: #fff;
           margin-bottom: 1.6rem;
+        }
+        .error-text {
+          color: #ff6b6b;
+          font-size: 0.75rem;
+          margin-top: 0.35rem;
+          font-family: var(--font-body);
+        }
+        .success-banner {
+          background: rgba(197, 160, 89, 0.1);
+          border: 1px solid rgba(197, 160, 89, 0.3);
+          border-radius: 0.375rem;
+          padding: 1rem 1.25rem;
+          margin-bottom: 1.5rem;
+          color: #C5A059;
+          font-size: 0.9rem;
+          line-height: 1.5;
+        }
+        .error-banner {
+          background: rgba(255, 107, 107, 0.08);
+          border: 1px solid rgba(255, 107, 107, 0.25);
+          border-radius: 0.375rem;
+          padding: 1rem 1.25rem;
+          margin-bottom: 1.5rem;
+          color: #ff6b6b;
+          font-size: 0.9rem;
+          line-height: 1.5;
         }
       `}</style>
 
@@ -236,7 +290,6 @@ export default function ConnectPage() {
             overflow: "hidden",
           }}
         >
-          {/* BG */}
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
             <video
               src="/videos/Connect.mp4"
@@ -278,7 +331,6 @@ export default function ConnectPage() {
             />
           </div>
 
-          {/* Text */}
           <div
             style={{
               position: "relative",
@@ -311,7 +363,6 @@ export default function ConnectPage() {
             </p>
           </div>
 
-          {/* Scroll hint */}
           <div
             style={{
               position: "absolute",
@@ -346,7 +397,6 @@ export default function ConnectPage() {
           {/* ── FORM COLUMN ── */}
           <div ref={formColRef} className="connect-form-col">
             <div style={{ maxWidth: 500, width: "100%" }}>
-              {/* Eyebrow */}
               <div
                 className="f-anim"
                 style={{
@@ -406,193 +456,219 @@ export default function ConnectPage() {
                 Submit your details for a private architectural consultation.
               </p>
 
-              {/* Name + Email */}
-              <div className="form-two-col">
-                <div
-                  className="f-anim"
-                  style={{ marginBottom: "2.25rem", opacity: 0 }}
-                >
-                  <label style={fieldLabel}>Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="Your full name"
-                    style={inputBase}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                  />
-                </div>
-                <div
-                  className="f-anim"
-                  style={{ marginBottom: "2.25rem", opacity: 0 }}
-                >
-                  <label style={fieldLabel}>Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    style={inputBase}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                  />
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div
-                className="f-anim"
-                style={{ marginBottom: "2.25rem", opacity: 0 }}
-              >
-                <label style={fieldLabel}>Phone (optional)</label>
-                <input
-                  type="tel"
-                  placeholder="+91 000 000 0000"
-                  style={inputBase}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                />
-              </div>
-
-              {/* Project type */}
-              <div
-                className="f-anim select-wrap"
-                style={{
-                  marginBottom: "2.25rem",
-                  position: "relative",
-                  opacity: 0,
-                }}
-              >
-                <label style={{ ...fieldLabel, color: "#C5A059" }}>
-                  Select Project Type
-                </label>
-                <div style={{ position: "relative" }}>
-                  <select
-                    defaultValue=""
-                    style={{
-                      ...inputBase,
-                      appearance: "none",
-                      cursor: "pointer",
-                      paddingRight: "1.5rem",
-                      fontSize: ".88rem",
-                      color: "rgba(255,255,255,.65)",
-                    }}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
+              <form ref={formRef} action={formAction}>
+                {/* Name + Email */}
+                <div className="form-two-col">
+                  <div
+                    className="f-anim"
+                    style={{ marginBottom: "2.25rem", opacity: 0 }}
                   >
-                    <option value="" style={{ background: "#131313" }}>
-                      Area of Interest
-                    </option>
-                    <option value="res" style={{ background: "#131313" }}>
-                      Residential Masterpiece
-                    </option>
-                    <option value="com" style={{ background: "#131313" }}>
-                      Sustainable Commercial Space
-                    </option>
-                    <option value="regen" style={{ background: "#131313" }}>
-                      Regenerative Strategy
-                    </option>
-                    <option value="press" style={{ background: "#131313" }}>
-                      Press &amp; Media
-                    </option>
-                  </select>
+                    <label style={fieldLabel}>Full Name</label>
+                    <input
+                      name="fullName"
+                      type="text"
+                      placeholder="Your full name"
+                      style={inputBase}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      required
+                    />
+                    {getFieldError("fullName") && (
+                      <div className="error-text">{getFieldError("fullName")}</div>
+                    )}
+                  </div>
+                  <div
+                    className="f-anim"
+                    style={{ marginBottom: "2.25rem", opacity: 0 }}
+                  >
+                    <label style={fieldLabel}>Email Address</label>
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder="your@email.com"
+                      style={inputBase}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      required
+                    />
+                    {getFieldError("email") && (
+                      <div className="error-text">{getFieldError("email")}</div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div
+                  className="f-anim"
+                  style={{ marginBottom: "2.25rem", opacity: 0 }}
+                >
+                  <label style={fieldLabel}>Phone (optional)</label>
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="+91 000 000 0000"
+                    style={inputBase}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                </div>
+
+                {/* Project type */}
+                <div
+                  className="f-anim select-wrap"
+                  style={{
+                    marginBottom: "2.25rem",
+                    position: "relative",
+                    opacity: 0,
+                  }}
+                >
+                  <label style={{ ...fieldLabel, color: "#C5A059" }}>
+                    Select Project Type
+                  </label>
+                  <div style={{ position: "relative" }}>
+                    <select
+                      name="projectType"
+                      defaultValue=""
+                      style={{
+                        ...inputBase,
+                        appearance: "none",
+                        cursor: "pointer",
+                        paddingRight: "1.5rem",
+                        fontSize: ".88rem",
+                        color: "rgba(255,255,255,.65)",
+                      }}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      required
+                    >
+                      <option value="" style={{ background: "#131313" }}>
+                        Area of Interest
+                      </option>
+                      <option value="res" style={{ background: "#131313" }}>
+                        Residential Masterpiece
+                      </option>
+                      <option value="com" style={{ background: "#131313" }}>
+                        Sustainable Commercial Space
+                      </option>
+                      <option value="regen" style={{ background: "#131313" }}>
+                        Regenerative Strategy
+                      </option>
+                      <option value="press" style={{ background: "#131313" }}>
+                        Press &amp; Media
+                      </option>
+                    </select>
+                    <span
+                      className="material-symbols-outlined"
+                      style={{
+                        position: "absolute",
+                        right: 0,
+                        bottom: ".6rem",
+                        fontSize: 18,
+                        color: "rgba(255,255,255,.35)",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      expand_more
+                    </span>
+                  </div>
+                  {getFieldError("projectType") && (
+                    <div className="error-text">{getFieldError("projectType")}</div>
+                  )}
+                </div>
+
+                {/* Message */}
+                <div
+                  className="f-anim"
+                  style={{ marginBottom: "2.5rem", opacity: 0 }}
+                >
+                  <label style={fieldLabel}>Message</label>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    placeholder="Tell us about your project vision..."
+                    style={{ ...inputBase, resize: "none", paddingTop: ".4rem" }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    required
+                  />
+                  {getFieldError("message") && (
+                    <div className="error-text">{getFieldError("message")}</div>
+                  )}
+                </div>
+
+                {/* Privacy note */}
+                <p
+                  className="f-anim"
+                  style={{
+                    fontSize: ".72rem",
+                    color: "rgba(255,255,255,.22)",
+                    lineHeight: 1.6,
+                    marginBottom: "1.75rem",
+                    opacity: 0,
+                  }}
+                >
+                  By submitting, you agree to our Privacy Policy. We never share
+                  your data with third parties.
+                </p>
+
+                {/* Submit */}
+                <button
+                  className="f-anim"
+                  type="submit"
+                  disabled={pending}
+                  style={{
+                    width: "100%",
+                    background: pending ? "#555" : "#C5A059",
+                    color: "#000",
+                    fontFamily: "var(--font-label)",
+                    fontWeight: 600,
+                    fontSize: ".62rem",
+                    letterSpacing: ".22em",
+                    textTransform: "uppercase",
+                    padding: "1.25rem 1.5rem",
+                    border: "none",
+                    borderRadius: ".375rem",
+                    cursor: pending ? "not-allowed" : "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: ".75rem",
+                    transition: "filter .25s, transform .15s, background .25s",
+                    opacity: 0,
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!pending)
+                      (e.currentTarget as HTMLButtonElement).style.filter =
+                        "brightness(1.1)";
+                  }}
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLButtonElement).style.filter = "none")
+                  }
+                  onMouseDown={(e) => {
+                    if (!pending)
+                      (e.currentTarget as HTMLButtonElement).style.transform =
+                        "scale(0.985)";
+                  }}
+                  onMouseUp={(e) =>
+                    ((e.currentTarget as HTMLButtonElement).style.transform =
+                      "scale(1)")
+                  }
+                >
+                  {pending ? "Sending..." : "Send Message"}
                   <span
                     className="material-symbols-outlined"
-                    style={{
-                      position: "absolute",
-                      right: 0,
-                      bottom: ".6rem",
-                      fontSize: 18,
-                      color: "rgba(255,255,255,.35)",
-                      pointerEvents: "none",
-                    }}
+                    style={{ fontSize: 17 }}
                   >
-                    expand_more
+                    arrow_forward
                   </span>
-                </div>
-              </div>
-
-              {/* Message */}
-              <div
-                className="f-anim"
-                style={{ marginBottom: "2.5rem", opacity: 0 }}
-              >
-                <label style={fieldLabel}>Message</label>
-                <textarea
-                  rows={4}
-                  placeholder="Tell us about your project vision..."
-                  style={{ ...inputBase, resize: "none", paddingTop: ".4rem" }}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                />
-              </div>
-
-              {/* Privacy note */}
-              <p
-                className="f-anim"
-                style={{
-                  fontSize: ".72rem",
-                  color: "rgba(255,255,255,.22)",
-                  lineHeight: 1.6,
-                  marginBottom: "1.75rem",
-                  opacity: 0,
-                }}
-              >
-                By submitting, you agree to our Privacy Policy. We never share
-                your data with third parties.
-              </p>
-
-              {/* Submit */}
-              <button
-                className="f-anim"
-                style={{
-                  width: "100%",
-                  background: "#C5A059",
-                  color: "#000",
-                  fontFamily: "var(--font-label)",
-                  fontWeight: 600,
-                  fontSize: ".62rem",
-                  letterSpacing: ".22em",
-                  textTransform: "uppercase",
-                  padding: "1.25rem 1.5rem",
-                  border: "none",
-                  borderRadius: ".375rem",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: ".75rem",
-                  transition: "filter .25s, transform .15s",
-                  opacity: 0,
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.filter =
-                    "brightness(1.1)")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.filter = "none")
-                }
-                onMouseDown={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.transform =
-                    "scale(0.985)")
-                }
-                onMouseUp={(e) =>
-                  ((e.currentTarget as HTMLButtonElement).style.transform =
-                    "scale(1)")
-                }
-              >
-                Send Message
-                <span
-                  className="material-symbols-outlined"
-                  style={{ fontSize: 17 }}
-                >
-                  arrow_forward
-                </span>
-              </button>
+                </button>
+              </form>
             </div>
           </div>
 
           {/* SIDEBAR */}
           <div ref={sideColRef} className="connect-side-col">
             <div className="connect-side-info">
-              {/* Location */}
               <div className="s-anim" style={{ opacity: 0 }}>
                 <span style={eyebrow}>Location</span>
                 <h3
@@ -620,7 +696,6 @@ export default function ConnectPage() {
                 </p>
               </div>
 
-              {/* Digital contact */}
               <div className="s-anim" style={{ opacity: 0 }}>
                 <span style={eyebrow}>Digital</span>
                 <div
@@ -664,62 +739,8 @@ export default function ConnectPage() {
                   ))}
                 </div>
               </div>
-
-              {/* Hours
-              <div className="s-anim" style={{ opacity: 0 }}>
-                <span style={eyebrow}>Office Hours</span>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: ".5rem",
-                  }}
-                >
-                  {[
-                    ["Monday – Friday", "9:00 AM – 7:00 PM IST"],
-                    ["Saturday", "10:00 AM – 4:00 PM IST"],
-                    ["Sunday", "By Appointment"],
-                  ].map(([day, hrs]) => (
-                    <div
-                      key={day}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        padding: ".6rem 0",
-                        borderBottom: "1px solid rgba(255,255,255,.06)",
-                        gap: "1rem",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-label)",
-                          fontSize: ".56rem",
-                          fontWeight: 600,
-                          letterSpacing: ".14em",
-                          textTransform: "uppercase",
-                          color: "rgba(255,255,255,.35)",
-                        }}
-                      >
-                        {day}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-label)",
-                          fontSize: ".56rem",
-                          fontWeight: 600,
-                          color: "#C5A059",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {hrs}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
             </div>
 
-            {/* Bottom image */}
             <div
               className="s-anim"
               style={{
